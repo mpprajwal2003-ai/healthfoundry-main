@@ -1,0 +1,351 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="hero">
+  <div class="hero-container">
+    <!-- Left: text + CTAs + stats -->
+    <div class="hero-left">
+      <p class="section-label">The Intelligence Fabric</p>
+      <h1 class="hero-title">
+        The Intelligence Fabric for Healthcare Operations
+      </h1>
+      <p class="hero-sub">
+        Semi-autonomous AI agents that work alongside your teams to improve revenue, retention,
+        and compliance — built on the same clinical and operational data your hospital already generates.
+      </p>
+      <p class="hero-body">
+        HealthFoundry deploys purpose-built AI agents across revenue cycle, patient engagement,
+        and governance — each operating with human oversight at every decision point. Measurable
+        outcomes in 8 weeks, starting where your data already lives.
+      </p>
+
+      <div class="hero-ctas">
+        <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+        <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-value" data-count-up="8" data-suffix=" Weeks">8 Weeks</span>
+          <span class="stat-label">Median time to first measurable outcome</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value" data-count-up-range="40,60" data-suffix="%">40–60%</span>
+          <span class="stat-label">Reduction in claim submission TAT</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value" data-count-up-range="30,50" data-suffix="%">30–50%</span>
+          <span class="stat-label">Improvement in care gap follow-up rate</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item hitl-stat">
+          <span class="hitl-icon" aria-label="Human-in-the-loop">
+            <!-- user-check icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <polyline points="16 11 18 13 22 9"/>
+            </svg>
+          </span>
+          <span class="stat-label hitl-label">Human-in-the-loop<br/>at every consequential decision</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: dashboard mockup -->
+    <div class="hero-right">
+      <div class="hero-image-wrap">
+        <img
+          src="/images/dashboard-mockup.png"
+          alt="HealthFoundry Intelligence Fabric dashboard"
+          class="hero-image"
+          loading="eager"
+          width="640"
+          height="480"
+        />
+        <div class="hero-image-glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--bg-primary);
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    padding: 5rem 0 4rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, var(--accent-glow-soft) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--section-label-color);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--hero-title-color);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  .hero-sub {
+    font-size: var(--text-xl);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .hero-body {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 520px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: 0.75rem;
+  }
+
+  .stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0 1rem;
+  }
+
+  .stat-item:first-child {
+    padding-left: 0;
+  }
+
+  .stat-value {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--stat-val-color);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .stat-label {
+    font-size: var(--text-xs);
+    color: var(--stat-lbl-color);
+    line-height: 1.4;
+  }
+
+  .stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: var(--border-subtle);
+    flex-shrink: 0;
+  }
+
+  .hitl-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+  }
+
+  .hitl-icon {
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+  }
+
+  .hitl-label {
+    display: block;
+  }
+
+  /* Right side */
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-default);
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  [data-theme="light"] .hero-image {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero-image-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(ellipse at center, var(--accent-glow-soft) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-right {
+      order: -1;
+    }
+
+    .hero-image-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 0 3rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+    }
+
+    .stats-bar {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .stat-item {
+      padding: 0;
+      min-width: calc(50% - 0.5rem);
+    }
+  }
+</style>
+
+<script>
+  // Count-up animation for hero stats, triggered by IntersectionObserver
+  function animateCountUp(el: Element) {
+    const rangeAttr = el.getAttribute('data-count-up-range');
+    const singleAttr = el.getAttribute('data-count-up');
+    const suffix = el.getAttribute('data-suffix') ?? '';
+
+    if (rangeAttr) {
+      const [start, end] = rangeAttr.split(',').map(Number);
+      let startTs: number | null = null;
+      const duration = 1200;
+
+      function step(ts: number) {
+        if (!startTs) startTs = ts;
+        const progress = Math.min((ts - startTs) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = `${Math.round(start * eased)}–${Math.round(end * eased)}${suffix}`;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = `${start}–${end}${suffix}`;
+        }
+      }
+
+      el.textContent = `0–0${suffix}`;
+      requestAnimationFrame(step);
+    } else if (singleAttr) {
+      const target = parseInt(singleAttr, 10);
+      let startTs: number | null = null;
+      const duration = 900;
+
+      function step(ts: number) {
+        if (!startTs) startTs = ts;
+        const progress = Math.min((ts - startTs) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      el.textContent = `0${suffix}`;
+      requestAnimationFrame(step);
+    }
+  }
+
+  const statEls = document.querySelectorAll('[data-count-up], [data-count-up-range]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCountUp(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  statEls.forEach((el) => observer.observe(el));
+</script>

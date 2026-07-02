@@ -1,0 +1,764 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CXSystemsGrid from '../../components/diagrams/CXSystemsGrid.astro';
+import CareGapCallout from '../../components/diagrams/CareGapCallout.astro';
+import TimelineStep from '../../components/ui/TimelineStep.astro';
+import StatCard from '../../components/ui/StatCard.astro';
+import FooterCTA from '../../components/sections/FooterCTA.astro';
+import Button from '../../components/ui/Button.astro';
+
+const blueprintSteps = [
+  {
+    num: 1,
+    label: 'Audit',
+    desc: 'Validate your current KPIs across all four systems and attribute performance gaps to People, Process, Tools, or Data.',
+    // search icon
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>`,
+  },
+  {
+    num: 2,
+    label: 'Discover',
+    desc: 'Map your actual workflows through structured sessions and shadowing — covering all significant variants by patient type and service line.',
+    // map icon
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+      <line x1="9" y1="3" x2="9" y2="18"/>
+      <line x1="15" y1="6" x2="15" y2="21"/>
+    </svg>`,
+  },
+  {
+    num: 3,
+    label: 'Design',
+    desc: 'Specify the agent interventions that address your highest-impact, most addressable bottlenecks — with target KPIs for each.',
+    // drafting-compass icon
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="m3 21 9-4 9 4"/>
+      <path d="M12 7v7"/>
+      <path d="m9 16.5-1.5 3.9"/>
+      <path d="m15 16.5 1.5 3.9"/>
+    </svg>`,
+  },
+  {
+    num: 4,
+    label: 'Deploy',
+    desc: 'Staged pilot in one system or unit before broader rollout. Change management is built in from day one.',
+    // rocket icon
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+    </svg>`,
+  },
+  {
+    num: 5,
+    label: 'Learn',
+    desc: 'Continuous improvement from operational feedback, exception analysis, and outcome tracking against target KPIs.',
+    // bar-chart-2 icon
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="20" x2="18" y2="10"/>
+      <line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/>
+    </svg>`,
+  },
+  {
+    num: 6,
+    label: 'Optimise',
+    desc: 'Agents improve from operational use. Scope expands as confidence builds. Human oversight governs every stage.',
+    // refresh-cw icon
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <polyline points="23 4 23 10 17 10"/>
+      <polyline points="1 20 1 14 7 14"/>
+      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+    </svg>`,
+  },
+];
+
+const outcomes = [
+  { value: '30–50%', label: 'Improvement in care gap follow-up completion rate' },
+  { value: '15–25 pp', label: 'Lead-to-appointment conversion improvement' },
+  { value: '20–35%', label: 'Appointment no-show rate reduction' },
+  { value: '30–50%', label: 'Post-discharge follow-up completion improvement' },
+  { value: '30–50 pp', label: 'Feedback coverage improvement (inpatient + outpatient)' },
+  { value: '30–50%', label: 'Service ticket resolution TAT reduction' },
+];
+---
+
+<Layout
+  title="Patient & Customer Experience | HealthFoundry"
+  description="HealthFoundry's Patient Experience agents support acquisition, care continuity, and feedback management — helping healthcare providers retain patients and close care gaps at scale."
+>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════════ -->
+  <section class="cx-hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="domain-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            Customer Experience
+          </div>
+
+          <h1 class="hero-h1">
+            Patient Experience,<br />
+            <span class="hero-h1-accent">at scale</span>
+          </h1>
+
+          <p class="hero-sub">
+            From first enquiry to long-term care continuity
+          </p>
+
+          <p class="hero-body">
+            Care gaps buried in discharge summaries. Follow-up care that never gets scheduled.
+            Feedback that gets collected but never resolved. HealthFoundry's Patient Experience
+            agents surface what your operational data already knows — and support your teams to
+            act on it.
+          </p>
+
+          <div class="hero-ctas">
+            <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+            <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+          </div>
+        </div>
+
+        <div class="hero-image reveal-left delay-200">
+          <img
+            src="/images/opd-snapshot.png"
+            alt="OPD patient management interface"
+            class="hero-screenshot"
+            width="600"
+            height="400"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — THE FOUR CRM SYSTEMS
+  ══════════════════════════════════════════════════════ -->
+  <section class="cx-systems reveal">
+    <div class="container">
+      <p class="section-label">What We Address</p>
+      <h2 class="section-h2">
+        Customer relationship management in healthcare<br class="br-desktop" />
+        is four interacting systems — not one.
+      </h2>
+      <p class="section-intro">
+        Our engagement begins with an Outcomes-Driven Optimization Blueprint — a structured audit
+        of your current state across all four CRM systems, before we configure a single agent.
+      </p>
+
+      <CXSystemsGrid />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — CARE GAP CALLOUT
+  ══════════════════════════════════════════════════════ -->
+  <section class="cx-caregap">
+    <div class="container">
+      <div class="caregap-inner reveal">
+        <p class="section-label">Care Gap Extraction</p>
+        <h2 class="section-h2">
+          The highest-leverage capability in the domain
+        </h2>
+        <CareGapCallout />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — AGENT CAPABILITIES
+  ══════════════════════════════════════════════════════ -->
+  <section class="cx-agents reveal">
+    <div class="container">
+      <p class="section-label">Agents</p>
+      <h2 class="section-h2">Two agents, working in concert</h2>
+      <p class="section-intro">
+        Every agent in the platform is semi-autonomous: it reads, identifies, surfaces, and recommends.
+        Your team reviews and decides.
+      </p>
+
+      <div class="agent-cards-grid">
+
+        <div class="agent-feature-card">
+          <div class="afc-top">
+            <div class="afc-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <span class="afc-badge">Patient Engagement Agent</span>
+          </div>
+          <p class="afc-desc">
+            Manages outreach queues for acquisition leads and retention follow-ups. Triggers
+            communications at the right point in the patient journey. Tracks responses and
+            non-responses. Escalates non-responders to phone-based follow-up.
+          </p>
+          <div class="afc-hitl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+              <polyline points="16 11 18 13 22 9"/>
+            </svg>
+            Human agents review all communications before dispatch for clinical content.
+          </div>
+          <ul class="afc-capabilities">
+            <li>Acquisition lead pipeline management</li>
+            <li>Multi-channel outreach sequencing</li>
+            <li>Non-responder escalation workflows</li>
+            <li>Appointment reminder and confirmation</li>
+          </ul>
+        </div>
+
+        <div class="agent-feature-card">
+          <div class="afc-top">
+            <div class="afc-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <span class="afc-badge">Care Continuity Agent</span>
+          </div>
+          <p class="afc-desc">
+            Reads discharge summaries, prescriptions, radiology reports, and lab results to
+            identify follow-up requirements. Generates structured care gap records for the
+            retention team's review. Orchestrates the outreach sequence with human oversight
+            at each stage.
+          </p>
+          <div class="afc-hitl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+              <polyline points="16 11 18 13 22 9"/>
+            </svg>
+            Agent reads and identifies. Team reviews the structured care gap before outreach begins.
+          </div>
+          <ul class="afc-capabilities">
+            <li>Discharge summary extraction (HL7, FHIR, CCDA)</li>
+            <li>Structured care gap generation for human review</li>
+            <li>Post-discharge outreach orchestration</li>
+            <li>Chronic disease programme continuity tracking</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — OUTCOMES
+  ══════════════════════════════════════════════════════ -->
+  <section class="cx-outcomes reveal">
+    <div class="container">
+      <p class="section-label">What to Expect</p>
+      <h2 class="section-h2">Indicative outcomes from deployed agents</h2>
+
+      <div class="outcomes-grid">
+        {outcomes.map((o, i) => (
+          <StatCard
+            value={o.value}
+            label={o.label}
+            domainColor="--domain-cx"
+            class={`reveal delay-${(i % 3 + 1)}00`}
+          />
+        ))}
+      </div>
+
+      <p class="outcomes-caveat">
+        Ranges are indicative. Actual outcomes are defined during the Audit phase based on your current baseline.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 — HOW WE START (BLUEPRINT)
+  ══════════════════════════════════════════════════════ -->
+  <section class="cx-blueprint reveal">
+    <div class="container">
+      <p class="section-label">How We Start</p>
+      <h2 class="section-h2">
+        Our Outcomes-Driven Optimization Blueprint<br class="br-desktop" />
+        — CRM Edition
+      </h2>
+      <p class="section-intro">
+        We audit before we automate. Every engagement begins with this structured process —
+        so every agent we deploy is configured against a validated, evidence-based baseline.
+      </p>
+
+      <!-- Horizontal timeline on desktop, vertical on mobile -->
+      <div class="blueprint-timeline">
+        {blueprintSteps.map((step, idx) => (
+          <div class={`bp-step ${idx === blueprintSteps.length - 1 ? 'bp-step--last' : ''} reveal delay-${Math.min(idx * 100 + 100, 300)}`}>
+            <!-- Connector (hidden on last) -->
+            {idx < blueprintSteps.length - 1 && (
+              <div class="bp-connector" aria-hidden="true"></div>
+            )}
+
+            <div class="bp-body">
+              <div class="bp-dot" aria-hidden="true" set:html={step.icon}></div>
+              <div class="bp-text">
+                <div class="bp-step-num">0{step.num}</div>
+                <div class="bp-label">{step.label}</div>
+                <p class="bp-desc">{step.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 7 — FOOTER CTA
+  ══════════════════════════════════════════════════════ -->
+  <FooterCTA />
+
+</Layout>
+
+<style>
+  /* ── Shared layout ── */
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--domain-cx);
+    margin: 0 0 0.75rem;
+  }
+
+  .section-h2 {
+    font-size: clamp(1.625rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+
+  .section-intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 660px;
+    margin: 0 0 2.5rem;
+  }
+
+  .br-desktop { display: none; }
+  @media (min-width: 768px) { .br-desktop { display: block; } }
+
+  /* ── Section 1: Hero ── */
+  .cx-hero {
+    padding: 5rem 0 4rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-image {
+      order: -1;
+    }
+  }
+
+  .domain-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--domain-cx);
+    background: var(--domain-cx-muted);
+    border: 1px solid var(--domain-cx-border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .hero-h1-accent {
+    color: var(--domain-cx);
+  }
+
+  .hero-sub {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin: 0 0 1.25rem;
+    line-height: 1.4;
+  }
+
+  .hero-body {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-image {
+    position: relative;
+  }
+
+  .hero-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 0.875rem;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--card-shadow);
+  }
+
+  [data-theme="light"] .hero-screenshot {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ── Section 2: Four systems ── */
+  .cx-systems {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  /* ── Section 3: Care gap callout ── */
+  .cx-caregap {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .caregap-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── Section 4: Agents ── */
+  .cx-agents {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .agent-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .agent-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .agent-feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--domain-cx);
+    border-radius: 0.875rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .agent-feature-card:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--domain-cx-border);
+    border-left-color: var(--domain-cx);
+  }
+
+  .afc-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .afc-icon {
+    color: var(--domain-cx);
+    flex-shrink: 0;
+  }
+
+  .afc-badge {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .afc-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .afc-hitl {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-xs);
+    color: var(--domain-cx);
+    background: var(--domain-cx-muted);
+    border: 1px solid var(--domain-cx-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.5;
+  }
+
+  .afc-hitl svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .afc-capabilities {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .afc-capabilities li {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .afc-capabilities li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--domain-cx);
+    font-size: 10px;
+    top: 1px;
+  }
+
+  /* ── Section 5: Outcomes ── */
+  .cx-outcomes {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .outcomes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .outcomes-caveat {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── Section 6: Blueprint ── */
+  .cx-blueprint {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .blueprint-timeline {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .blueprint-timeline {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  .bp-step {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Horizontal connector */
+  .bp-connector {
+    position: absolute;
+    top: 18px;
+    left: calc(50% + 18px);
+    right: calc(-50% + 18px);
+    height: 1px;
+    background: var(--domain-cx-border);
+    z-index: 0;
+  }
+
+  @media (max-width: 768px) {
+    .bp-step {
+      flex-direction: row;
+      align-items: flex-start;
+      width: 100%;
+      padding-bottom: 2rem;
+    }
+
+    .bp-connector {
+      top: auto;
+      left: 17px;
+      bottom: 0;
+      right: auto;
+      width: 1px;
+      height: calc(100% - 36px);
+    }
+
+    .bp-step--last {
+      padding-bottom: 0;
+    }
+  }
+
+  .bp-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .bp-body {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: 0.875rem;
+    }
+  }
+
+  .bp-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--domain-cx-muted);
+    border: 1px solid var(--domain-cx-border);
+    color: var(--domain-cx);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bp-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .bp-step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--domain-cx);
+    letter-spacing: 0.05em;
+  }
+
+  .bp-label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .bp-desc {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>

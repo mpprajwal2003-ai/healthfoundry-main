@@ -1,0 +1,308 @@
+---
+---
+
+<section class="hitl section-padding reveal">
+  <div class="container">
+    <p class="section-label">Our Approach</p>
+    <h2 class="section-title">
+      AI that assists. Humans who decide.
+    </h2>
+    <p class="section-intro">
+      Every HealthFoundry agent is designed as a semi-autonomous system. Agents read, analyse,
+      draft, flag, and recommend. Humans review, confirm, approve, and act. For every consequential
+      workflow — claim submissions, patient communications, compliance decisions, write-off approvals
+      — a human holds authority.
+    </p>
+
+    <!-- Spectrum bar -->
+    <div class="spectrum-wrap">
+      <div class="spectrum-bar">
+        <div class="spectrum-zone zone-a">
+          <h3 class="zone-title">Agent Autonomous</h3>
+          <ul class="zone-activities">
+            <li>Continuous KPI monitoring</li>
+            <li>Pattern detection &amp; alerting</li>
+            <li>Routine scheduling reminders</li>
+            <li>Feedback routing</li>
+            <li>Data quality monitoring</li>
+          </ul>
+        </div>
+        <div class="zone-divider" aria-hidden="true"></div>
+        <div class="spectrum-zone zone-b">
+          <h3 class="zone-title">Agent + Human</h3>
+          <ul class="zone-activities">
+            <li>Guideline interpretation</li>
+            <li>High-impact config changes</li>
+            <li>Clinical content review</li>
+            <li>Write-off approvals (above threshold)</li>
+            <li>Appeal package approval</li>
+          </ul>
+        </div>
+        <div class="zone-divider" aria-hidden="true"></div>
+        <div class="spectrum-zone zone-c">
+          <h3 class="zone-title">Human Leads</h3>
+          <ul class="zone-activities">
+            <li>Payer relationship negotiation</li>
+            <li>Automation roadmap strategy</li>
+            <li>Process redesign</li>
+            <li>Staff change management</li>
+            <li>Accountability for decisions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Gradient spectrum indicator -->
+      <div class="spectrum-gradient" aria-hidden="true">
+        <span class="gradient-label left">Lower stakes, higher volume</span>
+        <div class="gradient-bar"></div>
+        <span class="gradient-label right">Higher stakes, human judgment</span>
+      </div>
+    </div>
+
+    <!-- Supporting callouts -->
+    <div class="hitl-callouts">
+      <div class="callout">
+        <div class="callout-icon">
+          <!-- brain/cpu icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <rect width="16" height="16" x="4" y="4" rx="2"/>
+            <rect width="6" height="6" x="9" y="9" rx="1"/>
+            <path d="M15 2v2M15 20v2M2 15h2M20 15h2M2 9h2M20 9h2M9 2v2M9 20v2"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Semi-autonomous by design</strong> — agents surface, recommend, and draft;
+          humans confirm and approve.
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-icon">
+          <!-- user-check icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <polyline points="16 11 18 13 22 9"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Structured escalation</strong> — every agent has defined thresholds above which
+          a human must decide.
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-icon">
+          <!-- refresh-cw icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Continuously improving</strong> — agents learn from staff feedback, exceptions,
+          and outcome data.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hitl {
+    background: var(--bg-secondary);
+  }
+
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--section-label-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+  }
+
+  .section-intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 0 3rem;
+  }
+
+  /* Spectrum */
+  .spectrum-wrap {
+    margin-bottom: 3rem;
+  }
+
+  .spectrum-bar {
+    display: flex;
+    background: var(--hitl-gradient);
+    border: 1px solid var(--border-default);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .spectrum-zone {
+    flex: 1;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .zone-a { background: var(--hitl-zone-a-bg); }
+  .zone-b { background: var(--hitl-zone-b-bg); }
+  .zone-c { background: var(--hitl-zone-c-bg); }
+
+  .zone-divider {
+    width: 1px;
+    background: var(--border-subtle);
+    flex-shrink: 0;
+  }
+
+  .zone-title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .zone-activities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .zone-activities li {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 0.875rem;
+    position: relative;
+  }
+
+  .zone-activities li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* Gradient indicator */
+  .spectrum-gradient {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0 0.25rem;
+  }
+
+  .gradient-bar {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, var(--border-subtle) 0%, var(--border-strong) 100%);
+    border-radius: 9999px;
+  }
+
+  .gradient-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* Callouts */
+  .hitl-callouts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .callout {
+    display: flex;
+    gap: 0.875rem;
+    padding: 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .callout strong {
+    color: var(--text-primary);
+  }
+
+  .callout-icon {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .spectrum-bar {
+      flex-direction: column;
+    }
+
+    .zone-divider {
+      width: auto;
+      height: 1px;
+    }
+
+    .hitl-callouts {
+      grid-template-columns: 1fr;
+    }
+
+    .spectrum-gradient {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .gradient-bar {
+      width: 100%;
+      transform: rotate(90deg);
+      transform-origin: center;
+    }
+
+    .gradient-label.right {
+      align-self: flex-end;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .spectrum-gradient {
+      display: none;
+    }
+  }
+</style>

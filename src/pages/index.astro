@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ProblemStatement from '../components/sections/ProblemStatement.astro';
+import PlatformOverview from '../components/sections/PlatformOverview.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import OutcomeStats from '../components/sections/OutcomeStats.astro';
+import MissionValues from '../components/sections/MissionValues.astro';
+import FooterCTA from '../components/sections/FooterCTA.astro';
+---
+
+<Layout
+  title="HealthFoundry | Agentic AI for Healthcare Operations"
+  description="HealthFoundry's Intelligence Fabric platform deploys semi-autonomous AI agents across healthcare FinOps, patient experience, and governance — measurable outcomes in 8 weeks."
+  ogTitle="HealthFoundry | Agentic AI for Healthcare Operations"
+  ogDescription="HealthFoundry's Intelligence Fabric platform deploys semi-autonomous AI agents across healthcare FinOps, patient experience, and governance — measurable outcomes in 8 weeks."
+>
+  <!-- Hero: no reveal class — immediately visible -->
+  <Hero />
+
+  <!-- All subsequent sections get reveal animations -->
+  <ProblemStatement />
+  <PlatformOverview />
+  <HowItWorks />
+  <OutcomeStats />
+  <MissionValues />
+  <FooterCTA />
+</Layout>

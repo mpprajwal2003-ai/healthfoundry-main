@@ -1,0 +1,53 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="footer-cta reveal">
+  <div class="container">
+    <h2 class="cta-headline">
+      Ready to see the Intelligence Fabric in your environment?
+    </h2>
+    <p class="cta-sub">
+      Most engagements begin with a structured discovery session — we map your current operations,
+      validate your KPIs, and show you where agents can move the needle first.
+    </p>
+    <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+  </div>
+</section>
+
+<style>
+  .footer-cta {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .cta-headline {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .cta-sub {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 0 0.5rem;
+  }
+</style>

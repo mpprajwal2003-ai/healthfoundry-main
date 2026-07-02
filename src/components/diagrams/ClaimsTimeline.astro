@@ -1,0 +1,191 @@
+---
+// ClaimsTimeline — 8-stage claims lifecycle, compact 2-column grid
+// Stage name (left) + agent support (right), connected by a left spine
+// Domain: FinOps amber
+
+const stages = [
+  {
+    num: 1,
+    name: 'Patient Registration & Eligibility Verification',
+    agentSupport:
+      'Automated eligibility checks at point of registration. Structured alerts when verification fails or returns uncertain results.',
+  },
+  {
+    num: 2,
+    name: 'Pre-Authorisation',
+    agentSupport:
+      'Pre-auth package assembly from source systems. Portal status monitoring. Query response drafting for human review. Reauthorisation triggering for multi-cycle treatment cases.',
+  },
+  {
+    num: 3,
+    name: 'Clinical Documentation & Coding',
+    agentSupport:
+      'Coding validation against applicable payer package definitions before submission. Flagging of mismatched or unsupported code combinations for coding team review.',
+  },
+  {
+    num: 4,
+    name: 'Claim Assembly & Submission',
+    agentSupport:
+      'Automated retrieval and assembly of required data elements from HIS, EMR, RIS, pharmacy, and lab systems. Submission TAT tracking and pre-submission quality checks.',
+  },
+  {
+    num: 5,
+    name: 'Query Management',
+    agentSupport:
+      'Query classification by type and payer. Documentation retrieval for response assembly. Draft responses surfaced for human review. Open query ageing alerts.',
+  },
+  {
+    num: 6,
+    name: 'Adjudication Monitoring & Settlement Reconciliation',
+    agentSupport:
+      'Adjudication status monitoring across payer portals. Settlement-to-submission reconciliation. Discrepancy flagging for human investigation.',
+  },
+  {
+    num: 7,
+    name: 'Deduction & Rejection Management',
+    agentSupport:
+      'Automatic classification of deduction and rejection reasons. Historical overturn rate analysis for appeal viability scoring. Appeal package assembly for human review and approval.',
+  },
+  {
+    num: 8,
+    name: 'Reauthorisation',
+    agentSupport:
+      'Reauthorisation alerts for multi-cycle cases approaching authorisation expiry. Clinical evidence assembly for reauth package. Human clinical review before submission.',
+  },
+];
+
+const BOT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+  stroke-linejoin="round" aria-hidden="true">
+  <path d="M12 8V4H8"/>
+  <rect width="16" height="12" x="4" y="8" rx="2"/>
+  <path d="M2 14h2"/><path d="M20 14h2"/>
+  <path d="M15 13v2"/><path d="M9 13v2"/>
+</svg>`;
+---
+
+<div class="ct-wrap">
+  {stages.map((stage, i) => (
+    <div class={`ct-row reveal`} style={`transition-delay: ${Math.min(i * 50, 200)}ms`}>
+      <!-- Left spine: dot + line -->
+      <div class="ct-spine" aria-hidden="true">
+        <div class="ct-dot"><span class="ct-dot-num">{stage.num}</span></div>
+        {i < stages.length - 1 && <div class="ct-line"></div>}
+      </div>
+
+      <!-- Stage name -->
+      <div class="ct-stage">
+        <span class="ct-stage-name">{stage.name}</span>
+      </div>
+
+      <!-- Agent callout -->
+      <div class="ct-agent">
+        <span class="ct-agent-icon" set:html={BOT_ICON} />
+        <span class="ct-agent-text">{stage.agentSupport}</span>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .ct-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Each row: [spine 28px] [stage name 1fr] [agent callout 1.4fr] */
+  .ct-row {
+    display: grid;
+    grid-template-columns: 28px 1fr 1.4fr;
+    gap: 0 1rem;
+    align-items: stretch;
+    min-height: 52px;
+  }
+
+  /* ── Left spine ── */
+  .ct-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .ct-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--domain-finops-muted);
+    border: 2px solid var(--domain-finops);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .ct-dot-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--domain-finops);
+    line-height: 1;
+  }
+
+  .ct-line {
+    flex: 1;
+    width: 2px;
+    background: var(--timeline-line);
+    margin: 2px 0;
+  }
+
+  /* ── Stage name ── */
+  .ct-stage {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem 0.5rem 0;
+  }
+
+  .ct-stage-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  /* ── Agent callout ── */
+  .ct-agent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.375rem;
+    padding: 0.5rem 0;
+    margin: 0.25rem 0;
+    background: var(--domain-finops-muted);
+    border: 1px solid var(--domain-finops-border);
+    border-radius: 7px;
+    padding: 0.5rem 0.75rem;
+    align-self: center;
+  }
+
+  .ct-agent-icon {
+    color: var(--domain-finops);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .ct-agent-text {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  /* ── Mobile: hide agent column, show only stage names ── */
+  @media (max-width: 640px) {
+    .ct-row {
+      grid-template-columns: 28px 1fr;
+    }
+
+    .ct-agent {
+      display: none;
+    }
+  }
+</style>

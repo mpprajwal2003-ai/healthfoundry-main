@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Anthropic Sans',sans-serif;background:#040e1f;color:#e2edf8;overflow-x:hidden}
+.root{width:100%;min-height:900px;background:linear-gradient(160deg,#040e1f 0%,#071528 60%,#04111f 100%);padding:24px 20px 32px;position:relative}
+.root::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(30,100,200,0.08) 0%,transparent 70%);pointer-events:none}
+.title-band{text-align:center;margin-bottom:20px}
+.eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4a8fc7;font-weight:500;margin-bottom:6px}
+.main-title{font-size:22px;font-weight:600;color:#e8f2ff;letter-spacing:-0.01em;margin-bottom:4px}
+.main-title em{font-style:normal;color:#6eb8ff}
+.sub-title{font-size:12px;color:#6b9cc5;letter-spacing:0.04em}
+.outcomes-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
+.outcome-card{background:rgba(20,60,120,0.25);border:0.5px solid rgba(60,140,230,0.25);border-radius:8px;padding:10px 10px 8px;text-align:center;position:relative;overflow:hidden}
+.outcome-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#2a7fd4,transparent)}
+.outcome-icon{font-size:18px;margin-bottom:4px;color:#4a9de8}
+.outcome-label{font-size:11px;font-weight:600;color:#a8d0f0;line-height:1.25}
+.outcome-sub{font-size:10px;color:#5a8ab0;margin-top:2px;line-height:1.2}
+.domains-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.domain-col{display:flex;flex-direction:column;gap:8px}
+.domain-header{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;padding:5px 10px;border-radius:5px;text-align:center}
+.frontend-h{color:#7dd4b0;background:rgba(20,100,70,0.2);border:0.5px solid rgba(40,160,100,0.2)}
+.backend-h{color:#b09af0;background:rgba(60,30,120,0.2);border:0.5px solid rgba(100,60,200,0.2)}
+.domain-card{border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;border:0.5px solid}
+.frontend-card{background:rgba(15,60,40,0.3);border-color:rgba(40,160,100,0.2)}
+.backend-card{background:rgba(35,15,80,0.3);border-color:rgba(100,60,200,0.2)}
+.d-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:1px}
+.frontend-icon{background:rgba(40,160,100,0.15)}
+.backend-icon{background:rgba(100,60,200,0.15)}
+.d-title{font-size:12px;font-weight:600;color:#daedf8;margin-bottom:2px}
+.d-sub{font-size:10px;color:#5a8ab0;line-height:1.4}
+.agent-section{background:rgba(10,30,70,0.35);border:0.5px solid rgba(40,100,200,0.2);border-radius:10px;padding:14px 16px;margin-bottom:16px;position:relative;overflow:hidden}
+.agent-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(50,130,250,0.3),transparent)}
+.section-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#4a8fc7;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.section-label::before{content:'';width:16px;height:1px;background:#2a6fb4}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#2a6fb4,transparent)}
+.agents-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.agent-chip{background:rgba(20,50,100,0.4);border:0.5px solid rgba(50,120,220,0.2);border-radius:6px;padding:8px 10px;text-align:center}
+.agent-name{font-size:11px;font-weight:600;color:#9fc8e8;margin-bottom:2px}
+.agent-desc{font-size:9.5px;color:#4a7090;line-height:1.35}
+.traits-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.trait-badge{background:rgba(30,70,140,0.3);border:0.5px solid rgba(60,130,230,0.25);border-radius:20px;padding:4px 10px;font-size:10px;color:#7ab0d8;font-weight:500;display:flex;align-items:center;gap:4px}
+.models-section{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.model-block{background:rgba(10,30,70,0.35);border:0.5px solid rgba(40,100,200,0.2);border-radius:10px;padding:12px 14px}
+.model-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.model-icon{width:32px;height:32px;border-radius:8px;background:rgba(40,100,200,0.2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.model-title{font-size:12px;font-weight:600;color:#c0d8f0}
+.model-sub{font-size:10px;color:#4a7090;line-height:1.4}
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.pill{padding:3px 8px;border-radius:20px;font-size:10px;font-weight:500}
+.pill-blue{background:rgba(30,80,180,0.25);border:0.5px solid rgba(60,140,240,0.2);color:#7ab0e0}
+.pill-teal{background:rgba(10,90,80,0.25);border:0.5px solid rgba(30,170,140,0.2);color:#60c4a8}
+.pill-purple{background:rgba(60,20,120,0.25);border:0.5px solid rgba(120,60,220,0.2);color:#a888e8}
+.platform-section{background:rgba(8,20,55,0.5);border:1px solid rgba(40,100,200,0.25);border-radius:12px;padding:16px;margin-bottom:16px;position:relative}
+.platform-glow{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(50,130,250,0.5),transparent);height:1px;width:60%}
+.platform-title-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px}
+.platform-badge{background:rgba(30,80,200,0.3);border:0.5px solid rgba(80,160,255,0.3);border-radius:6px;padding:4px 12px;font-size:11px;font-weight:600;color:#6eb8ff;letter-spacing:0.06em}
+.spotlight-ai{background:rgba(8,28,65,0.7);border:1px solid rgba(80,160,255,0.35);border-radius:10px;padding:14px 16px;margin-bottom:10px;position:relative;overflow:hidden}
+.spotlight-ai::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#80d0e8,#4a9de8,transparent)}
+.spotlight-ai-inner{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ai-group{display:flex;flex-direction:column;gap:6px}
+.ai-group-label{font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:#4a8ab0;margin-bottom:2px;padding-bottom:4px;border-bottom:0.5px solid rgba(40,90,180,0.25)}
+.spotlight-insights{background:rgba(40,10,25,0.45);border:1px solid rgba(220,100,120,0.3);border-radius:10px;padding:14px 16px;margin-bottom:10px;position:relative;overflow:hidden}
+.spotlight-insights::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e88080,#f0a0a0,transparent)}
+.support-caps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cap-card{background:rgba(15,35,80,0.5);border:0.5px solid rgba(40,90,180,0.2);border-radius:8px;padding:10px 11px;position:relative;overflow:hidden}
+.cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px}
+.cap-infra::before{background:linear-gradient(90deg,transparent,#4a9de8,transparent)}
+.cap-foundation::before{background:linear-gradient(90deg,transparent,#7dd4b0,transparent)}
+.cap-integration::before{background:linear-gradient(90deg,transparent,#b09af0,transparent)}
+.cap-data::before{background:linear-gradient(90deg,transparent,#f0c060,transparent)}
+.cap-title{font-size:11px;font-weight:700;color:#c8dff5;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.cap-items{list-style:none;display:flex;flex-direction:column;gap:2px}
+.cap-items li{font-size:9.5px;color:#4a7090;line-height:1.35;padding-left:8px;position:relative}
+.cap-items li::before{content:'·';position:absolute;left:0;color:#2a5a90}
+.ai-chip-row{display:flex;flex-wrap:wrap;gap:5px}
+.ai-chip{padding:4px 9px;border-radius:5px;font-size:10px;font-weight:500;background:rgba(20,55,120,0.4);border:0.5px solid rgba(60,140,240,0.22);color:#80c0e8}
+.ai-chip.hl{background:rgba(30,90,180,0.45);border-color:rgba(80,170,255,0.4);color:#a8d8ff}
+.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ins-title{font-size:11px;font-weight:700;color:#f0a0a0;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.ins-chip-row{display:flex;flex-wrap:wrap;gap:5px}
+.ins-chip{padding:4px 9px;border-radius:5px;font-size:10px;font-weight:500;background:rgba(80,15,30,0.4);border:0.5px solid rgba(200,80,100,0.2);color:#e89090}
+.ins-chip.hl{background:rgba(120,20,40,0.5);border-color:rgba(240,100,120,0.4);color:#f8b0b0}
+.spot-title{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.spot-title-ai{color:#80d0e8}
+.spot-title-ins{color:#f0a080}
+.spot-badge{font-size:9px;padding:2px 7px;border-radius:10px;font-weight:600;letter-spacing:0.05em}
+.badge-ai{background:rgba(30,100,180,0.3);border:0.5px solid rgba(80,180,255,0.3);color:#70c0f0}
+.badge-ins{background:rgba(120,30,50,0.3);border:0.5px solid rgba(240,100,120,0.3);color:#f0a0a0}
+.infra-bottom{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.infra-chip{background:rgba(10,25,60,0.6);border:0.5px solid rgba(40,80,160,0.2);border-radius:6px;padding:8px 10px;text-align:center}
+.infra-icon{font-size:16px;margin-bottom:3px;color:#4a7090}
+.infra-label{font-size:10px;font-weight:600;color:#7a9dc0}
+.infra-sub{font-size:9px;color:#3a5a78;margin-top:1px}
+</style>
+</head>
+<body>
+<div class="root">
+
+<!-- Updated Title -->
+<div class="title-band">
+  <div class="eyebrow">Healthcare AI Platform</div>
+  <div class="main-title">The <em>Intelligence Fabric</em> — A Domain-Aware Agentic Platform for Hospital Operations</div>
+  <div class="sub-title">Driving measurable improvement in outcomes across clinical, financial and operational domains</div>
+</div>
+
+<div class="outcomes-row">
+  <div class="outcome-card"><div class="outcome-icon">📉</div><div class="outcome-label">Error Reduction</div><div class="outcome-sub">Fewer clinical &amp; admin errors</div></div>
+  <div class="outcome-card"><div class="outcome-icon">⚡</div><div class="outcome-label">Throughput Gains</div><div class="outcome-sub">Bottleneck removal across ops</div></div>
+  <div class="outcome-card"><div class="outcome-icon">💰</div><div class="outcome-label">Revenue Uplift</div><div class="outcome-sub">Denial reduction &amp; RCM efficiency</div></div>
+  <div class="outcome-card"><div class="outcome-icon">📊</div><div class="outcome-label">Compliance Score</div><div class="outcome-sub">Audit-ready GRC posture</div></div>
+  <div class="outcome-card"><div class="outcome-icon">🏥</div><div class="outcome-label">Patient Outcomes</div><div class="outcome-sub">Continuity &amp; care quality KPIs</div></div>
+</div>
+
+<div class="domains-grid">
+  <div class="domain-col">
+    <div class="domain-header frontend-h">Frontend — Patient-Facing</div>
+    <div class="domain-card frontend-card">
+      <div class="d-icon frontend-icon">🤝</div>
+      <div class="d-body"><div class="d-title">Patient Relationship Management</div><div class="d-sub">Engagement, scheduling, communication workflows &amp; patient journey orchestration</div></div>
+    </div>
+    <div class="domain-card frontend-card">
+      <div class="d-icon frontend-icon">🔗</div>
+      <div class="d-body"><div class="d-title">Continuity of Care</div><div class="d-sub">Care plan coordination, transitions, referral management &amp; follow-up automation</div></div>
+    </div>
+  </div>
+  <div class="domain-col">
+    <div class="domain-header backend-h">Backend — Operational</div>
+    <div class="domain-card backend-card">
+      <div class="d-icon backend-icon">🔄</div>
+      <div class="d-body"><div class="d-title">Revenue Cycle Management</div><div class="d-sub">Claims processing, denial management, coding accuracy &amp; billing automation</div></div>
+    </div>
+    <div class="domain-card backend-card">
+      <div class="d-icon backend-icon">📦</div>
+      <div class="d-body"><div class="d-title">Supply Chain Management</div><div class="d-sub">Inventory optimization, procurement automation &amp; demand forecasting</div></div>
+    </div>
+    <div class="domain-card backend-card">
+      <div class="d-icon backend-icon">🛡️</div>
+      <div class="d-body"><div class="d-title">Governance, Risk &amp; Compliance (GRC)</div><div class="d-sub">Policy adherence, audit trails, risk scoring &amp; regulatory compliance</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="agent-section">
+  <div class="section-label">Domain-Specific AI Agents</div>
+  <div class="agents-grid">
+    <div class="agent-chip"><div class="agent-name">Patient Engagement Agent</div><div class="agent-desc">Automates outreach, reminders &amp; care coordination</div></div>
+    <div class="agent-chip"><div class="agent-name">RCM Optimization Agent</div><div class="agent-desc">Claims review, denial prediction &amp; coding assistance</div></div>
+    <div class="agent-chip"><div class="agent-name">Supply Intelligence Agent</div><div class="agent-desc">Demand signal analysis &amp; procurement orchestration</div></div>
+    <div class="agent-chip"><div class="agent-name">Care Continuity Agent</div><div class="agent-desc">Transition of care monitoring &amp; gap detection</div></div>
+    <div class="agent-chip"><div class="agent-name">GRC Compliance Agent</div><div class="agent-desc">Policy monitoring, risk flagging &amp; audit preparation</div></div>
+    <div class="agent-chip"><div class="agent-name">Analytics &amp; Insights Agent</div><div class="agent-desc">Natural language query across operational data cubes</div></div>
+  </div>
+  <div class="traits-row">
+    <div class="trait-badge">🧠 Semi-autonomous</div>
+    <div class="trait-badge">👤 Human-in-the-loop</div>
+    <div class="trait-badge">♻️ Adaptive</div>
+    <div class="trait-badge">📚 Continuously learning</div>
+    <div class="trait-badge">⚙️ Process automation</div>
+    <div class="trait-badge">🎯 Error reduction</div>
+    <div class="trait-badge">🚫 Bottleneck removal</div>
+  </div>
+</div>
+
+<div class="models-section">
+  <div class="model-block">
+    <div class="model-row"><div class="model-icon">🤖</div><div><div class="model-title">AI Models</div><div class="model-sub">Fine-tuned on customer data for domain accuracy</div></div></div>
+    <div class="pill-row">
+      <span class="pill pill-blue">Deep Learning</span>
+      <span class="pill pill-blue">Large Language Models</span>
+      <span class="pill pill-teal">RLHF / GEPA</span>
+      <span class="pill pill-teal">Task-specific models</span>
+    </div>
+  </div>
+  <div class="model-block">
+    <div class="model-row"><div class="model-icon">☁️</div><div><div class="model-title">Deployment Flexibility</div><div class="model-sub">Customer-controlled infrastructure</div></div></div>
+    <div class="pill-row">
+      <span class="pill pill-teal">On-Premise (Kubernetes)</span>
+      <span class="pill pill-blue">Google Cloud</span>
+      <span class="pill pill-blue">AWS</span>
+      <span class="pill pill-blue">Azure</span>
+      <span class="pill pill-purple">Hybrid / Air-gapped</span>
+    </div>
+  </div>
+</div>
+
+<div class="platform-section">
+  <div class="platform-glow"></div>
+  <div class="platform-title-row">
+    <div class="platform-badge">⚡ Agentic AI Platform — Core Capabilities</div>
+  </div>
+
+  <div class="spotlight-ai">
+    <div class="spot-title spot-title-ai">🧬 AI — Agents &amp; Models <span class="spot-badge badge-ai">Primary Engine</span></div>
+    <div class="spotlight-ai-inner">
+      <div class="ai-group">
+        <div class="ai-group-label">Agent capabilities</div>
+        <div class="ai-chip-row">
+          <span class="ai-chip hl">Agent lifecycle management</span>
+          <span class="ai-chip hl">Agent governance &amp; HITL</span>
+          <span class="ai-chip hl">Context engine</span>
+          <span class="ai-chip hl">Conversational mode</span>
+          <span class="ai-chip">Self-learning (RLHF / GEPA)</span>
+          <span class="ai-chip">Multi-agent orchestration</span>
+        </div>
+      </div>
+      <div class="ai-group">
+        <div class="ai-group-label">Model operations &amp; platform</div>
+        <div class="ai-chip-row">
+          <span class="ai-chip hl">Cost-aware model execution</span>
+          <span class="ai-chip hl">LLM observability</span>
+          <span class="ai-chip hl">Model drift monitoring</span>
+          <span class="ai-chip">Task-specific model routing</span>
+          <span class="ai-chip">LLM fine-tuning pipeline</span>
+          <span class="ai-chip">Prompt &amp; chain management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spotlight-insights">
+    <div class="spot-title spot-title-ins">📈 Insights &amp; Analytics <span class="spot-badge badge-ins">Decision Intelligence</span></div>
+    <div class="insights-grid">
+      <div class="ins-block">
+        <div class="ins-title">🗂️ Domain cubes</div>
+        <div class="ins-chip-row">
+          <span class="ins-chip hl">Per-specialty data cubes</span>
+          <span class="ins-chip hl">Cross-domain federation</span>
+          <span class="ins-chip">Governed metric definitions</span>
+          <span class="ins-chip">Historical &amp; real-time</span>
+        </div>
+      </div>
+      <div class="ins-block">
+        <div class="ins-title">💬 Agentic analytics</div>
+        <div class="ins-chip-row">
+          <span class="ins-chip hl">Natural language interface</span>
+          <span class="ins-chip hl">Dynamic slice &amp; dice</span>
+          <span class="ins-chip">Beyond fixed dashboards</span>
+          <span class="ins-chip">Conversational drill-down</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="support-caps">
+    <div class="cap-card cap-infra">
+      <div class="cap-title">🏗️ Infrastructure</div>
+      <ul class="cap-items">
+        <li>Kubernetes-native (on-prem / cloud)</li>
+        <li>Multi-cloud portability</li>
+        <li>Customer-controlled deployment</li>
+        <li>Air-gap &amp; hybrid support</li>
+      </ul>
+    </div>
+    <div class="cap-card cap-foundation">
+      <div class="cap-title">🔐 Foundation</div>
+      <ul class="cap-items">
+        <li>Authentication &amp; access control</li>
+        <li>Audit &amp; observability</li>
+        <li>Messaging &amp; event bus</li>
+        <li>Persistent storage</li>
+      </ul>
+    </div>
+    <div class="cap-card cap-integration">
+      <div class="cap-title">🔌 Integration</div>
+      <ul class="cap-items">
+        <li>File / API / CDC ingestion</li>
+        <li>EMR, HIS, CRM, SCM connectors</li>
+        <li>Scalable data pipelines</li>
+        <li>Pre-built hospital adapters</li>
+      </ul>
+    </div>
+    <div class="cap-card cap-data">
+      <div class="cap-title">🗄️ Data</div>
+      <ul class="cap-items">
+        <li>Domain-centric events &amp; facts</li>
+        <li>Context &amp; results store</li>
+        <li>ETL pipeline orchestration</li>
+        <li>Governed data lineage</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="infra-bottom">
+  <div class="infra-chip"><div class="infra-icon">🏥</div><div class="infra-label">EMR / EHR</div><div class="infra-sub">Epic, Cerner, Meditech</div></div>
+  <div class="infra-chip"><div class="infra-icon">🏢</div><div class="infra-label">HIS / CRM / SCM</div><div class="infra-sub">Pre-built connectors</div></div>
+  <div class="infra-chip"><div class="infra-icon">☁️</div><div class="infra-label">On-Prem / Cloud</div><div class="infra-sub">Kubernetes anywhere</div></div>
+  <div class="infra-chip"><div class="infra-icon">🔒</div><div class="infra-label">HIPAA / SOC2</div><div class="infra-sub">Compliance-ready</div></div>
+</div>
+
+</div>
+</body>
+</html>

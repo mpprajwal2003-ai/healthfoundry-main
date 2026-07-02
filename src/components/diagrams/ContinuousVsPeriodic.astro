@@ -1,0 +1,315 @@
+---
+// No props — self-contained comparison diagram for the GRC page
+---
+
+<div class="cvp-diagram" role="img" aria-label="Comparison of traditional periodic audits versus HealthFoundry continuous monitoring">
+
+  <!-- Row 1: Traditional / Periodic -->
+  <div class="cvp-row">
+    <div class="cvp-row-label cvp-row-label--periodic">
+      <span class="cvp-label-badge cvp-label-badge--periodic">Traditional (Periodic)</span>
+    </div>
+    <div class="cvp-timeline cvp-timeline--periodic">
+      <!-- Month labels -->
+      <div class="cvp-months">
+        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+      </div>
+      <!-- Timeline track -->
+      <div class="cvp-track cvp-track--periodic">
+        <!-- Audit spike at Q1 end -->
+        <div class="cvp-spike" style="left: 33%">
+          <div class="cvp-spike-line"></div>
+          <div class="cvp-spike-flag">
+            <div class="cvp-spike-icon" aria-hidden="true">
+              <!-- alert-triangle -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <p class="cvp-spike-text">Audit finds problems from last 3 months</p>
+            <p class="cvp-spike-sub">Damage already done</p>
+          </div>
+        </div>
+        <!-- Audit spike at Q2 end -->
+        <div class="cvp-spike" style="left: 66%">
+          <div class="cvp-spike-line"></div>
+          <div class="cvp-spike-flag">
+            <div class="cvp-spike-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <p class="cvp-spike-text">Audit finds problems from last 3 months</p>
+            <p class="cvp-spike-sub">Damage already done</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="cvp-divider" aria-hidden="true"></div>
+
+  <!-- Row 2: HealthFoundry / Continuous -->
+  <div class="cvp-row">
+    <div class="cvp-row-label cvp-row-label--continuous">
+      <span class="cvp-label-badge cvp-label-badge--continuous">HealthFoundry (Continuous)</span>
+    </div>
+    <div class="cvp-timeline cvp-timeline--continuous">
+      <!-- Month labels -->
+      <div class="cvp-months">
+        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+      </div>
+      <!-- Timeline track -->
+      <div class="cvp-track cvp-track--continuous">
+        <!-- Continuous monitor dots — 11 evenly spaced -->
+        {[8, 16, 24, 33, 41, 49, 58, 66, 74, 83, 91].map((pct) => (
+          <div class="cvp-dot" style={`left: ${pct}%`} aria-hidden="true">
+            <div class="cvp-dot-marker"></div>
+            <div class="cvp-dot-pulse"></div>
+          </div>
+        ))}
+        <!-- Continuous label -->
+        <div class="cvp-continuous-label">
+          <div class="cvp-continuous-icon" aria-hidden="true">
+            <!-- shield-check -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <p class="cvp-continuous-text">Real-time risk flags surfaced for human review</p>
+          <p class="cvp-continuous-sub">Issues caught before they become findings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .cvp-diagram {
+    background: var(--diagram-bg);
+    border: 1px solid var(--diagram-border);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  /* ── Row layout ── */
+  .cvp-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.5rem 0;
+  }
+
+  @media (max-width: 680px) {
+    .cvp-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  /* ── Row labels ── */
+  .cvp-row-label {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .cvp-label-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 6px;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .cvp-label-badge--periodic {
+    color: var(--text-muted);
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-default);
+  }
+
+  .cvp-label-badge--continuous {
+    color: var(--domain-grc);
+    background: var(--domain-grc-muted);
+    border: 1px solid var(--domain-grc-border);
+  }
+
+  /* ── Month axis labels ── */
+  .cvp-months {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+    padding: 0 2px;
+  }
+
+  /* ── Timeline track ── */
+  .cvp-track {
+    position: relative;
+    height: 6px;
+    border-radius: 3px;
+    margin-bottom: 3rem;
+  }
+
+  .cvp-track--periodic {
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-default);
+  }
+
+  .cvp-track--continuous {
+    background: var(--domain-grc-muted);
+    border: 1px solid var(--domain-grc-border);
+  }
+
+  /* ── Divider ── */
+  .cvp-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 0;
+  }
+
+  /* ── Periodic: audit spikes ── */
+  .cvp-spike {
+    position: absolute;
+    top: -2px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cvp-spike-line {
+    width: 1.5px;
+    height: 16px;
+    background: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .cvp-spike-flag {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-default);
+    border-radius: 6px;
+    padding: 0.5rem 0.625rem;
+    min-width: 140px;
+    max-width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .cvp-spike-icon {
+    color: var(--text-muted);
+    margin-bottom: 0.125rem;
+  }
+
+  .cvp-spike-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .cvp-spike-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* ── Continuous: monitor dots ── */
+  .cvp-dot {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cvp-dot-marker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--domain-grc);
+    position: relative;
+    z-index: 2;
+  }
+
+  .cvp-dot-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--domain-grc);
+    opacity: 0.2;
+    animation: cvp-pulse 2.5s ease-out infinite;
+  }
+
+  /* Stagger pulses so they don't all fire at once */
+  .cvp-dot:nth-child(odd) .cvp-dot-pulse  { animation-delay: 0.4s; }
+  .cvp-dot:nth-child(3n) .cvp-dot-pulse   { animation-delay: 0.8s; }
+  .cvp-dot:nth-child(5n) .cvp-dot-pulse   { animation-delay: 1.2s; }
+
+  @keyframes cvp-pulse {
+    0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.22; }
+    70%  { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+  }
+
+  /* ── Continuous: label below track ── */
+  .cvp-continuous-label {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .cvp-continuous-icon {
+    color: var(--domain-grc);
+    margin-bottom: 0.1rem;
+  }
+
+  .cvp-continuous-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--domain-grc);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .cvp-continuous-sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Reduced motion: no pulse animation */
+  @media (prefers-reduced-motion: reduce) {
+    .cvp-dot-pulse { animation: none; }
+  }
+</style>

@@ -1,0 +1,309 @@
+---
+// No props — self-contained diagram
+---
+
+<div class="dt-wrapper" role="img" aria-label="Deployment topology: patient data stays in your environment">
+
+  <!-- Outer box: Your Environment -->
+  <div class="dt-outer">
+    <div class="dt-outer-label">Your Environment</div>
+
+    <!-- Side-by-side sub-boxes -->
+    <div class="dt-infra-row">
+      <div class="dt-infra-box">
+        <div class="dt-infra-icon" aria-hidden="true">
+          <!-- server icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+            <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+            <line x1="6" x2="6.01" y1="6" y2="6"/>
+            <line x1="6" x2="6.01" y1="18" y2="18"/>
+          </svg>
+        </div>
+        <span class="dt-infra-name">On-Premise<br/>Kubernetes</span>
+        <span class="dt-infra-note">Air-gap capable</span>
+      </div>
+
+      <div class="dt-or" aria-label="or">or</div>
+
+      <div class="dt-infra-box">
+        <div class="dt-infra-icon" aria-hidden="true">
+          <!-- cloud icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+          </svg>
+        </div>
+        <span class="dt-infra-name">Cloud<br/>GCP / AWS / Azure</span>
+        <span class="dt-infra-note">Customer-controlled</span>
+      </div>
+    </div>
+
+    <!-- Intelligence Fabric bar -->
+    <div class="dt-fabric-bar">
+      <div class="dt-fabric-icon" aria-hidden="true">
+        <!-- cpu/intelligence icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect width="16" height="16" x="4" y="4" rx="2"/>
+          <rect width="6" height="6" x="9" y="9" rx="1"/>
+          <path d="M15 2v2M9 2v2M2 9h2M2 15h2M22 9h-2M22 15h-2M15 22v-2M9 22v-2"/>
+        </svg>
+      </div>
+      <span class="dt-fabric-label">Intelligence Fabric — Patient data stays here</span>
+    </div>
+  </div>
+
+  <!-- Arrow connector -->
+  <div class="dt-connector" aria-hidden="true">
+    <div class="dt-arrow-line"></div>
+    <svg class="dt-arrow-up" xmlns="http://www.w3.org/2000/svg" width="12" height="8"
+      viewBox="0 0 12 8" fill="none">
+      <path d="M6 0L12 8H0L6 0Z" fill="currentColor"/>
+    </svg>
+    <div class="dt-connector-label">Configuration only — no patient data</div>
+    <svg class="dt-arrow-down" xmlns="http://www.w3.org/2000/svg" width="12" height="8"
+      viewBox="0 0 12 8" fill="none">
+      <path d="M6 8L0 0H12L6 8Z" fill="currentColor"/>
+    </svg>
+    <div class="dt-arrow-line"></div>
+  </div>
+
+  <!-- HealthFoundry team box (outside) -->
+  <div class="dt-hf-box">
+    <div class="dt-hf-icon" aria-hidden="true">
+      <!-- users icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+    <span class="dt-hf-label">HealthFoundry team</span>
+    <span class="dt-hf-note">(configuration only)</span>
+  </div>
+
+  <!-- Caption -->
+  <p class="dt-caption">
+    Patient data never leaves your environment without your explicit authorisation.
+  </p>
+
+</div>
+
+<style>
+  .dt-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* ── Outer "Your Environment" box ── */
+  .dt-outer {
+    width: 100%;
+    max-width: 500px;
+    border: 2px dashed var(--border-default);
+    border-radius: 12px;
+    background: var(--diagram-bg);
+    padding: 1.25rem 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .dt-outer-label {
+    position: absolute;
+    top: -0.65rem;
+    left: 1rem;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    padding: 0 0.5rem;
+    /* In secondary-background context, match the section bg */
+  }
+
+  /* ── Infra row (two boxes + "or") ── */
+  .dt-infra-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .dt-infra-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1rem 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--diagram-border);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .dt-infra-icon {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dt-infra-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  .dt-infra-note {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .dt-or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: lowercase;
+    width: 28px;
+  }
+
+  /* ── Intelligence Fabric bar ── */
+  .dt-fabric-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: color-mix(in srgb, var(--accent-primary) 6%, transparent);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+  }
+
+  .dt-fabric-icon {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .dt-fabric-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.35;
+  }
+
+  /* ── Connector arrow ── */
+  .dt-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--text-muted);
+    padding: 0.25rem 0;
+  }
+
+  .dt-arrow-line {
+    width: 1px;
+    height: 12px;
+    background: var(--border-default);
+  }
+
+  .dt-connector-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    padding: 2px 8px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+  }
+
+  .dt-arrow-up,
+  .dt-arrow-down {
+    color: var(--border-default);
+  }
+
+  /* ── HealthFoundry team (outside) ── */
+  .dt-hf-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--diagram-border);
+    border-radius: 8px;
+    border-style: dashed;
+  }
+
+  .dt-hf-icon {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .dt-hf-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .dt-hf-note {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── Caption ── */
+  .dt-caption {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    margin: 0.5rem 0 0;
+    line-height: 1.5;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 480px) {
+    .dt-infra-row {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .dt-or {
+      width: auto;
+      padding: 0.25rem 0;
+    }
+
+    .dt-connector-label {
+      white-space: normal;
+      text-align: center;
+    }
+  }
+</style>

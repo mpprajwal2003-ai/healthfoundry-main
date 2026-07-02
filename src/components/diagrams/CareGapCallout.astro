@@ -1,0 +1,441 @@
+---
+// CareGapCallout — before/after split visual for care gap extraction
+// Visual spec: Page 3 §3 — "Every discharge summary contains actionable follow-up requirements"
+---
+
+<div class="cgc-wrapper">
+  <div class="cgc-copy reveal">
+    <p class="cgc-body">
+      Every discharge summary contains actionable follow-up requirements. Most are never systematically
+      acted on — because extracting them manually at scale isn't feasible. Our Care Continuity Agent
+      reads the document and surfaces the care gap for your team to act on.
+    </p>
+  </div>
+
+  <div class="cgc-split reveal">
+
+    <!-- BEFORE panel: styled discharge summary block -->
+    <div class="cgc-panel cgc-panel--before">
+      <div class="cgc-panel-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Discharge Summary
+      </div>
+
+      <div class="discharge-doc">
+        <div class="discharge-line discharge-line--header">
+          <span class="doc-field">Patient:</span>
+          <span class="doc-redacted doc-redacted--name"></span>
+        </div>
+        <div class="discharge-line">
+          <span class="doc-field">Diagnosis:</span>
+          <span class="doc-redacted doc-redacted--long"></span>
+        </div>
+        <div class="discharge-spacer"></div>
+        <p class="discharge-text">
+          Patient was admitted on <span class="doc-redacted doc-redacted--short"></span> for
+          <span class="doc-redacted doc-redacted--medium"></span>.
+          Post-operative recovery was unremarkable. Haemoglobin levels were within expected range.
+          <span class="discharge-highlight">Follow-up in 6 weeks</span> for wound inspection
+          and suture removal. Oral medications prescribed for 10 days.
+        </p>
+        <p class="discharge-text">
+          Imaging findings: <span class="doc-redacted doc-redacted--long"></span>.
+          <span class="discharge-highlight">Repeat imaging advised</span> in 3 months to
+          monitor response. Patient counselled on dietary restrictions.
+          <span class="doc-redacted doc-redacted--medium"></span> noted with no acute
+          clinical significance. Please review at next consultation.
+        </p>
+        <div class="discharge-footer">
+          <span class="doc-field">Treating Physician:</span>
+          <span class="doc-redacted doc-redacted--name"></span>
+        </div>
+      </div>
+
+      <div class="before-label">Unstructured. Unread at scale.</div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="cgc-arrow" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+      <span class="cgc-arrow-label">Care Continuity Agent</span>
+    </div>
+
+    <!-- AFTER panel: structured care gap card -->
+    <div class="cgc-panel cgc-panel--after">
+      <div class="cgc-panel-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        Structured Care Gap
+      </div>
+
+      <div class="care-gap-card">
+        <div class="gap-row gap-row--header">
+          <div class="gap-ref">
+            <span class="gap-field">Patient Ref</span>
+            <span class="gap-value">PT-2024-08441</span>
+          </div>
+          <span class="gap-urgency gap-urgency--medium">Medium priority</span>
+        </div>
+
+        <div class="gap-row">
+          <span class="gap-field">Gap Type</span>
+          <span class="gap-value gap-value--primary">Follow-up consultation</span>
+        </div>
+
+        <div class="gap-row">
+          <span class="gap-field">Source</span>
+          <span class="gap-value">Discharge summary — 2 Nov 2024</span>
+        </div>
+
+        <div class="gap-row">
+          <span class="gap-field">Recommended Action</span>
+          <span class="gap-value">Schedule wound inspection + suture removal within 6 weeks of discharge</span>
+        </div>
+
+        <div class="gap-row">
+          <span class="gap-field">Secondary Gap</span>
+          <span class="gap-value">Repeat imaging in 3 months — radiology review</span>
+        </div>
+
+        <div class="gap-divider"></div>
+
+        <div class="gap-row gap-row--status">
+          <span class="gap-field">Outreach Status</span>
+          <span class="gap-status">
+            <span class="gap-status-dot"></span>
+            Pending team review
+          </span>
+        </div>
+
+        <div class="gap-action-row">
+          <button class="gap-btn gap-btn--primary" disabled>Schedule Follow-up</button>
+          <button class="gap-btn gap-btn--secondary" disabled>Dismiss</button>
+        </div>
+      </div>
+
+      <div class="after-label">Structured. Actionable. Human-reviewed.</div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .cgc-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .cgc-copy {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cgc-body {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Split layout */
+  .cgc-split {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cgc-split {
+      grid-template-columns: 1fr;
+    }
+
+    .cgc-arrow {
+      transform: rotate(90deg);
+      justify-self: center;
+    }
+  }
+
+  /* Panel shared */
+  .cgc-panel {
+    border-radius: 0.875rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+  }
+
+  .cgc-panel--before {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .cgc-panel--after {
+    background: var(--domain-cx-muted);
+    border: 1px solid var(--domain-cx-border);
+  }
+
+  .cgc-panel-label {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .cgc-panel--after .cgc-panel-label {
+    color: var(--domain-cx);
+  }
+
+  /* Discharge summary mock */
+  .discharge-doc {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .discharge-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .discharge-line--header {
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .doc-field {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  /* Redacted placeholder bars */
+  .doc-redacted {
+    display: inline-block;
+    height: 9px;
+    border-radius: 3px;
+    background: var(--border-default);
+    vertical-align: middle;
+  }
+
+  .doc-redacted--name   { width: 90px; }
+  .doc-redacted--short  { width: 55px; }
+  .doc-redacted--medium { width: 100px; }
+  .doc-redacted--long   { width: 140px; }
+
+  .discharge-spacer {
+    height: 0.25rem;
+  }
+
+  .discharge-text {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .discharge-highlight {
+    background: var(--domain-finops-muted);
+    color: var(--domain-finops);
+    padding: 0 3px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  .discharge-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.375rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .before-label,
+  .after-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+  }
+
+  .after-label {
+    color: var(--domain-cx);
+    opacity: 0.8;
+  }
+
+  /* Arrow between panels */
+  .cgc-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--domain-cx);
+  }
+
+  .cgc-arrow-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--domain-cx);
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0.85;
+  }
+
+  /* Care gap card */
+  .care-gap-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--domain-cx-border);
+    border-radius: 0.625rem;
+    padding: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gap-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .gap-row--header {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .gap-ref {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .gap-field {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    min-width: 90px;
+  }
+
+  .gap-value {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .gap-value--primary {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .gap-urgency {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .gap-urgency--medium {
+    background: var(--domain-finops-muted);
+    color: var(--domain-finops);
+    border: 1px solid var(--domain-finops-border);
+  }
+
+  .gap-divider {
+    height: 1px;
+    background: var(--border-subtle);
+  }
+
+  .gap-row--status {
+    align-items: center;
+  }
+
+  .gap-status {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: var(--text-xs);
+    color: var(--domain-cx);
+    font-weight: 600;
+  }
+
+  .gap-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--domain-cx);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  .gap-action-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .gap-btn {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-family: inherit;
+    border: 1px solid;
+  }
+
+  .gap-btn--primary {
+    background: var(--domain-cx);
+    color: #fff;
+    border-color: var(--domain-cx);
+    opacity: 0.7;
+  }
+
+  .gap-btn--secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-default);
+    opacity: 0.7;
+  }
+</style>

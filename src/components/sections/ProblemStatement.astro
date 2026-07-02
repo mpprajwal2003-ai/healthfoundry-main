@@ -1,0 +1,223 @@
+---
+---
+
+<section class="problem section-padding">
+  <div class="container">
+    <p class="section-label reveal">The Challenge</p>
+    <h2 class="section-title reveal delay-100">
+      Healthcare operations generate the data.<br/>
+      Most organisations can't act on it.
+    </h2>
+
+    <div class="problem-grid reveal delay-200">
+      <!-- Left: 3 pain point cards -->
+      <div class="pain-cards">
+        <div class="pain-card">
+          <div class="pain-icon">
+            <!-- database icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+              <path d="M3 12A9 3 0 0 0 21 12"/>
+            </svg>
+          </div>
+          <div class="pain-content">
+            <h3 class="pain-title">Care gaps buried in unstructured documents</h3>
+            <p class="pain-desc">
+              Follow-up requirements live in discharge summaries, lab reports, and radiology notes —
+              scattered across systems that don't communicate.
+            </p>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-icon">
+            <!-- clock icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="pain-content">
+            <h3 class="pain-title">Claims that take weeks because data is scattered</h3>
+            <p class="pain-desc">
+              Manual assembly from HIS, EMR, RIS, pharmacy, and lab systems means claim submission
+              TAT stays high and first-pass rates stay low.
+            </p>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-icon">
+            <!-- bell icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+          <div class="pain-content">
+            <h3 class="pain-title">Feedback collected, never resolved</h3>
+            <p class="pain-desc">
+              Patient experience signals arrive through multiple channels — and are rarely routed,
+              tracked, or resolved within any meaningful timeframe.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: prose -->
+      <div class="problem-prose">
+        <p>
+          Every hospital produces the information it needs to recover more revenue, retain more
+          patients, and stay compliant — in discharge summaries, EMR records, lab reports, payer
+          portals, and clinical documentation. The problem is that this data is fragmented,
+          unstructured, and scattered across systems that don't talk to each other.
+        </p>
+        <p>
+          The result: care gaps go unfollowed, claims take weeks to submit, deductions go
+          unchallenged, and feedback goes unresolved.
+        </p>
+        <p>
+          HealthFoundry's Intelligence Fabric sits on top of your existing systems — your EMR,
+          HIS, lab systems, and payer portals — and deploys AI agents that read, analyse, and
+          act on that data, with your team in control of every consequential decision.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .problem {
+    background: var(--bg-secondary);
+  }
+
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--section-label-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 3rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Pain cards */
+  .pain-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pain-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .pain-card:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--card-border-hover);
+  }
+
+  .pain-icon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-highlight);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+    padding: 0.625rem;
+    color: var(--accent-primary);
+  }
+
+  .pain-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .pain-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .pain-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .pain-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Prose */
+  .problem-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .problem-prose p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .problem-prose p:first-child {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .problem-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

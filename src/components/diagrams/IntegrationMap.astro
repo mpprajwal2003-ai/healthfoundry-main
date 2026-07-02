@@ -1,0 +1,366 @@
+---
+// Integration Map: 3-row systems diagram
+// Row 1: Source systems (EMR / EHR, HIS, Lab Systems, Pharmacy, Payer Portals)
+// Row 2: Intelligence Fabric (full-width, HL7 · FHIR · REST · API)
+// Row 3: Agent outputs (CX Agents, FinOps Agents, GRC Agents)
+// Arrows: row1 → row2, row2 → row3
+---
+
+<div class="integration-map" role="img" aria-label="Systems integration diagram: EMR/EHR, HIS, Lab Systems, Pharmacy, and Payer Portals connect down into the Intelligence Fabric via HL7, FHIR, REST, and API. The Fabric connects down to CX Agents, FinOps Agents, and GRC Agents.">
+
+  <!-- Row 1: Source systems -->
+  <div class="row row-sources">
+    {["EMR / EHR", "HIS", "Lab Systems", "Pharmacy", "Payer Portals"].map((sys) => (
+      <div class="source-box">
+        <span class="source-icon" aria-hidden="true">
+          <!-- database icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+            stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M3 5v14a9 3 0 0 0 18 0V5"/>
+            <path d="M3 12a9 3 0 0 0 18 0"/>
+          </svg>
+        </span>
+        <span class="source-label">{sys}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- Arrows: row1 → row2 (5 arrows, one per source box) -->
+  <div class="arrows-down arrows-top" aria-hidden="true">
+    {[0,1,2,3,4].map(() => (
+      <div class="arrow-col">
+        <div class="arrow-shaft"></div>
+        <div class="arrow-head"></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Row 2: Intelligence Fabric (full width) -->
+  <div class="row row-fabric">
+    <div class="fabric-box">
+      <div class="fabric-inner">
+        <span class="fabric-icon" aria-hidden="true">
+          <!-- cpu icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <path d="M15 2v2M15 20v2M9 2v2M9 20v2M2 15h2M20 15h2M2 9h2M20 9h2"/>
+          </svg>
+        </span>
+        <div class="fabric-text">
+          <span class="fabric-name">Intelligence Fabric</span>
+          <span class="fabric-protocols">HL7 &nbsp;·&nbsp; FHIR &nbsp;·&nbsp; REST &nbsp;·&nbsp; API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrows: row2 → row3 (3 arrows, one per agent group) -->
+  <div class="arrows-down arrows-bottom" aria-hidden="true">
+    {[0,1,2].map(() => (
+      <div class="arrow-col">
+        <div class="arrow-shaft"></div>
+        <div class="arrow-head"></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Row 3: Agent outputs -->
+  <div class="row row-agents">
+    <div class="agent-box agent-box--cx">
+      <span class="agent-icon" aria-hidden="true">
+        <!-- users icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </span>
+      <span class="agent-label">CX Agents</span>
+    </div>
+
+    <div class="agent-box agent-box--finops">
+      <span class="agent-icon" aria-hidden="true">
+        <!-- trending-up icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </span>
+      <span class="agent-label">FinOps Agents</span>
+    </div>
+
+    <div class="agent-box agent-box--grc">
+      <span class="agent-icon" aria-hidden="true">
+        <!-- shield-check icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </span>
+      <span class="agent-label">GRC Agents</span>
+    </div>
+  </div>
+
+  <!-- Caption -->
+  <p class="map-caption">No rip-and-replace — the Intelligence Fabric sits on top of your existing systems of record.</p>
+
+</div>
+
+<style>
+  .integration-map {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ── Rows ── */
+  .row {
+    width: 100%;
+  }
+
+  /* ── Row 1: Source systems ── */
+  .row-sources {
+    display: flex;
+    gap: 0.625rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .source-box {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--diagram-bg);
+    border: 1px solid var(--diagram-border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    flex: 1;
+    min-width: 90px;
+    max-width: 160px;
+    justify-content: center;
+  }
+
+  .source-icon {
+    color: var(--text-muted);
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .source-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* ── Arrows ── */
+  .arrows-down {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    padding: 0.25rem 0;
+  }
+
+  .arrows-top {
+    /* 5 arrows across full width, aligned with source boxes */
+    gap: 0.625rem;
+    padding-inline: 0; /* let flex layout handle spacing */
+  }
+
+  .arrows-bottom {
+    /* 3 arrows, each centred over the agent boxes */
+    gap: 0;
+    justify-content: space-around;
+    padding-inline: 8%;
+  }
+
+  .arrow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 160px;
+  }
+
+  .arrows-bottom .arrow-col {
+    max-width: none;
+    flex: 1;
+  }
+
+  .arrow-shaft {
+    width: 1.5px;
+    height: 18px;
+    background: var(--layer-connector);
+  }
+
+  .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid var(--layer-connector);
+  }
+
+  /* ── Row 2: Intelligence Fabric ── */
+  .row-fabric {
+    width: 100%;
+  }
+
+  .fabric-box {
+    background: var(--bg-tertiary);
+    border: 1.5px solid var(--border-default);
+    border-radius: 0.75rem;
+    padding: 1.25rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .fabric-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .fabric-icon {
+    color: var(--text-primary);
+    display: flex;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .fabric-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .fabric-name {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .fabric-protocols {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  /* ── Row 3: Agent boxes ── */
+  .row-agents {
+    display: flex;
+    gap: 0.875rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .agent-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    flex: 1;
+    justify-content: center;
+    border-width: 1px;
+    border-style: solid;
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .agent-box--cx {
+    background: var(--domain-cx-muted);
+    border-color: var(--domain-cx-border);
+    color: var(--domain-cx);
+  }
+
+  .agent-box--finops {
+    background: var(--domain-finops-muted);
+    border-color: var(--domain-finops-border);
+    color: var(--domain-finops);
+  }
+
+  .agent-box--grc {
+    background: var(--domain-grc-muted);
+    border-color: var(--domain-grc-border);
+    color: var(--domain-grc);
+  }
+
+  .agent-icon {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .agent-label {
+    white-space: nowrap;
+  }
+
+  /* ── Caption ── */
+  .map-caption {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 1.25rem;
+    font-style: italic;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .row-sources {
+      gap: 0.375rem;
+    }
+
+    .source-box {
+      min-width: 70px;
+      padding: 0.4rem 0.5rem;
+    }
+
+    .source-label {
+      font-size: 10px;
+    }
+
+    .fabric-box {
+      padding: 1rem 1rem;
+    }
+
+    .fabric-name {
+      font-size: var(--text-sm);
+    }
+
+    .row-agents {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .agent-box {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .arrows-bottom {
+      display: none; /* hide arrows on mobile when agents stack */
+    }
+
+    .arrows-top .arrow-col {
+      max-width: 80px;
+    }
+  }
+</style>

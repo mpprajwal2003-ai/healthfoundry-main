@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "organic-edge-490607-b3"
+  },
+  "targets": {
+    "organic-edge-490607-b3": {
+      "hosting": {
+        "healthfoundry-dev": ["healthfoundry-dev"]
+      }
+    }
+  }
+}

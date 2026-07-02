@@ -1,0 +1,1144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PayerIntelligenceFlow from '../../components/diagrams/PayerIntelligenceFlow.astro';
+import WorkflowVariantTable from '../../components/diagrams/WorkflowVariantTable.astro';
+import StatCard from '../../components/ui/StatCard.astro';
+import FooterCTA from '../../components/sections/FooterCTA.astro';
+import Button from '../../components/ui/Button.astro';
+
+const outcomes = [
+  { value: '40–60%', label: 'Claim submission TAT reduction' },
+  { value: '10–15 pp', label: 'First-pass acceptance rate improvement' },
+  { value: '30–50%', label: 'Query rate reduction' },
+  { value: '40–60%', label: 'Query closure TAT reduction' },
+  { value: '20–40%', label: 'Deduction rate reduction' },
+  { value: '15–30%', label: 'Revenue recovered through appeals' },
+  { value: '8–15%', label: 'Improvement in package-level margin through optimisation' },
+  { value: '30–50%', label: 'Reduction in structurally loss-making package episodes' },
+  { value: '30–50%', label: 'Staff time per claim reduction' },
+];
+---
+
+<Layout
+  title="Healthcare FinOps | Revenue Cycle & Supply Chain | HealthFoundry"
+  description="HealthFoundry's FinOps agents reduce revenue leakage across claims management, package profitability, payer intelligence, and supply chain optimisation."
+>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="domain-pill">
+            <!-- trending-up icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+            FinOps
+          </div>
+
+          <h1 class="hero-h1">
+            Revenue Cycle Operations,<br />
+            <span class="hero-h1-accent">Rethought</span>
+          </h1>
+
+          <p class="hero-sub">
+            Reduce revenue leakage across the full revenue cycle — not just claims
+          </p>
+
+          <p class="hero-body">
+            Revenue is lost at every stage: claims delayed by manual data assembly, deductions
+            that go unchallenged, packages priced below their true cost, payer guidelines absorbed
+            too late. HealthFoundry's FinOps agents work across the full revenue cycle — surfacing
+            leakage, quantifying its financial impact, and supporting your team to act on it —
+            while keeping humans in control of every consequential decision.
+          </p>
+
+          <div class="hero-ctas">
+            <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+            <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+          </div>
+        </div>
+
+        <div class="hero-image reveal-left delay-200">
+          <img
+            src="/images/claims-snapshot.png"
+            alt="Claims management interface"
+            class="hero-screenshot"
+            width="600"
+            height="400"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — CLAIMS LIFECYCLE
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-lifecycle reveal">
+    <div class="container">
+      <p class="section-label">What We Address</p>
+      <h2 class="section-h2">
+        Revenue leakage occurs across three domains.<br class="br-desktop" />
+        We address all three.
+      </h2>
+      <p class="section-intro">
+        Most RCM programmes focus on claims submission speed. The bigger opportunity is
+        systematically closing every channel through which revenue leaks — claim denials and
+        deductions, packages that cost more to deliver than they reimburse, and payer guideline
+        changes that erode margins before anyone notices.
+      </p>
+
+      <div class="rcm-domains">
+        <div class="rcm-domain-card reveal delay-100">
+          <div class="rcm-domain-num">01</div>
+          <h3 class="rcm-domain-title">Claims Management</h3>
+          <p class="rcm-domain-desc">
+            The eight-stage claims lifecycle — from eligibility verification through settlement
+            reconciliation — with agents reducing manual assembly time, query backlogs, and
+            rejection rates.
+          </p>
+        </div>
+        <div class="rcm-domain-card reveal delay-200">
+          <div class="rcm-domain-num">02</div>
+          <h3 class="rcm-domain-title">Package Profitability</h3>
+          <p class="rcm-domain-desc">
+            Analysing actual billing against reimbursable amounts to identify where packages are
+            delivered at a loss — and recommending package master optimisations that improve
+            margins without compromising care quality.
+          </p>
+        </div>
+        <div class="rcm-domain-card reveal delay-300">
+          <div class="rcm-domain-num">03</div>
+          <h3 class="rcm-domain-title">Payer Intelligence</h3>
+          <p class="rcm-domain-desc">
+            Continuous monitoring of payer portals, scheme bulletins, and insurer notices for
+            guideline changes — so deductions from non-absorbed updates are caught before they
+            hit your settlement.
+          </p>
+        </div>
+      </div>
+
+      <div class="rcm-divider"></div>
+
+      <h3 class="rcm-sub-heading">The Claims Lifecycle: eight stages, bottlenecks at each one</h3>
+      <p class="section-intro" style="margin-top: 0.75rem;">
+        Every stage from patient registration through settlement carries a distinct failure mode.
+        HealthFoundry agents support your team at each stage, reducing manual data assembly and
+        surfacing exceptions for human review.
+      </p>
+
+      <div class="lifecycle-diagram reveal">
+        <img
+          src="/images/claims_lifecycle_diagram.png"
+          alt="Eight-stage claims lifecycle: Patient Registration, Pre-Authorisation, Clinical Documentation & Coding, Claim Assembly & Submission, Query Management, Adjudication Monitoring & Settlement Reconciliation, Deduction & Rejection Management, Reauthorisation"
+          class="lifecycle-img"
+          width="1200"
+          height="auto"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — PAYER INTELLIGENCE
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-payer reveal">
+    <div class="container">
+      <div class="payer-inner">
+        <div class="payer-text">
+          <p class="section-label">Payer Rule Intelligence</p>
+          <h2 class="section-h2">
+            Payer guidelines change.<br class="br-desktop" />
+            Agents that stay current.
+          </h2>
+          <div class="payer-prose">
+            <p>
+              For government scheme payers and large insurers, package and guideline changes
+              are frequent — and non-absorption is directly penalised through deductions.
+              HealthFoundry's Payer Rule Intelligence capability continuously monitors payer
+              publication channels for changes to package definitions, documentation
+              requirements, and coding guidelines.
+            </p>
+            <p>
+              When a change is detected, the agent parses it, identifies the operational delta,
+              and surfaces a structured update for the claims team to review. Unambiguous,
+              low-impact updates can be applied to agent configuration after human confirmation.
+              Ambiguous changes — where the interpretation is unclear — are presented with both
+              interpretations and their expected financial impact, for the claims manager to
+              confirm.
+            </p>
+            <p class="payer-note">
+              Payer guideline currency is a continuous operational responsibility — one that
+              demands ongoing attention.
+            </p>
+          </div>
+        </div>
+
+        <div class="payer-diagram reveal-left delay-200">
+          <PayerIntelligenceFlow />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — PACKAGE PROFITABILITY
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-pkg reveal">
+    <div class="container">
+      <p class="section-label">Package Profitability</p>
+      <h2 class="section-h2">
+        Not every package generates a margin.<br class="br-desktop" />
+        Most hospitals don't know which ones don't.
+      </h2>
+      <p class="section-intro">
+        The gap between what a procedure costs to deliver and what the payer reimburses is often
+        invisible — until it accumulates into a structural profitability problem. Our Package
+        Profitability capability makes that gap visible, attributable, and actionable.
+      </p>
+
+      <div class="pkg-flow">
+
+        <!-- Step 1 -->
+        <div class="pkg-step reveal delay-100">
+          <div class="pkg-step-icon" aria-hidden="true">
+            <!-- bar-chart-2 -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <div class="pkg-step-body">
+            <h4 class="pkg-step-title">Actual billing analysis</h4>
+            <p class="pkg-step-desc">
+              Agent reads actual billing data across procedures, service lines, and payer
+              categories — building a granular picture of what was charged for each episode of
+              care and how it was reimbursed.
+            </p>
+          </div>
+        </div>
+
+        <div class="pkg-connector" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="pkg-step reveal delay-200">
+          <div class="pkg-step-icon" aria-hidden="true">
+            <!-- git-compare / diff -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="18" cy="18" r="3"/>
+              <circle cx="6" cy="6" r="3"/>
+              <path d="M13 6h3a2 2 0 0 1 2 2v7"/>
+              <line x1="6" y1="9" x2="6" y2="21"/>
+            </svg>
+          </div>
+          <div class="pkg-step-body">
+            <h4 class="pkg-step-title">Compare with reimbursable amount</h4>
+            <p class="pkg-step-desc">
+              Actual cost-to-deliver is compared against the reimbursable package rate for each
+              payer. Packages where the delta is consistently negative — delivered at a structural
+              loss — are identified and ranked by financial impact.
+            </p>
+          </div>
+        </div>
+
+        <div class="pkg-connector" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="pkg-step reveal delay-300">
+          <div class="pkg-step-icon" aria-hidden="true">
+            <!-- book-open / package master -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <div class="pkg-step-body">
+            <h4 class="pkg-step-title">Review the package master</h4>
+            <p class="pkg-step-desc">
+              The agent maps loss-generating packages against the package master — reviewing the
+              included components, consumable assumptions, and procedure bundling — to identify
+              where the cost-reimbursement gap originates.
+            </p>
+          </div>
+        </div>
+
+        <div class="pkg-connector" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="pkg-step pkg-step--output reveal delay-300">
+          <div class="pkg-step-icon pkg-step-icon--output" aria-hidden="true">
+            <!-- check-circle -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <div class="pkg-step-body">
+            <h4 class="pkg-step-title">Package optimisation recommendations</h4>
+            <p class="pkg-step-desc">
+              Agent surfaces structured recommendations — adjustments to package composition,
+              consumable substitutions, or bundling changes — that can improve profitability for
+              specific packages without compromising care quality. Finance and clinical leadership
+              review before any changes are made to the package master.
+            </p>
+            <div class="pkg-hitl">
+              <!-- user-check -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+                <polyline points="16 11 18 13 22 9"/>
+              </svg>
+              Finance and clinical leadership review all recommendations. No package master changes without human approval.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — AGENT CAPABILITIES
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-agents reveal">
+    <div class="container">
+      <p class="section-label">Agents</p>
+      <h2 class="section-h2">Two agents covering the revenue cycle</h2>
+      <p class="section-intro">
+        Every agent in the platform is semi-autonomous — it reads, analyses, surfaces, and
+        recommends. Your team retains decision authority at every consequential step.
+      </p>
+
+      <div class="agent-cards-grid">
+
+        <!-- RCM Optimisation Agent -->
+        <div class="agent-feature-card">
+          <div class="afc-top">
+            <div class="afc-icon" aria-hidden="true">
+              <!-- file-check icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <path d="M9 15l2 2 4-4"/>
+              </svg>
+            </div>
+            <span class="afc-badge">RCM Optimisation Agent</span>
+          </div>
+          <p class="afc-desc">
+            Works across claims management and package profitability — reviewing claims against
+            payer rules before submission, identifying patterns in deductions and rejections, and
+            analysing actual billing data against reimbursable amounts to surface packages that
+            are structurally unprofitable.
+          </p>
+          <div class="afc-hitl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+              <polyline points="16 11 18 13 22 9"/>
+            </svg>
+            Claims team approves submissions and appeals. Finance and clinical leadership review all package optimisation recommendations.
+          </div>
+          <ul class="afc-capabilities">
+            <li>Pre-submission coding validation (ICD-10, CPT, scheme package codes)</li>
+            <li>Denial prediction and appeal viability scoring</li>
+            <li>Query response drafting for human review</li>
+            <li>Actual billing vs. reimbursable amount analysis</li>
+            <li>Package master review and profitability gap identification</li>
+            <li>Package optimisation recommendations for human approval</li>
+          </ul>
+        </div>
+
+        <!-- Package Profitability Agent -->
+        <div class="agent-feature-card">
+          <div class="afc-top">
+            <div class="afc-icon" aria-hidden="true">
+              <!-- trending-up icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </div>
+            <span class="afc-badge">Package Profitability Agent</span>
+          </div>
+          <p class="afc-desc">
+            Continuously monitors package-level profitability across service lines and payer
+            categories. Reads actual billing data, compares it to reimbursable package rates,
+            and identifies packages where the cost-to-deliver consistently exceeds reimbursement.
+            Recommends package master changes for clinical and finance review.
+          </p>
+          <div class="afc-hitl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+              <polyline points="16 11 18 13 22 9"/>
+            </svg>
+            Agent surfaces analysis and recommendations only. No package master changes without joint finance and clinical review.
+          </div>
+          <ul class="afc-capabilities">
+            <li>Package-level margin analysis by payer and service line</li>
+            <li>Structural loss identification ranked by financial impact</li>
+            <li>Package master component and bundling review</li>
+            <li>Profitability optimisation recommendations</li>
+            <li>Runtime package selection support to maximise margin per episode</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- ── Supply chain: adjacent domain, lighter treatment ── -->
+      <div class="supply-teaser reveal">
+        <div class="supply-teaser-header">
+          <span class="supply-teaser-label">Also in the FinOps domain</span>
+          <h3 class="supply-teaser-heading">Supply Chain Optimisation</h3>
+          <p class="supply-teaser-intro">
+            Healthcare supply chain sits within the FinOps domain — procurement costs, inventory
+            levels, and demand forecasting directly affect operational margins. The Supply
+            Intelligence Agent extends FinOps coverage beyond revenue cycle into the supply side
+            of the financial picture.
+          </p>
+        </div>
+        <div class="supply-agent-card">
+          <div class="afc-top">
+            <div class="afc-icon" aria-hidden="true">
+              <!-- package icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <span class="afc-badge">Supply Intelligence Agent</span>
+          </div>
+          <p class="afc-desc">
+            Analyses demand signals across clinical departments. Supports procurement
+            orchestration and inventory optimisation. Surfaces forecasts for human procurement
+            team review and approval.
+          </p>
+          <ul class="afc-capabilities">
+            <li>Demand signal analysis across clinical departments</li>
+            <li>Inventory optimisation recommendations</li>
+            <li>Procurement orchestration support</li>
+            <li>Supply forecast surfacing for human review</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — OUTCOMES
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-outcomes reveal">
+    <div class="container">
+      <p class="section-label">What to Expect</p>
+      <h2 class="section-h2">
+        Indicative outcomes across claims,<br class="br-desktop" />
+        package profitability, and payer intelligence
+      </h2>
+
+      <div class="outcomes-grid">
+        {outcomes.map((o, i) => (
+          <StatCard
+            value={o.value}
+            label={o.label}
+            domainColor="--domain-finops"
+            class={`reveal delay-${(i % 3 + 1) * 100}`}
+          />
+        ))}
+      </div>
+
+      <p class="outcomes-caveat">
+        Indicative ranges based on the Design phase. Actual improvement is anchored in your Audit baseline.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 — WORKFLOW VARIANT REALITY
+  ══════════════════════════════════════════════════════ -->
+  <section class="fo-variants reveal">
+    <div class="container">
+      <p class="section-label">Workflow Variant Reality</p>
+      <h2 class="section-h2">
+        No two payer relationships work the same way.
+      </h2>
+      <div class="variants-prose">
+        <p>
+          A government scheme oncology claim has fundamentally different documentation
+          requirements, authorisation logic, and portal workflows than a commercial insurer
+          elective surgery claim. Our methodology maps each significant payer type and claim
+          category as a distinct workflow variant, each with its own logic and requirements.
+        </p>
+        <p>
+          This matters because automation targeted at the wrong variant produces the wrong
+          result. Our Outcomes-Driven Optimization Blueprint for claims starts with your specific
+          payer mix, procedure mix, and current KPI baseline — before we configure a single agent.
+        </p>
+      </div>
+
+      <div class="variants-table-wrap reveal delay-200">
+        <WorkflowVariantTable />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 7 — FOOTER CTA
+  ══════════════════════════════════════════════════════ -->
+  <FooterCTA />
+
+</Layout>
+
+<style>
+  /* ── Shared layout ── */
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--domain-finops);
+    margin: 0 0 0.75rem;
+  }
+
+  .section-h2 {
+    font-size: clamp(1.625rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+
+  .section-intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 660px;
+    margin: 0 0 2.5rem;
+  }
+
+  .br-desktop { display: none; }
+  @media (min-width: 768px) { .br-desktop { display: block; } }
+
+  /* ── Section 1: Hero ── */
+  .fo-hero {
+    padding: 5rem 0 4rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-image {
+      order: -1;
+    }
+  }
+
+  .domain-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--domain-finops);
+    background: var(--domain-finops-muted);
+    border: 1px solid var(--domain-finops-border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .hero-h1-accent {
+    color: var(--domain-finops);
+  }
+
+  .hero-sub {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin: 0 0 1.25rem;
+    line-height: 1.4;
+  }
+
+  .hero-body {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-image {
+    position: relative;
+  }
+
+  .hero-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 0.875rem;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--card-shadow);
+  }
+
+  [data-theme="light"] .hero-screenshot {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ── Section 2: RCM domains intro + claims lifecycle ── */
+  .fo-lifecycle {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .lifecycle-diagram {
+    margin-top: 0.5rem;
+    border-radius: 0.875rem;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    max-width: 560px;
+  }
+
+  .lifecycle-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  [data-theme="light"] .lifecycle-diagram {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .rcm-domains {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .rcm-domains {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .rcm-domain-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 3px solid var(--domain-finops);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .rcm-domain-card:hover {
+    background: var(--card-bg-hover);
+  }
+
+  .rcm-domain-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--domain-finops);
+    opacity: 0.8;
+  }
+
+  .rcm-domain-title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .rcm-domain-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .rcm-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 0 0 3rem;
+  }
+
+  .rcm-sub-heading {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 0 0 0.25rem;
+  }
+
+  /* ── Section 3: Payer Intelligence ── */
+  .fo-payer {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .payer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .payer-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .payer-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .payer-prose p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .payer-note {
+    font-style: italic;
+    color: var(--domain-finops) !important;
+    padding: 0.75rem 1rem;
+    border-left: 2px solid var(--domain-finops-border);
+    background: var(--domain-finops-muted);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .payer-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .payer-diagram {
+    position: sticky;
+    top: 6rem;
+  }
+
+  /* ── Section 4: Package Profitability ── */
+  .fo-pkg {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* Flow of 4 steps connected by arrows */
+  .pkg-flow {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  @media (max-width: 900px) {
+    .pkg-flow {
+      flex-direction: column;
+    }
+  }
+
+  .pkg-step {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.875rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pkg-step--output {
+    border-color: var(--domain-finops-border);
+    background: var(--domain-finops-muted);
+  }
+
+  .pkg-step-icon {
+    color: var(--domain-finops);
+    flex-shrink: 0;
+  }
+
+  .pkg-step-icon--output {
+    color: var(--domain-finops);
+  }
+
+  .pkg-step-title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .pkg-step-desc {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .pkg-hitl {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-xs);
+    color: var(--domain-finops);
+    background: var(--bg-primary);
+    border: 1px solid var(--domain-finops-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.625rem;
+    line-height: 1.5;
+    margin-top: 0.25rem;
+  }
+
+  .pkg-hitl svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Arrow connector between steps */
+  .pkg-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    color: var(--domain-finops);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 900px) {
+    .pkg-connector {
+      width: auto;
+      height: 28px;
+      transform: rotate(90deg);
+    }
+  }
+
+  /* ── Section 5: Agents ── */
+  .fo-agents {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .agent-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .agent-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Supply chain teaser (secondary domain) ── */
+  .supply-teaser {
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px dashed var(--border-subtle);
+  }
+
+  .supply-teaser-header {
+    max-width: 640px;
+    margin-bottom: 1.75rem;
+  }
+
+  .supply-teaser-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .supply-teaser-heading {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+  }
+
+  .supply-teaser-intro {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .supply-agent-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--border-default);
+    border-radius: 0.875rem;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 520px;
+    opacity: 0.9;
+  }
+
+  .supply-agent-card .afc-badge {
+    color: var(--text-secondary);
+  }
+
+  .supply-agent-card .afc-icon {
+    color: var(--text-muted);
+  }
+
+  .supply-agent-card .afc-capabilities li::before {
+    color: var(--text-muted);
+  }
+
+  .agent-feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--domain-finops);
+    border-radius: 0.875rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .agent-feature-card:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--domain-finops-border);
+    border-left-color: var(--domain-finops);
+  }
+
+  .afc-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .afc-icon {
+    color: var(--domain-finops);
+    flex-shrink: 0;
+  }
+
+  .afc-badge {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .afc-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .afc-hitl {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-xs);
+    color: var(--domain-finops);
+    background: var(--domain-finops-muted);
+    border: 1px solid var(--domain-finops-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.5;
+  }
+
+  .afc-hitl svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .afc-capabilities {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .afc-capabilities li {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .afc-capabilities li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--domain-finops);
+    font-size: 10px;
+    top: 1px;
+  }
+
+  /* ── Section 5: Outcomes ── */
+  .fo-outcomes {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .outcomes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .outcomes-caveat {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── Section 6: Workflow Variants ── */
+  .fo-variants {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .variants-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+  }
+
+  .variants-prose p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .variants-table-wrap {
+    max-width: 860px;
+  }
+</style>

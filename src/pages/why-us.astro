@@ -1,0 +1,700 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlueprintCycle from '../components/diagrams/BlueprintCycle.astro';
+import IntegrationMap from '../components/diagrams/IntegrationMap.astro';
+import HITLSpectrum from '../components/diagrams/HITLSpectrum.astro';
+import FooterCTA from '../components/sections/FooterCTA.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Layout
+  title="Why HealthFoundry | Purpose-Built Healthcare AI Agents"
+  description="HealthFoundry: domain-aware agentic AI that works with your existing systems, starts with evidence not technology, and keeps humans in control of every consequential decision."
+>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 — HERO (centred, no image)
+  ══════════════════════════════════════════════════════ -->
+  <section class="why-hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Why Choose Us</p>
+        <h1 class="hero-h1">Why HealthFoundry</h1>
+        <p class="hero-sub">
+          The only platform that starts with your operational data, maps your actual
+          bottlenecks before configuring a single agent, and keeps your team in control
+          throughout.
+        </p>
+        <div class="hero-ctas">
+          <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+          <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+        </div>
+
+        <!-- Four differentiator anchors -->
+        <nav class="diff-anchors" aria-label="Jump to differentiator">
+          <a href="#evidence-first" class="diff-anchor">
+            <span class="da-num">01</span>
+            <span class="da-label">Evidence before automation</span>
+          </a>
+          <a href="#healthcare-native" class="diff-anchor">
+            <span class="da-num">02</span>
+            <span class="da-label">Healthcare-native agents</span>
+          </a>
+          <a href="#humans-in-control" class="diff-anchor">
+            <span class="da-num">03</span>
+            <span class="da-label">Humans always in control</span>
+          </a>
+          <a href="#no-handoffs" class="diff-anchor">
+            <span class="da-num">04</span>
+            <span class="da-label">No handoffs, ever</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — DIFFERENTIATOR 1: Evidence Before Automation
+  ══════════════════════════════════════════════════════ -->
+  <section id="evidence-first" class="diff-section diff-section--alt reveal">
+    <div class="container">
+      <div class="diff-layout">
+
+        <div class="diff-text">
+          <p class="diff-num">01</p>
+          <p class="section-label">Differentiator</p>
+          <h2 class="section-h2">We audit before we automate.</h2>
+          <div class="diff-prose">
+            <p>
+              Every HealthFoundry engagement begins with the Outcomes-Driven Optimization
+              Blueprint — a structured audit and discovery process that validates your current
+              KPIs, maps your actual workflows (not just the SOPs), attributes performance
+              gaps to People, Process, Tools, or Data root causes, and identifies the specific
+              bottlenecks where agents will have the greatest measurable impact.
+            </p>
+            <p>
+              Most platforms arrive with a pre-configured product and try to fit your
+              operations around it. We arrive with a methodology and configure agents against
+              the specific, validated reality of how your operations work. This is why our
+              outcomes are measurable — because they're designed against a baseline.
+            </p>
+          </div>
+          <div class="diff-callout">
+            <!-- check icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            No agent is configured until we have a validated baseline and a blueprint.
+          </div>
+        </div>
+
+        <div class="diff-visual reveal-scale delay-200">
+          <p class="visual-label">The Outcomes-Driven Optimization Blueprint</p>
+          <BlueprintCycle />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — DIFFERENTIATOR 2: Agents That Understand Healthcare
+  ══════════════════════════════════════════════════════ -->
+  <section id="healthcare-native" class="diff-section reveal">
+    <div class="container">
+      <div class="diff-layout diff-layout--reverse">
+
+        <div class="diff-text">
+          <p class="diff-num">02</p>
+          <p class="section-label">Differentiator</p>
+          <h2 class="section-h2">Purpose-built for clinical and revenue workflows — not adapted from generic AI.</h2>
+          <div class="diff-prose">
+            <p>
+              HealthFoundry agents are configured against the actual data structures of
+              healthcare operations: HL7, FHIR, and C-CDA data streams; ICD-10 and procedure
+              code validation against payer package definitions; discharge summary extraction;
+              pre-authorisation portal workflows; care plan milestones.
+            </p>
+            <p>
+              They integrate with your EMR, HIS, and payer portals via standard connectors —
+              no rip-and-replace required. We sit on top of your systems of record and
+              orchestrate the intelligence layer between them.
+            </p>
+            <p>
+              Forget generic chatbots. Our agents can read a discharge summary and identify
+              care gap requirements. They can check a claim against a payer's package rules
+              before submission. They can monitor payer portal status and alert your team
+              before a query deadline is missed.
+            </p>
+          </div>
+        </div>
+
+        <div class="diff-visual diff-visual--wide reveal-scale delay-200">
+          <p class="visual-label">How HealthFoundry connects to your systems</p>
+          <IntegrationMap />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — DIFFERENTIATOR 3: Humans Always in Control
+  ══════════════════════════════════════════════════════ -->
+  <section id="humans-in-control" class="diff-section diff-section--alt reveal">
+    <div class="container">
+
+      <div class="diff-layout diff-layout--stacked">
+        <div class="diff-text diff-text--centred">
+          <p class="diff-num">03</p>
+          <p class="section-label">Differentiator</p>
+          <h2 class="section-h2">Semi-autonomous by design.<br class="br-desktop"/> Not a constraint — a principle.</h2>
+          <div class="diff-prose diff-prose--centred">
+            <p>
+              We are deliberate about what agents do and what humans decide. Agents monitor,
+              read, extract, classify, draft, and recommend. For every consequential action —
+              patient communications with clinical content, claim submissions, appeal
+              approvals, compliance findings, write-offs above threshold — a human holds the
+              decision.
+            </p>
+            <p>
+              The reason is straightforward: healthcare decisions carry real consequences for
+              real patients and real revenue, and the right trust between human and AI is built
+              incrementally through structured pilots, demonstrated accuracy, and earned
+              confidence — established over time, not granted on day one.
+            </p>
+            <p>
+              We structure every deployment around a pilot-to-rollout process, explicitly
+              designed to build that confidence before expanding agent scope.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hitl-wrap reveal-scale delay-100">
+        <HITLSpectrum />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — DIFFERENTIATOR 4: No Handoffs
+  ══════════════════════════════════════════════════════ -->
+  <section id="no-handoffs" class="diff-section reveal">
+    <div class="container">
+      <div class="diff-layout">
+
+        <div class="diff-text">
+          <p class="diff-num">04</p>
+          <p class="section-label">Differentiator</p>
+          <h2 class="section-h2">We close the loop from technology to outcomes. No handoffs.</h2>
+          <div class="diff-prose">
+            <p>
+              HealthFoundry is built by clinicians, healthcare product engineers, revenue
+              cycle specialists, and data scientists. We understand the difference between a
+              technically functional agent and one that handles the real workflow — including
+              the informal decision rules, the edge cases, the payer-specific nuances, and
+              the variance between what the SOP says and what actually happens on a Monday
+              morning.
+            </p>
+            <p>
+              We own the outcome end-to-end — from the initial audit through deployment,
+              learning, and optimisation — as a continuous engagement.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contrast box: Typical Vendor vs HealthFoundry -->
+        <div class="contrast-box reveal-scale delay-200">
+          <div class="contrast-col contrast-col--left">
+            <div class="contrast-header contrast-header--left">
+              <span class="contrast-label">Typical Vendor</span>
+            </div>
+            <ul class="contrast-list contrast-list--muted">
+              <li>
+                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                Vendor sells a licence
+              </li>
+              <li>
+                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                SI Partner implements
+              </li>
+              <li>
+                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                Another vendor supports
+              </li>
+              <li>
+                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                You hope for outcomes
+              </li>
+            </ul>
+          </div>
+
+          <div class="contrast-divider" aria-hidden="true">
+            <div class="contrast-vs">vs</div>
+          </div>
+
+          <div class="contrast-col contrast-col--right">
+            <div class="contrast-header contrast-header--right">
+              <span class="contrast-label contrast-label--bright">HealthFoundry</span>
+            </div>
+            <ul class="contrast-list contrast-list--bright">
+              <li>
+                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                HealthFoundry ↔ Your team
+              </li>
+              <li>
+                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Audit → Deploy → Optimise
+              </li>
+              <li>
+                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Owned end-to-end
+              </li>
+              <li>
+                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Outcomes measured against baseline
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 — FOOTER CTA
+  ══════════════════════════════════════════════════════ -->
+  <FooterCTA />
+
+</Layout>
+
+<style>
+  /* ── Shared layout ── */
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+  }
+
+  .section-h2 {
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+  }
+
+  .br-desktop { display: none; }
+  @media (min-width: 768px) { .br-desktop { display: block; } }
+
+  /* ── Section 1: Hero ── */
+  .why-hero {
+    padding: 6rem 0 5rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .hero-h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Differentiator anchor links */
+  .diff-anchors {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border-default);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  .diff-anchor {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-right: 1px solid var(--border-subtle);
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .diff-anchor:last-child {
+    border-right: none;
+  }
+
+  .diff-anchor:hover {
+    background: var(--bg-card-hover);
+  }
+
+  .da-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .da-label {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* ── Differentiator sections ── */
+  .diff-section {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .diff-section--alt {
+    background: var(--bg-secondary);
+  }
+
+  /* ── diff-layout: side-by-side on desktop ── */
+  .diff-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .diff-layout--reverse .diff-text { order: 2; }
+  .diff-layout--reverse .diff-visual { order: 1; }
+
+  .diff-layout--stacked {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 900px) {
+    .diff-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .diff-layout--reverse .diff-text { order: 0; }
+    .diff-layout--reverse .diff-visual { order: 0; }
+  }
+
+  /* ── diff-text ── */
+  .diff-num {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--border-default);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 0 0 0.25rem;
+  }
+
+  .diff-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .diff-prose p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .diff-prose--centred {
+    max-width: 680px;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .diff-text--centred {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-text--centred .diff-num {
+    text-align: center;
+  }
+
+  .diff-callout {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-default);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    line-height: 1.5;
+  }
+
+  .diff-callout svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── diff-visual ── */
+  .diff-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .diff-visual--wide {
+    /* IntegrationMap can use full column width */
+  }
+
+  .visual-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ── HITL section extras ── */
+  .hitl-wrap {
+    margin-top: 2.5rem;
+  }
+
+  /* ── Contrast box (Section 5) ── */
+  .contrast-box {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+  }
+
+  .contrast-col {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contrast-col--right {
+    background: var(--bg-highlight);
+  }
+
+  .contrast-header {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .contrast-label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: -0.01em;
+  }
+
+  .contrast-label--bright {
+    color: var(--text-primary);
+  }
+
+  .contrast-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .contrast-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    line-height: 1.4;
+  }
+
+  .contrast-list--muted li {
+    color: var(--text-muted);
+  }
+
+  .contrast-list--bright li {
+    color: var(--text-primary);
+  }
+
+  .ci-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--text-muted);
+  }
+
+  .ci-icon--bright {
+    color: var(--text-primary);
+  }
+
+  .contrast-divider {
+    width: 1px;
+    background: var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .contrast-vs {
+    writing-mode: horizontal-tb;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 9999px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .contrast-box {
+      grid-template-columns: 1fr;
+    }
+
+    .contrast-divider {
+      width: auto;
+      height: 1px;
+      flex-direction: row;
+    }
+
+    .contrast-vs {
+      writing-mode: horizontal-tb;
+    }
+  }
+
+  /* ── Nav anchor links on narrow screens ── */
+  @media (max-width: 780px) {
+    .diff-anchors {
+      border-radius: 0.625rem;
+    }
+
+    .diff-anchor {
+      padding: 0.625rem 0.875rem;
+      flex: 1 1 calc(50% - 0.5px);
+    }
+
+    .diff-anchor:nth-child(2) {
+      border-right: none;
+    }
+
+    .diff-anchor:nth-child(3) {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .diff-anchor:nth-child(4) {
+      border-top: 1px solid var(--border-subtle);
+      border-right: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .diff-anchor {
+      flex: 1 1 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .diff-anchor:last-child {
+      border-bottom: none;
+    }
+
+    .diff-anchor:nth-child(2),
+    .diff-anchor:nth-child(3),
+    .diff-anchor:nth-child(4) {
+      border-right: none;
+      border-top: none;
+    }
+  }
+</style>

@@ -1,0 +1,389 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Mission from '../components/sections/Mission';
+import Team from '../components/sections/Team.astro';
+import FooterCTA from '../components/sections/FooterCTA.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Layout
+  title="About HealthFoundry | Healthcare AI Built by Domain Experts"
+  description="HealthFoundry was founded by clinicians, healthcare technology engineers, and revenue cycle specialists to solve the hardest operational problems in healthcare."
+>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 — FOUNDING STORY
+  ══════════════════════════════════════════════════════ -->
+  <section class="sec-story">
+    <div class="container">
+      <div class="story-content">
+        <p class="story-label">Our Story</p>
+        <h1 class="story-h1">
+          Built by people who have lived inside healthcare operations.
+        </h1>
+
+        <div class="story-prose">
+          <p>
+            HealthFoundry was founded by a team that has spent years at the intersection of
+            clinical care, healthcare technology, and revenue cycle operations. We have seen
+            what happens when AI is applied to healthcare without understanding how healthcare
+            actually works — generic tools that look impressive in demos and fail under the
+            operational reality of real hospitals.
+          </p>
+          <p>
+            We built HealthFoundry to do something different: start with the evidence, map the
+            actual operations, and deploy agents that handle real workflows — not idealised ones.
+            Every engagement begins with a structured audit. Every agent is configured against
+            a validated bottleneck. Every deployment is governed by human oversight from day one.
+          </p>
+          <p>
+            HealthFoundry is registered as HealthFoundry Private Limited, Bengaluru. Our team
+            spans clinical informatics, revenue cycle management, agentic AI engineering, and
+            data science.
+          </p>
+        </div>
+
+        <!-- Pull quote -->
+        <blockquote class="pull-quote reveal delay-200">
+          <p class="pull-quote-text">
+            "We built HealthFoundry because we've seen what happens when AI is applied to
+            healthcare without understanding how healthcare actually works."
+          </p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — COMPANY FACTS BAR
+  ══════════════════════════════════════════════════════ -->
+  <section class="sec-facts reveal">
+    <div class="container">
+      <div class="facts-bar">
+        <div class="fact-tile">
+          <span class="fact-icon" aria-hidden="true">📍</span>
+          <span class="fact-label">Bengaluru, India</span>
+          <span class="fact-sublabel">Headquarters</span>
+        </div>
+        <div class="fact-tile">
+          <span class="fact-icon" aria-hidden="true">🏥</span>
+          <span class="fact-label">Healthcare Only</span>
+          <span class="fact-sublabel">Domain focus</span>
+        </div>
+        <div class="fact-tile">
+          <span class="fact-icon" aria-hidden="true">🤝</span>
+          <span class="fact-label">3 Founders</span>
+          <span class="fact-sublabel">Founding team</span>
+        </div>
+        <div class="fact-tile">
+          <span class="fact-icon" aria-hidden="true">🚀</span>
+          <span class="fact-label">Founded 2026</span>
+          <span class="fact-sublabel">Year established</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — MISSION & VALUES
+  ══════════════════════════════════════════════════════ -->
+  <div id="mission" class="scroll-anchor"></div>
+  <Mission client:visible />
+
+  <!-- Values subsection -->
+  <section id="values" class="sec-values reveal">
+    <div class="container">
+      <p class="section-label">Our Values</p>
+      <h2 class="section-h2">The principles that govern how we work.</h2>
+      <p class="values-intro">
+        These are not aspirational statements. They are the constraints we operate within —
+        the things we will not compromise on as we build, deploy, and operate HealthFoundry.
+      </p>
+
+      <ol class="values-list">
+        <li class="value-item reveal delay-100">
+          <div class="value-number" aria-hidden="true">01</div>
+          <div class="value-body">
+            <h3 class="value-title">Shared Goals</h3>
+            <p class="value-desc">
+              We are domain experts who understand our customers' constraints, goals, and realities
+              and align our success with theirs. We focus on lowering the total cost of ownership
+              and create enduring long-term value for our customers.
+            </p>
+          </div>
+        </li>
+        <li class="value-item reveal delay-200">
+          <div class="value-number" aria-hidden="true">02</div>
+          <div class="value-body">
+            <h3 class="value-title">Extreme Ownership</h3>
+            <p class="value-desc">
+              We are problem solvers who close the loop from technology implementation to business
+              outcomes. No handoffs to third parties for implementation and customer support.
+            </p>
+          </div>
+        </li>
+        <li class="value-item reveal delay-300">
+          <div class="value-number" aria-hidden="true">03</div>
+          <div class="value-body">
+            <h3 class="value-title">Craftsmanship</h3>
+            <p class="value-desc">
+              We craft our products and services with care. We care about reliability,
+              user delight, and quality.
+            </p>
+          </div>
+        </li>
+        <li class="value-item reveal delay-100">
+          <div class="value-number" aria-hidden="true">04</div>
+          <div class="value-body">
+            <h3 class="value-title">Rapid Time to Value</h3>
+            <p class="value-desc">
+              New software should not take months and years to implement and get results.
+              We iterate with our customers with rapid feedback to continuously improve
+              our products.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — TEAM
+  ══════════════════════════════════════════════════════ -->
+  <div id="team">
+    <Team />
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — FOOTER CTA
+  ══════════════════════════════════════════════════════ -->
+  <FooterCTA />
+
+</Layout>
+
+<style>
+  /* ── Shared ── */
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+  }
+
+  .section-h2 {
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+
+  /* ── Section 1: Story ── */
+  .sec-story {
+    padding: 6rem 0 5rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .story-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .story-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 1rem;
+  }
+
+  .story-h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin: 0 0 2.5rem;
+  }
+
+  .story-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .story-prose p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 0;
+    padding: 2rem 2.5rem;
+    background: var(--bg-card);
+    border-left: 3px solid var(--border-strong);
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  .pull-quote-text {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Section 2: Facts Bar ── */
+  .sec-facts {
+    padding: 3rem 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .facts-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .fact-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 1.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+
+  .fact-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .fact-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .fact-sublabel {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 640px) {
+    .facts-bar {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ── Section 3 Mission scroll anchor ── */
+  .scroll-anchor {
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* ── Section 3: Values ── */
+  .sec-values {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .values-intro {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 0 3rem;
+  }
+
+  .values-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .value-item:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--card-border-hover);
+  }
+
+  .value-number {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+    min-width: 2rem;
+  }
+
+  .value-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .value-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .value-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    .value-item {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>

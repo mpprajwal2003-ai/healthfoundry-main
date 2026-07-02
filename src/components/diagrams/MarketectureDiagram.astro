@@ -1,0 +1,615 @@
+---
+// Theme-aware recreation of hospital_agentic_ai_marketecture_v3.html
+// Uses only CSS custom property tokens — zero hardcoded colours.
+// Structure mirrors the original: outcomes row → domain grid → agents → models/infra → platform core
+---
+
+<div class="mkt-root" role="img" aria-label="Intelligence Fabric platform architecture overview">
+
+  <!-- Title band -->
+  <div class="mkt-title-band">
+    <div class="mkt-eyebrow">Healthcare AI Platform</div>
+    <div class="mkt-main-title">The <em>Intelligence Fabric</em></div>
+    <div class="mkt-sub-title">Domain-aware agentic platform for hospital operations</div>
+  </div>
+
+  <!-- Outcomes row -->
+  <div class="mkt-outcomes">
+    <div class="mkt-outcome">
+      <div class="mkt-outcome-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+        </svg>
+      </div>
+      <div class="mkt-outcome-label">Revenue Uplift</div>
+      <div class="mkt-outcome-sub">Denial reduction &amp; RCM efficiency</div>
+    </div>
+    <div class="mkt-outcome">
+      <div class="mkt-outcome-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="mkt-outcome-label">Throughput Gains</div>
+      <div class="mkt-outcome-sub">Bottleneck removal across ops</div>
+    </div>
+    <div class="mkt-outcome">
+      <div class="mkt-outcome-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="mkt-outcome-label">Compliance Score</div>
+      <div class="mkt-outcome-sub">Audit-ready GRC posture</div>
+    </div>
+    <div class="mkt-outcome">
+      <div class="mkt-outcome-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="mkt-outcome-label">Patient Outcomes</div>
+      <div class="mkt-outcome-sub">Continuity &amp; care quality KPIs</div>
+    </div>
+    <div class="mkt-outcome">
+      <div class="mkt-outcome-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
+        </svg>
+      </div>
+      <div class="mkt-outcome-label">Error Reduction</div>
+      <div class="mkt-outcome-sub">Fewer clinical &amp; admin errors</div>
+    </div>
+  </div>
+
+  <!-- Domain grid -->
+  <div class="mkt-domains">
+    <div class="mkt-domain-col">
+      <div class="mkt-domain-header cx-header">Patient-Facing</div>
+      <div class="mkt-domain-card cx-card">
+        <div class="mkt-d-icon cx-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="mkt-d-title">Patient Relationship Management</div>
+          <div class="mkt-d-sub">Engagement, scheduling &amp; journey orchestration</div>
+        </div>
+      </div>
+      <div class="mkt-domain-card cx-card">
+        <div class="mkt-d-icon cx-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="mkt-d-title">Continuity of Care</div>
+          <div class="mkt-d-sub">Care plan coordination &amp; follow-up automation</div>
+        </div>
+      </div>
+    </div>
+    <div class="mkt-domain-col">
+      <div class="mkt-domain-header ops-header">Operational</div>
+      <div class="mkt-domain-card finops-card">
+        <div class="mkt-d-icon finops-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div>
+          <div class="mkt-d-title">Revenue Cycle Management</div>
+          <div class="mkt-d-sub">Claims processing, denial management &amp; coding accuracy</div>
+        </div>
+      </div>
+      <div class="mkt-domain-card finops-card">
+        <div class="mkt-d-icon finops-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 8h14M5 8a2 2 0 1 0 0-4h14a2 2 0 1 0 0 4"/>
+            <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="mkt-d-title">Supply Chain Management</div>
+          <div class="mkt-d-sub">Inventory optimisation &amp; demand forecasting</div>
+        </div>
+      </div>
+      <div class="mkt-domain-card grc-card">
+        <div class="mkt-d-icon grc-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="mkt-d-title">Governance, Risk &amp; Compliance</div>
+          <div class="mkt-d-sub">Policy adherence, risk scoring &amp; audit trails</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent section -->
+  <div class="mkt-agents-section">
+    <div class="mkt-section-label">Domain-Specific AI Agents</div>
+    <div class="mkt-agents-grid">
+      <div class="mkt-agent-chip cx-chip"><div class="mkt-agent-name">Patient Engagement Agent</div><div class="mkt-agent-desc">Outreach, reminders &amp; care coordination</div></div>
+      <div class="mkt-agent-chip cx-chip"><div class="mkt-agent-name">Care Continuity Agent</div><div class="mkt-agent-desc">Transition monitoring &amp; care gap detection</div></div>
+      <div class="mkt-agent-chip finops-chip"><div class="mkt-agent-name">RCM Optimisation Agent</div><div class="mkt-agent-desc">Claims review, denial prediction &amp; coding</div></div>
+      <div class="mkt-agent-chip finops-chip"><div class="mkt-agent-name">Supply Intelligence Agent</div><div class="mkt-agent-desc">Demand signal analysis &amp; procurement</div></div>
+      <div class="mkt-agent-chip grc-chip"><div class="mkt-agent-name">GRC Compliance Agent</div><div class="mkt-agent-desc">Policy monitoring &amp; audit preparation</div></div>
+      <div class="mkt-agent-chip cross-chip"><div class="mkt-agent-name">Analytics &amp; Insights Agent</div><div class="mkt-agent-desc">Natural language query across operational data cubes</div></div>
+    </div>
+    <div class="mkt-traits">
+      <span class="mkt-trait">Semi-autonomous</span>
+      <span class="mkt-trait">Human-in-the-loop</span>
+      <span class="mkt-trait">Adaptive</span>
+      <span class="mkt-trait">Continuously learning</span>
+      <span class="mkt-trait">Process automation</span>
+    </div>
+  </div>
+
+  <!-- Platform core -->
+  <div class="mkt-platform-section">
+    <div class="mkt-platform-badge">⚡ Agentic AI Platform — Core Capabilities</div>
+    <div class="mkt-support-caps">
+      <div class="mkt-cap-card infra-cap">
+        <div class="mkt-cap-title">Infrastructure</div>
+        <ul class="mkt-cap-items">
+          <li>Kubernetes-native (on-prem / cloud)</li>
+          <li>Multi-cloud portability</li>
+          <li>Air-gap &amp; hybrid support</li>
+        </ul>
+      </div>
+      <div class="mkt-cap-card agent-cap">
+        <div class="mkt-cap-title">Agent Platform</div>
+        <ul class="mkt-cap-items">
+          <li>Lifecycle management</li>
+          <li>Multi-agent orchestration</li>
+          <li>HITL governance</li>
+          <li>Self-learning (RLHF/GEPA)</li>
+        </ul>
+      </div>
+      <div class="mkt-cap-card integration-cap">
+        <div class="mkt-cap-title">Integration</div>
+        <ul class="mkt-cap-items">
+          <li>HL7, FHIR, REST, CDC</li>
+          <li>EMR / EHR, HIS connectors</li>
+          <li>CRM, SCM, lab systems</li>
+        </ul>
+      </div>
+      <div class="mkt-cap-card data-cap">
+        <div class="mkt-cap-title">Data Foundation</div>
+        <ul class="mkt-cap-items">
+          <li>Domain-specific data cubes</li>
+          <li>Cross-domain federation</li>
+          <li>Governed metric definitions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Infra bottom row -->
+  <div class="mkt-infra-row">
+    <div class="mkt-infra-chip">
+      <div class="mkt-infra-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/>
+          <line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>
+        </svg>
+      </div>
+      <div class="mkt-infra-label">EMR / EHR</div>
+      <div class="mkt-infra-sub">EMR / EHR · HIS</div>
+    </div>
+    <div class="mkt-infra-chip">
+      <div class="mkt-infra-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>
+        </svg>
+      </div>
+      <div class="mkt-infra-label">HIS / CRM / SCM</div>
+      <div class="mkt-infra-sub">Pre-built connectors</div>
+    </div>
+    <div class="mkt-infra-chip">
+      <div class="mkt-infra-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+        </svg>
+      </div>
+      <div class="mkt-infra-label">On-Prem / Cloud</div>
+      <div class="mkt-infra-sub">Kubernetes anywhere</div>
+    </div>
+    <div class="mkt-infra-chip">
+      <div class="mkt-infra-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="mkt-infra-label">HIPAA / HITRUST</div>
+      <div class="mkt-infra-sub">Compliance-ready</div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .mkt-root {
+    width: 100%;
+    background: var(--diagram-bg);
+    border: 1px solid var(--diagram-border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Title band */
+  .mkt-title-band {
+    text-align: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mkt-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--domain-cx);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .mkt-main-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+
+  .mkt-main-title em {
+    font-style: normal;
+    color: var(--domain-cx);
+  }
+
+  .mkt-sub-title {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* Outcomes row */
+  .mkt-outcomes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+
+  .mkt-outcome {
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mkt-outcome-icon {
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .mkt-outcome-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  .mkt-outcome-sub {
+    font-size: 9px;
+    color: var(--text-muted);
+    line-height: 1.3;
+  }
+
+  /* Domain grid */
+  .mkt-domains {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mkt-domain-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mkt-domain-header {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .cx-header {
+    color: var(--domain-cx);
+    background: var(--domain-cx-muted);
+    border: 1px solid var(--domain-cx-border);
+  }
+
+  .ops-header {
+    color: var(--domain-finops);
+    background: var(--domain-finops-muted);
+    border: 1px solid var(--domain-finops-border);
+  }
+
+  .mkt-domain-card {
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    border: 1px solid;
+  }
+
+  .cx-card {
+    background: var(--domain-cx-muted);
+    border-color: var(--domain-cx-border);
+  }
+
+  .finops-card {
+    background: var(--domain-finops-muted);
+    border-color: var(--domain-finops-border);
+  }
+
+  .grc-card {
+    background: var(--domain-grc-muted);
+    border-color: var(--domain-grc-border);
+  }
+
+  .mkt-d-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .cx-icon { color: var(--domain-cx); background: var(--domain-cx-muted); }
+  .finops-icon { color: var(--domain-finops); background: var(--domain-finops-muted); }
+  .grc-icon { color: var(--domain-grc); background: var(--domain-grc-muted); }
+
+  .mkt-d-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .mkt-d-sub {
+    font-size: 9px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Agents section */
+  .mkt-agents-section {
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .mkt-section-label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .mkt-agents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .mkt-agent-chip {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .cx-chip { background: var(--domain-cx-muted); border-color: var(--domain-cx-border); }
+  .finops-chip { background: var(--domain-finops-muted); border-color: var(--domain-finops-border); }
+  .grc-chip { background: var(--domain-grc-muted); border-color: var(--domain-grc-border); }
+  .cross-chip { background: var(--bg-card); border-color: var(--border-subtle); }
+
+  .mkt-agent-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .mkt-agent-desc {
+    font-size: 9px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+
+  /* Traits */
+  .mkt-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .mkt-trait {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 3px 8px;
+    font-size: 9px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Platform core */
+  .mkt-platform-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mkt-platform-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .mkt-support-caps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .mkt-cap-card {
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 8px 10px;
+    border-top: 2px solid;
+  }
+
+  .infra-cap { border-top-color: var(--domain-cx); }
+  .agent-cap { border-top-color: var(--accent-primary); }
+  .integration-cap { border-top-color: var(--domain-finops); }
+  .data-cap { border-top-color: var(--domain-grc); }
+
+  .mkt-cap-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .mkt-cap-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mkt-cap-items li {
+    font-size: 9px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+    padding-left: 8px;
+    position: relative;
+  }
+
+  .mkt-cap-items li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* Infra bottom row */
+  .mkt-infra-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .mkt-infra-chip {
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+    border-radius: 5px;
+    padding: 7px 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mkt-infra-icon {
+    color: var(--text-muted);
+    margin-bottom: 1px;
+  }
+
+  .mkt-infra-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .mkt-infra-sub {
+    font-size: 8.5px;
+    color: var(--text-muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .mkt-outcomes {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .mkt-domains {
+      grid-template-columns: 1fr;
+    }
+
+    .mkt-agents-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mkt-support-caps,
+    .mkt-infra-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

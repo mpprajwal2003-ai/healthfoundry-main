@@ -1,0 +1,513 @@
+---
+// CXSystemsGrid — 2×2 accordion card grid for the four CRM systems
+// Domain: CX teal (--domain-cx / --domain-cx-muted / --domain-cx-border)
+---
+
+<div class="cx-grid">
+
+  <!-- Card 1 — Customer Acquisition -->
+  <div class="cx-card" data-card="acquisition">
+    <button class="cx-card-header" aria-expanded="false" aria-controls="detail-acquisition">
+      <div class="cx-card-icon" aria-hidden="true">
+        <!-- phone-call icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          <path d="M14.05 2a9 9 0 0 1 8 7.94"/>
+          <path d="M14.05 6A5 5 0 0 1 18 10"/>
+        </svg>
+      </div>
+      <div class="cx-card-meta">
+        <span class="cx-badge">Acquisition</span>
+        <h3 class="cx-card-title">Customer Acquisition</h3>
+        <p class="cx-card-summary">Converting enquiries, referrals, and digital leads into confirmed appointments and admissions.</p>
+      </div>
+      <div class="cx-card-chevron" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    </button>
+
+    <!-- Mini funnel diagram -->
+    <div class="cx-mini-flow">
+      <span class="flow-node">Enquiry</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Estimate</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Counselling</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node flow-node--final">Appointment</span>
+    </div>
+
+    <div class="cx-agent-line">
+      <span class="agent-label">Key agent support:</span>
+      Lead pipeline management, estimate generation, appointment reminders, no-show risk identification
+    </div>
+
+    <!-- Expanded detail -->
+    <div class="cx-card-detail" id="detail-acquisition" hidden>
+      <p>Agents that support the full acquisition journey — from first digital enquiry through to a confirmed admission. Every step in the pipeline is tracked, with agents triggering the next action automatically and escalating non-responders to human follow-up.</p>
+      <ul>
+        <li>Lead pipeline management across channels (web, referral, walk-in)</li>
+        <li>Estimate generation from HIS data, with human review before dispatch</li>
+        <li>Appointment reminder and confirmation sequences — multi-touch, multi-channel</li>
+        <li>No-show risk identification — flags high-risk appointments for proactive outreach</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 2 — Customer Retention -->
+  <div class="cx-card cx-card--highlight" data-card="retention">
+    <button class="cx-card-header" aria-expanded="false" aria-controls="detail-retention">
+      <div class="cx-card-icon" aria-hidden="true">
+        <!-- refresh-cw icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/>
+          <polyline points="1 20 1 14 7 14"/>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </svg>
+      </div>
+      <div class="cx-card-meta">
+        <div class="cx-badge-row">
+          <span class="cx-badge">Retention</span>
+          <span class="cx-roi-badge">Highest ROI</span>
+        </div>
+        <h3 class="cx-card-title">Customer Retention</h3>
+        <p class="cx-card-summary">Re-engaging existing patients for follow-up care before, during, and after the clinical episode — the highest-leverage system in the domain.</p>
+      </div>
+      <div class="cx-card-chevron" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    </button>
+
+    <div class="cx-mini-flow">
+      <span class="flow-node">Care Gap</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Outreach</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node flow-node--final">Appointment</span>
+    </div>
+
+    <div class="cx-agent-line">
+      <span class="agent-label">Key agent support:</span>
+      Care gap identification from unstructured clinical documents, outreach orchestration, personalised follow-up, chronic disease continuity
+    </div>
+
+    <div class="cx-card-detail" id="detail-retention" hidden>
+      <p>Actionable follow-up requirements exist in every discharge summary, prescription, lab report, and radiology result your hospital generates. Most are never systematically acted on — because extracting them manually at scale is not feasible. The Care Continuity Agent reads these documents and surfaces care gaps for your team to act on.</p>
+      <ul>
+        <li>Care gap identification from unstructured clinical documents (discharge summaries, radiology reports, lab results)</li>
+        <li>Outreach orchestration — personalised follow-up communication with human review for clinical content</li>
+        <li>Post-discharge care management and chronic disease programme continuity</li>
+        <li>Non-responder escalation to phone-based follow-up</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 3 — Customer Feedback -->
+  <div class="cx-card" data-card="feedback">
+    <button class="cx-card-header" aria-expanded="false" aria-controls="detail-feedback">
+      <div class="cx-card-icon" aria-hidden="true">
+        <!-- message-circle icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="cx-card-meta">
+        <span class="cx-badge">Feedback</span>
+        <h3 class="cx-card-title">Customer Feedback</h3>
+        <p class="cx-card-summary">Capturing, routing, resolving, and learning from patient experience signals across all channels.</p>
+      </div>
+      <div class="cx-card-chevron" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    </button>
+
+    <div class="cx-mini-flow cx-mini-flow--loop">
+      <span class="flow-node">Collect</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Route</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Resolve</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node flow-node--final">Learn</span>
+    </div>
+
+    <div class="cx-agent-line">
+      <span class="agent-label">Key agent support:</span>
+      Feedback collection triggering, sentiment classification and routing, service ticket management, external platform monitoring, resolution TAT tracking
+    </div>
+
+    <div class="cx-card-detail" id="detail-feedback" hidden>
+      <p>Agents trigger feedback collection at the right point in the patient journey — not as a generic post-discharge survey blast. Responses are classified, routed to the right team, and tracked through to resolution. Patterns across channels surface to operational leadership.</p>
+      <ul>
+        <li>Feedback collection triggering at the right point in the patient journey</li>
+        <li>Sentiment classification and routing to the appropriate team</li>
+        <li>Service ticket management and escalation alerting for critical feedback</li>
+        <li>External platform monitoring (Google Reviews, social media)</li>
+        <li>Resolution TAT tracking and breach alerts</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 4 — Service Excellence -->
+  <div class="cx-card" data-card="service">
+    <button class="cx-card-header" aria-expanded="false" aria-controls="detail-service">
+      <div class="cx-card-icon" aria-hidden="true">
+        <!-- activity icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="cx-card-meta">
+        <span class="cx-badge">Service Excellence</span>
+        <h3 class="cx-card-title">Service Excellence</h3>
+        <p class="cx-card-summary">The operational efficiency of care delivery as the patient experiences it — waiting times, diagnostic TATs, and discharge workflows.</p>
+      </div>
+      <div class="cx-card-chevron" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    </button>
+
+    <!-- TAT Monitoring timeline -->
+    <div class="cx-tat-timeline">
+      <div class="tat-step">
+        <div class="tat-dot"></div>
+        <span class="tat-label">Registration</span>
+      </div>
+      <div class="tat-connector"></div>
+      <div class="tat-step">
+        <div class="tat-dot"></div>
+        <span class="tat-label">Diagnostics</span>
+      </div>
+      <div class="tat-connector"></div>
+      <div class="tat-step tat-step--alert">
+        <div class="tat-dot tat-dot--alert"></div>
+        <span class="tat-label">⚡ Alert</span>
+      </div>
+      <div class="tat-connector"></div>
+      <div class="tat-step">
+        <div class="tat-dot tat-dot--done"></div>
+        <span class="tat-label">Discharge</span>
+      </div>
+    </div>
+
+    <div class="cx-agent-line">
+      <span class="agent-label">Key agent support:</span>
+      Real-time TAT monitoring, breach alerts before they happen, bottleneck identification in radiology and lab workflows, discharge readiness coordination
+    </div>
+
+    <div class="cx-card-detail" id="detail-service" hidden>
+      <p>Service excellence is measured by the patient — and they experience it through waiting times, diagnostic turnaround, and how smoothly admission and discharge proceed. Agents monitor TATs in real time and surface breach alerts before they happen, giving operational teams time to intervene rather than explain.</p>
+      <ul>
+        <li>Real-time TAT monitoring across service lines (radiology, lab, OT, ward)</li>
+        <li>Breach alerts before they happen — not retrospective reporting</li>
+        <li>Bottleneck identification within radiology and lab workflows</li>
+        <li>Discharge readiness coordination — flags patients ready for discharge to reduce bed occupancy delays</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .cx-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .cx-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card base */
+  .cx-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.875rem;
+    overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .cx-card:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--domain-cx-border);
+  }
+
+  /* Highlighted retention card */
+  .cx-card--highlight {
+    border-color: var(--domain-cx-border);
+    background: var(--domain-cx-muted);
+  }
+
+  .cx-card--highlight:hover {
+    border-color: var(--domain-cx);
+  }
+
+  /* Card header — the clickable accordion trigger */
+  .cx-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1.25rem 1.25rem 0;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .cx-card-icon {
+    color: var(--domain-cx);
+    flex-shrink: 0;
+    padding-top: 0.125rem;
+  }
+
+  .cx-card-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cx-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cx-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: var(--domain-cx-muted);
+    color: var(--domain-cx);
+    border: 1px solid var(--domain-cx-border);
+    margin-bottom: 0.5rem;
+  }
+
+  .cx-roi-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: var(--domain-cx);
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .cx-card-title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.375rem;
+    line-height: 1.3;
+  }
+
+  .cx-card-summary {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .cx-card-chevron {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+    transition: transform 0.25s ease, color 0.2s ease;
+  }
+
+  /* Rotate chevron when expanded */
+  .cx-card-header[aria-expanded="true"] .cx-card-chevron {
+    transform: rotate(180deg);
+    color: var(--domain-cx);
+  }
+
+  /* Mini flow diagram */
+  .cx-mini-flow {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.875rem 1.25rem 0;
+    flex-wrap: wrap;
+  }
+
+  .flow-node {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .flow-node--final {
+    color: var(--domain-cx);
+    background: var(--domain-cx-muted);
+    border-color: var(--domain-cx-border);
+  }
+
+  .flow-arrow {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  /* TAT timeline */
+  .cx-tat-timeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.875rem 1.25rem 0;
+    overflow-x: auto;
+  }
+
+  .tat-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }
+
+  .tat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    border: 2px solid var(--border-default);
+  }
+
+  .tat-dot--alert {
+    background: var(--domain-finops);
+    border-color: var(--domain-finops);
+    box-shadow: 0 0 6px var(--domain-finops-border);
+  }
+
+  .tat-dot--done {
+    background: var(--domain-cx);
+    border-color: var(--domain-cx);
+  }
+
+  .tat-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .tat-step--alert .tat-label {
+    color: var(--domain-finops);
+    font-weight: 600;
+  }
+
+  .tat-connector {
+    flex: 1;
+    height: 1px;
+    background: var(--timeline-line);
+    min-width: 1rem;
+    margin-bottom: 1.1rem; /* aligns with dot centre */
+  }
+
+  /* Agent support line */
+  .cx-agent-line {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    padding: 0.75rem 1.25rem 1.25rem;
+    line-height: 1.55;
+  }
+
+  .agent-label {
+    font-weight: 700;
+    color: var(--domain-cx);
+    margin-right: 0.25rem;
+  }
+
+  /* Expanded detail */
+  .cx-card-detail {
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--domain-cx-border);
+    margin-top: 0.25rem;
+    animation: detail-open 0.25s ease forwards;
+  }
+
+  .cx-card-detail p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0.875rem 0 0.5rem;
+  }
+
+  .cx-card-detail ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .cx-card-detail li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  @keyframes detail-open {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  // CSS accordion — no JS library
+  document.querySelectorAll('.cx-card-header').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const detailId = btn.getAttribute('aria-controls');
+      const detail = document.getElementById(detailId!);
+      if (!detail) return;
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+
+      if (expanded) {
+        detail.hidden = true;
+      } else {
+        detail.hidden = false;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy Policy | HealthFoundry"
+  description="HealthFoundry's privacy policy — how we handle data in accordance with HIPAA, DPDP, and applicable data protection regulations."
+>
+  <section class="privacy-section">
+    <div class="container">
+      <p class="section-label">Legal</p>
+      <h1 class="privacy-title">Privacy Policy</h1>
+      <p class="privacy-meta">Last updated: July 2026</p>
+
+      <div class="privacy-body">
+        <h2>Our commitment</h2>
+        <p>
+          HealthFoundry Private Limited ("HealthFoundry", "we", "us") is committed to protecting the
+          privacy of individuals whose data we process. This policy describes how we collect, use, and
+          protect personal data in connection with our website and services.
+        </p>
+
+        <h2>Data we collect</h2>
+        <p>
+          When you submit an enquiry via our contact form, we collect your name, work email address,
+          organisation name, and any information you include in your message. We use this information
+          solely to respond to your enquiry and, with your consent, to send relevant communications
+          about our services.
+        </p>
+
+        <h2>Healthcare data</h2>
+        <p>
+          HealthFoundry's platform is deployed within customer infrastructure. Patient data processed by
+          the Intelligence Fabric remains within the customer's environment and is not transmitted to
+          HealthFoundry. We operate in compliance with HIPAA, HITRUST CSF requirements, and India's
+          Digital Personal Data Protection Act, 2023 (DPDP Act).
+        </p>
+
+        <h2>Data retention</h2>
+        <p>
+          Enquiry data is retained for up to 24 months. You may request deletion at any time by
+          emailing <a href="mailto:hello@healthfoundry.ai">hello@healthfoundry.ai</a>.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For privacy-related queries, contact us at{' '}
+          <a href="mailto:hello@healthfoundry.ai">hello@healthfoundry.ai</a> or write to:<br />
+          HealthFoundry Private Limited, Bengaluru, India.
+        </p>
+
+        <p class="privacy-note">
+          This is a summary policy. A full privacy notice will be published prior to commercial launch.
+          For any immediate data queries, contact us directly.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .privacy-section {
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--section-label-color);
+    margin-bottom: 1rem;
+  }
+
+  .privacy-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .privacy-meta {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .privacy-body {
+    max-width: 680px;
+  }
+
+  .privacy-body h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  .privacy-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .privacy-body p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 1rem;
+  }
+
+  .privacy-body a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .privacy-body a:hover {
+    color: var(--text-secondary);
+  }
+
+  .privacy-note {
+    margin-top: 3rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: 10px;
+    font-size: var(--text-sm) !important;
+    color: var(--text-muted) !important;
+    font-style: italic;
+  }
+</style>

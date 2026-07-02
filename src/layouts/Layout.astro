@@ -1,0 +1,97 @@
+---
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+import '../styles/animations.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const {
+  title,
+  description = 'HealthFoundry\'s Intelligence Fabric platform deploys semi-autonomous AI agents across healthcare FinOps, patient experience, and governance — measurable outcomes in 8 weeks.',
+  ogTitle,
+  ogDescription,
+} = Astro.props;
+
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://healthfoundry.ai').toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- FOUT prevention — MUST be first, runs synchronously before paint -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('hf-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:site_name" content="HealthFoundry" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Google Fonts — Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Umami analytics -->
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="42b75c2c-49d3-4a7d-9e27-0f81848e4826"
+      is:inline
+    ></script>
+  </head>
+
+  <body>
+    <Nav />
+
+    <!-- Page content — padded for fixed nav height -->
+    <main id="main-content" style="padding-top: 64px;">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Scroll animation init -->
+    <script>
+      import { initScrollAnimations } from '../scripts/animations';
+      document.addEventListener('DOMContentLoaded', initScrollAnimations);
+    </script>
+  </body>
+</html>

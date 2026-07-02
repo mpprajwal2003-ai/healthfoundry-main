@@ -1,0 +1,734 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DomainCard from '../../components/ui/DomainCard.astro';
+import ContinuousVsPeriodic from '../../components/diagrams/ContinuousVsPeriodic.astro';
+import StatCard from '../../components/ui/StatCard.astro';
+import FooterCTA from '../../components/sections/FooterCTA.astro';
+import Button from '../../components/ui/Button.astro';
+
+// ── GRC domain capability cards ──
+const capabilities = [
+  {
+    title: 'Billing Compliance Monitoring',
+    description: 'Continuous monitoring of billing activity against applicable regulatory standards, payer rules, and package definitions. Risk-scoring of billing patterns. Human-reviewed alerts for anomalies that may indicate documentation gaps, upcoding risk, or guideline non-compliance.',
+    humanNote: 'Compliance team reviews all flagged anomalies before any action is taken.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="20" x2="18" y2="10"/>
+      <line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/>
+    </svg>`,
+  },
+  {
+    title: 'Clinical Documentation Quality',
+    description: 'Monitoring of clinical documentation completeness and quality relative to billing requirements. Flags for missing or insufficient documentation that would generate claim queries or deductions — surfaced to clinical and coding teams for correction before submission.',
+    humanNote: 'Clinical and coding teams review all flagged documentation gaps.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+      <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+      <line x1="9" y1="12" x2="15" y2="12"/>
+      <line x1="9" y1="16" x2="12" y2="16"/>
+    </svg>`,
+  },
+  {
+    title: 'Audit Trail Management',
+    description: 'Automated maintenance of structured audit trails for clinical, billing, and operational actions. Audit-ready reporting generated on demand — not compiled under pressure when an inspection is announced.',
+    humanNote: 'Compliance officer reviews and approves all audit-ready reports before submission.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+      <line x1="12" y1="11" x2="12" y2="17"/>
+      <line x1="9" y1="14" x2="15" y2="14"/>
+    </svg>`,
+  },
+  {
+    title: 'Regulatory Adherence',
+    description: 'Monitoring for adherence to applicable regulatory frameworks and operational standards. Alert generation when patterns deviate from policy. Structured escalation to the appropriate human authority for review and action.',
+    humanNote: 'Designated compliance authority reviews all escalated regulatory deviations.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>`,
+  },
+  {
+    title: 'Risk Scoring',
+    description: 'Continuous risk scoring across operational domains — identifying which cases, departments, or billing patterns carry the highest compliance risk — so human reviewers can prioritise their attention effectively.',
+    humanNote: 'Risk scores surface to compliance reviewers; prioritisation decisions remain human-led.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="3"/>
+      <line x1="12" y1="2" x2="12" y2="4"/>
+      <line x1="12" y1="20" x2="12" y2="22"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="2" y1="12" x2="4" y2="12"/>
+      <line x1="20" y1="12" x2="22" y2="12"/>
+    </svg>`,
+  },
+];
+
+// ── Outcome stat cards ──
+// "Real-time vs periodic" gets special treatment (no number, split icon)
+const outcomes = [
+  { value: '20–40%', label: 'TAT breach rate reduction by service type' },
+  { value: null, label: 'Risk identification: real-time vs periodic' }, // special card
+  { value: 'On-demand', label: 'Audit preparation vs. manual compilation' },
+  { value: 'Measurable', label: 'Documentation completeness at billing (baseline-dependent)' },
+];
+---
+
+<Layout
+  title="Healthcare Governance, Risk & Compliance | HealthFoundry"
+  description="HealthFoundry's GRC agents monitor billing compliance, clinical documentation quality, and regulatory adherence — in real time, across every department."
+>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════════ -->
+  <section class="grc-hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="domain-pill">
+            <!-- shield-check icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+            GRC
+          </div>
+
+          <h1 class="hero-h1">
+            Governance, Risk &amp; Control<br />
+            <span class="hero-h1-accent">Continuous monitoring, not periodic audits</span>
+          </h1>
+
+          <p class="hero-body">
+            Compliance in healthcare demands continuous attention. Billing errors,
+            documentation gaps, and regulatory deviations accumulate continuously — and
+            are typically discovered after the damage is done. HealthFoundry's GRC agents
+            monitor your operations in real time, surfacing risks for human review before
+            they become findings.
+          </p>
+
+          <div class="hero-ctas">
+            <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+            <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+          </div>
+        </div>
+
+        <div class="hero-image reveal-left delay-200">
+          <img
+            src="/images/grc.png"
+            alt="GRC monitoring dashboard"
+            class="hero-screenshot"
+            width="600"
+            height="400"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — WHAT WE ADDRESS (5 DomainCards)
+  ══════════════════════════════════════════════════════ -->
+  <section class="grc-capabilities reveal">
+    <div class="container">
+      <p class="section-label">What We Address</p>
+      <h2 class="section-h2">
+        Five domains of continuous GRC monitoring
+      </h2>
+      <p class="section-intro">
+        Our engagement begins with a structured audit of your current GRC posture — before we
+        configure a single agent. The five domains below cover the full surface area of
+        operational compliance risk in healthcare.
+      </p>
+
+      <div class="capabilities-grid">
+        {capabilities.map((cap, i) => (
+          <div class={`reveal delay-${(i % 3 + 1) * 100}`}>
+            <DomainCard
+              icon={cap.icon}
+              title={cap.title}
+              description={cap.description}
+              humanNote={cap.humanNote}
+              domainColor="--domain-grc"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — CONTINUOUS VS PERIODIC
+  ══════════════════════════════════════════════════════ -->
+  <section class="grc-cvp reveal">
+    <div class="container">
+      <div class="cvp-wrapper">
+        <div class="cvp-header">
+          <p class="section-label">The Key Difference</p>
+          <h2 class="section-h2">
+            Compliance risk accumulates daily.<br class="br-desktop" />
+            Agents that monitor daily.
+          </h2>
+          <p class="cvp-callout">
+            Traditional compliance depends on periodic audits — which means risks accumulate
+            for weeks or months before anyone sees them. By the time an audit surfaces a
+            problem, the financial and regulatory damage is already done. HealthFoundry's
+            GRC agent monitors continuously, surfacing risk flags to your compliance team
+            in real time — before they become audit findings.
+          </p>
+        </div>
+        <div class="cvp-diagram-wrap reveal-scale delay-200">
+          <ContinuousVsPeriodic />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — GRC AGENT
+  ══════════════════════════════════════════════════════ -->
+  <section class="grc-agent reveal">
+    <div class="container">
+      <p class="section-label">Agents</p>
+      <h2 class="section-h2">One agent. Continuous coverage.</h2>
+      <p class="section-intro">
+        The GRC Compliance Agent is semi-autonomous — it monitors, flags, and prepares.
+        Your compliance team reviews flagged cases and approves all remediation actions.
+      </p>
+
+      <div class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">
+            <!-- shield-check -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <span class="agent-name">GRC Compliance Agent</span>
+        </div>
+
+        <p class="agent-desc">
+          Monitors policy adherence, flags risk, generates audit preparation reports, and
+          supports CAPA (Corrective and Preventive Action) documentation. Operates
+          continuously — not on a monthly or quarterly cycle. Human compliance team reviews
+          flagged cases and approves remediation actions.
+        </p>
+
+        <div class="agent-hitl">
+          <!-- user-check icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+            <polyline points="16 11 18 13 22 9"/>
+          </svg>
+          Human compliance team reviews all flagged cases. Agent surfaces; humans decide and approve all remediation actions.
+        </div>
+
+        <div class="agent-capabilities-grid">
+          <div class="agent-cap-group">
+            <h4 class="agent-cap-heading">Continuous monitoring</h4>
+            <ul class="agent-cap-list">
+              <li>Billing activity vs. regulatory standards and payer rules</li>
+              <li>Clinical documentation completeness at billing</li>
+              <li>Regulatory framework adherence across departments</li>
+              <li>Risk scoring by case, department, and billing pattern</li>
+            </ul>
+          </div>
+          <div class="agent-cap-group">
+            <h4 class="agent-cap-heading">Flagging and escalation</h4>
+            <ul class="agent-cap-list">
+              <li>Anomaly alerts for upcoding risk and guideline deviations</li>
+              <li>Structured escalation to designated compliance authority</li>
+              <li>Prioritised review queue based on risk score</li>
+              <li>Deviation pattern identification for upstream process changes</li>
+            </ul>
+          </div>
+          <div class="agent-cap-group">
+            <h4 class="agent-cap-heading">Audit readiness</h4>
+            <ul class="agent-cap-list">
+              <li>Automated structured audit trail maintenance</li>
+              <li>On-demand audit-ready reporting (not compiled under pressure)</li>
+              <li>CAPA documentation support for human review</li>
+              <li>Historical deviation pattern analysis for root-cause review</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — OUTCOMES
+  ══════════════════════════════════════════════════════ -->
+  <section class="grc-outcomes reveal">
+    <div class="container">
+      <p class="section-label">What to Expect</p>
+      <h2 class="section-h2">Indicative outcomes from the GRC agent</h2>
+
+      <div class="outcomes-grid">
+        {outcomes.map((o, i) => (
+          o.value !== null ? (
+            <StatCard
+              value={o.value}
+              label={o.label}
+              domainColor="--domain-grc"
+              class={`reveal delay-${(i % 3 + 1) * 100}`}
+            />
+          ) : (
+            /* Special card: Real-time vs Periodic — no percentage, split icon */
+            <div class={`stat-card stat-card--special reveal delay-${(i % 3 + 1) * 100}`}>
+              <div class="stat-split-visual" aria-hidden="true">
+                <div class="stat-split-half stat-split-half--left">
+                  <!-- clock icon (periodic) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  <span class="stat-split-label">Periodic</span>
+                </div>
+                <div class="stat-split-arrow">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </div>
+                <div class="stat-split-half stat-split-half--right">
+                  <!-- zap icon (real-time) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                  </svg>
+                  <span class="stat-split-label stat-split-label--active">Real-time</span>
+                </div>
+              </div>
+              <div class="stat-label">{o.label}</div>
+            </div>
+          )
+        ))}
+      </div>
+
+      <p class="outcomes-caveat">
+        Ranges are indicative. Actual outcomes are defined during the Audit phase based on your current baseline.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 — FOOTER CTA
+  ══════════════════════════════════════════════════════ -->
+  <FooterCTA />
+
+</Layout>
+
+<style>
+  /* ── Shared layout ── */
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--domain-grc);
+    margin: 0 0 0.75rem;
+  }
+
+  .section-h2 {
+    font-size: clamp(1.625rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+
+  .section-intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 660px;
+    margin: 0 0 2.5rem;
+  }
+
+  .br-desktop { display: none; }
+  @media (min-width: 768px) { .br-desktop { display: block; } }
+
+  /* ── Section 1: Hero ── */
+  .grc-hero {
+    padding: 5rem 0 4rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero-image { order: -1; }
+  }
+
+  .domain-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--domain-grc);
+    background: var(--domain-grc-muted);
+    border: 1px solid var(--domain-grc-border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-h1 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 1.25rem;
+  }
+
+  .hero-h1-accent {
+    color: var(--domain-grc);
+    display: block;
+    font-size: clamp(1.375rem, 2.8vw, 2.1rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-top: 0.25rem;
+  }
+
+  .hero-body {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 0.875rem;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--card-shadow);
+  }
+
+  [data-theme="light"] .hero-screenshot {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ── Section 2: Capabilities ── */
+  .grc-capabilities {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* 5th card (Risk Scoring) — centred in a single column on its row */
+  .capabilities-grid > *:last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
+  }
+
+  @media (max-width: 700px) {
+    .capabilities-grid {
+      grid-template-columns: 1fr;
+    }
+    .capabilities-grid > *:last-child {
+      grid-column: auto;
+      max-width: none;
+    }
+  }
+
+  /* ── Section 3: Continuous vs Periodic ── */
+  .grc-cvp {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .cvp-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .cvp-header {
+    max-width: 700px;
+  }
+
+  .cvp-callout {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .cvp-diagram-wrap {
+    /* Let the diagram breathe with full width */
+  }
+
+  /* ── Section 4: GRC Agent ── */
+  .grc-agent {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .agent-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--domain-grc);
+    border-radius: 0.875rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 960px;
+    transition: background 0.3s ease;
+  }
+
+  .agent-card:hover {
+    background: var(--card-bg-hover);
+  }
+
+  .agent-card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .agent-icon {
+    color: var(--domain-grc);
+    flex-shrink: 0;
+  }
+
+  .agent-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .agent-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 680px;
+  }
+
+  .agent-hitl {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: var(--text-xs);
+    color: var(--domain-grc);
+    background: var(--domain-grc-muted);
+    border: 1px solid var(--domain-grc-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.5;
+    max-width: 640px;
+  }
+
+  .agent-hitl svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .agent-capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  @media (max-width: 860px) {
+    .agent-capabilities-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .agent-cap-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .agent-cap-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--domain-grc);
+    margin: 0;
+  }
+
+  .agent-cap-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .agent-cap-list li {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .agent-cap-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--domain-grc);
+    font-size: 10px;
+    top: 1px;
+  }
+
+  /* ── Section 5: Outcomes ── */
+  .grc-outcomes {
+    padding: 5rem 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 960px) {
+    .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .outcomes-grid { grid-template-columns: 1fr; }
+  }
+
+  .outcomes-caveat {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── Special "Real-time vs Periodic" stat card ── */
+  .stat-card--special {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .stat-card--special:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--card-border-hover);
+  }
+
+  .stat-split-visual {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-split-half {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .stat-split-half--left {
+    color: var(--text-muted);
+  }
+
+  .stat-split-half--right {
+    color: var(--domain-grc);
+  }
+
+  .stat-split-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stat-split-label--active {
+    color: var(--domain-grc);
+  }
+
+  .stat-split-arrow {
+    color: var(--domain-grc);
+    flex-shrink: 0;
+  }
+
+  .stat-label {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+</style>

@@ -1,0 +1,447 @@
+---
+// Expandable 4-layer architecture stack diagram
+// Layer order: 4 (top/applications) → 3 → 2 → 1 (bottom/integration)
+---
+
+<div class="arch-diagram" role="list" aria-label="Intelligence Fabric architecture layers">
+
+  <!-- Layer 4 — Domain Agent Applications (top) -->
+  <div class="arch-layer layer-4" role="listitem">
+    <button class="layer-header" aria-expanded="false" aria-controls="layer-4-detail">
+      <div class="layer-meta">
+        <span class="layer-num">Layer 4</span>
+        <div class="layer-domain-badges">
+          <span class="domain-badge cx">CX Agents</span>
+          <span class="domain-badge finops">FinOps Agents</span>
+          <span class="domain-badge grc">GRC Agents</span>
+        </div>
+      </div>
+      <div class="layer-title-row">
+        <h3 class="layer-title">Domain Agent Applications</h3>
+        <span class="layer-expand-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </span>
+      </div>
+      <p class="layer-summary">
+        Six domain-specific agent types operating across CX, FinOps, and GRC applications.
+      </p>
+    </button>
+    <div class="layer-detail" id="layer-4-detail" hidden>
+      <p>
+        Six domain-specific agent types operate across the three platform applications: Patient
+        Engagement, Care Continuity, RCM Optimisation, Supply Intelligence, GRC Compliance, and
+        Analytics &amp; Insights. Each agent is configured against validated operational bottlenecks
+        identified during the audit phase.
+      </p>
+      <div class="agent-chips">
+        <span class="agent-chip cx-chip">Patient Engagement Agent</span>
+        <span class="agent-chip cx-chip">Care Continuity Agent</span>
+        <span class="agent-chip finops-chip">RCM Optimisation Agent</span>
+        <span class="agent-chip finops-chip">Supply Intelligence Agent</span>
+        <span class="agent-chip grc-chip">GRC Compliance Agent</span>
+        <span class="agent-chip cross-chip">Analytics &amp; Insights Agent</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="layer-connector" aria-hidden="true">
+    <div class="connector-line"></div>
+    <div class="connector-arrow">↓</div>
+  </div>
+
+  <!-- Layer 3 — Agent Platform Core -->
+  <div class="arch-layer layer-3" role="listitem">
+    <button class="layer-header" aria-expanded="false" aria-controls="layer-3-detail">
+      <div class="layer-meta">
+        <span class="layer-num">Layer 3</span>
+        <span class="layer-badge platform-badge">Intelligence Fabric Core</span>
+      </div>
+      <div class="layer-title-row">
+        <h3 class="layer-title">Agent Platform</h3>
+        <span class="layer-expand-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </span>
+      </div>
+      <p class="layer-summary">
+        Orchestration · HITL governance · Self-learning · LLM observability · Cost-aware routing
+      </p>
+    </button>
+    <div class="layer-detail" id="layer-3-detail" hidden>
+      <p>
+        The core of the platform: the agent runtime, orchestration layer, and human-in-the-loop
+        governance framework. Key capabilities:
+      </p>
+      <ul class="layer-list">
+        <li><strong>Agent lifecycle management</strong> — deploy, monitor, retrain, and retire agents systematically</li>
+        <li><strong>Multi-agent orchestration</strong> — agents that coordinate across domains (e.g., a care gap agent triggering a follow-up agent)</li>
+        <li><strong>Human-in-the-loop (HITL) governance</strong> — every agent has defined confidence thresholds and impact boundaries above which a human must confirm</li>
+        <li><strong>Self-learning (RLHF/GEPA)</strong> — agents improve from operational feedback, exception analysis, and outcome data</li>
+        <li><strong>LLM observability</strong> — full visibility into model behaviour, prompt performance, and output quality</li>
+        <li><strong>Cost-aware model execution</strong> — task-specific model routing to balance accuracy and cost</li>
+        <li><strong>Conversational mode</strong> — natural language query across operational data cubes, beyond fixed dashboards</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layer-connector" aria-hidden="true">
+    <div class="connector-line"></div>
+    <div class="connector-arrow">↓</div>
+  </div>
+
+  <!-- Layer 2 — Domain Data Foundation -->
+  <div class="arch-layer layer-2" role="listitem">
+    <button class="layer-header" aria-expanded="false" aria-controls="layer-2-detail">
+      <div class="layer-meta">
+        <span class="layer-num">Layer 2</span>
+      </div>
+      <div class="layer-title-row">
+        <h3 class="layer-title">Domain Data Foundation</h3>
+        <span class="layer-expand-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </span>
+      </div>
+      <p class="layer-summary">
+        Clinical cubes · Financial cubes · Operational cubes · Cross-domain federation
+      </p>
+    </button>
+    <div class="layer-detail" id="layer-2-detail" hidden>
+      <p>
+        Raw system data is cleaned, normalised, and structured into domain-specific data cubes —
+        clinical, financial, operational. Governed metric definitions. Historical and real-time views.
+        Cross-domain federation for workflows that span departments. This is the factual foundation
+        agents reason over.
+      </p>
+    </div>
+  </div>
+
+  <div class="layer-connector" aria-hidden="true">
+    <div class="connector-line"></div>
+    <div class="connector-arrow">↓</div>
+  </div>
+
+  <!-- Layer 1 — Integration & Data (bottom) -->
+  <div class="arch-layer layer-1" role="listitem">
+    <button class="layer-header" aria-expanded="false" aria-controls="layer-1-detail">
+      <div class="layer-meta">
+        <span class="layer-num">Layer 1</span>
+        <div class="system-badges">
+          <span class="sys-badge">EMR / EHR</span>
+          <span class="sys-badge">HIS</span>
+          <span class="sys-badge">HL7</span>
+          <span class="sys-badge">FHIR</span>
+          <span class="sys-badge">REST API</span>
+        </div>
+      </div>
+      <div class="layer-title-row">
+        <h3 class="layer-title">Integration &amp; Data</h3>
+        <span class="layer-expand-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </span>
+      </div>
+      <p class="layer-summary">
+        HL7 · FHIR · REST API · File ingestion · EMR, HIS, and payer portal connectors
+      </p>
+    </button>
+    <div class="layer-detail" id="layer-1-detail" hidden>
+      <p>
+        The Intelligence Fabric connects to your existing systems via HL7, FHIR, HL7 v2, REST API,
+        or flat file. Pre-built connectors for major EMR, HIS, CRM, and SCM platforms. File, API,
+        and CDC ingestion. Real-time and batch pipelines. Your data stays in your environment.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .arch-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  /* Layers */
+  .arch-layer {
+    border: 1px solid var(--diagram-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: var(--diagram-bg);
+    transition: border-color 0.3s ease;
+  }
+
+  .arch-layer:hover {
+    border-color: var(--border-default);
+  }
+
+  .arch-layer.is-open {
+    border-color: var(--border-strong);
+  }
+
+  /* Layer-specific accent tops */
+  .layer-4 { border-top: 2px solid var(--domain-cx); }
+  .layer-3 { border-top: 2px solid var(--accent-primary); }
+  .layer-2 { border-top: 2px solid var(--domain-finops); }
+  .layer-1 { border-top: 2px solid var(--domain-grc); }
+
+  /* Header button */
+  .layer-header {
+    width: 100%;
+    text-align: left;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .layer-header:hover {
+    background: var(--bg-highlight);
+  }
+
+  .layer-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .layer-num {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .layer-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .layer-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .layer-expand-icon {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    display: flex;
+  }
+
+  .arch-layer.is-open .layer-expand-icon {
+    transform: rotate(180deg);
+  }
+
+  .layer-summary {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Domain badges */
+  .layer-domain-badges {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  .domain-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+
+  .domain-badge.cx {
+    color: var(--domain-cx);
+    background: var(--domain-cx-muted);
+    border-color: var(--domain-cx-border);
+  }
+
+  .domain-badge.finops {
+    color: var(--domain-finops);
+    background: var(--domain-finops-muted);
+    border-color: var(--domain-finops-border);
+  }
+
+  .domain-badge.grc {
+    color: var(--domain-grc);
+    background: var(--domain-grc-muted);
+    border-color: var(--domain-grc-border);
+  }
+
+  /* Platform badge */
+  .layer-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .platform-badge {
+    color: var(--accent-primary);
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* System badges */
+  .system-badges {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  .sys-badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    background: var(--bg-highlight);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Detail panel */
+  .layer-detail {
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 0;
+  }
+
+  .layer-detail p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 1rem 0 0;
+  }
+
+  .layer-list {
+    margin: 0.75rem 0 0 0;
+    padding: 0 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .layer-list li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .layer-list li strong {
+    color: var(--text-primary);
+  }
+
+  /* Agent chips inside detail */
+  .agent-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .agent-chip {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid;
+  }
+
+  .cx-chip {
+    color: var(--domain-cx);
+    background: var(--domain-cx-muted);
+    border-color: var(--domain-cx-border);
+  }
+
+  .finops-chip {
+    color: var(--domain-finops);
+    background: var(--domain-finops-muted);
+    border-color: var(--domain-finops-border);
+  }
+
+  .grc-chip {
+    color: var(--domain-grc);
+    background: var(--domain-grc-muted);
+    border-color: var(--domain-grc-border);
+  }
+
+  .cross-chip {
+    color: var(--text-secondary);
+    background: var(--bg-highlight);
+    border-color: var(--border-subtle);
+  }
+
+  /* Connectors between layers */
+  .layer-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .connector-line {
+    width: 1px;
+    height: 20px;
+    background: var(--layer-connector);
+  }
+
+  .connector-arrow {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1;
+    margin-top: -2px;
+  }
+</style>
+
+<script>
+  // Toggle expand/collapse for each layer
+  document.querySelectorAll('.arch-layer .layer-header').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const layer = btn.closest('.arch-layer') as HTMLElement;
+      const detailId = btn.getAttribute('aria-controls');
+      const detail = detailId ? document.getElementById(detailId) : null;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      if (detail) detail.hidden = isOpen;
+      layer.classList.toggle('is-open', !isOpen);
+    });
+  });
+</script>
