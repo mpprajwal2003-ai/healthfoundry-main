@@ -5,11 +5,15 @@ import IntegrationMap from '../components/diagrams/IntegrationMap.astro';
 import HITLSpectrum from '../components/diagrams/HITLSpectrum.astro';
 import FooterCTA from '../components/sections/FooterCTA.astro';
 import Button from '../components/ui/Button.astro';
+import { frontmatter } from '../data/why-us.md';
+
+const { hero, differentiators } = frontmatter;
+const [d1, d2, d3, d4] = differentiators;
 ---
 
 <Layout
-  title="Why HealthFoundry | Purpose-Built Healthcare AI Agents"
-  description="HealthFoundry: domain-aware agentic AI that works with your existing systems, starts with evidence not technology, and keeps humans in control of every consequential decision."
+  title={frontmatter.meta.title}
+  description={frontmatter.meta.description}
 >
 
   <!-- ═══════════════════════════════════════════════════
@@ -18,36 +22,24 @@ import Button from '../components/ui/Button.astro';
   <section class="why-hero">
     <div class="container">
       <div class="hero-content">
-        <p class="hero-eyebrow">Why Choose Us</p>
-        <h1 class="hero-h1">Why HealthFoundry</h1>
+        <p class="hero-eyebrow">{hero.eyebrow}</p>
+        <h1 class="hero-h1">{hero.title}</h1>
         <p class="hero-sub">
-          The only platform that starts with your operational data, maps your actual
-          bottlenecks before configuring a single agent, and keeps your team in control
-          throughout.
+          {hero.subtitle}
         </p>
         <div class="hero-ctas">
-          <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
-          <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+          <Button href={hero.ctaPrimary.href} variant="primary" size="lg">{hero.ctaPrimary.label}</Button>
+          <Button href={hero.ctaSecondary.href} variant="secondary" size="lg">{hero.ctaSecondary.label}</Button>
         </div>
 
         <!-- Four differentiator anchors -->
         <nav class="diff-anchors" aria-label="Jump to differentiator">
-          <a href="#evidence-first" class="diff-anchor">
-            <span class="da-num">01</span>
-            <span class="da-label">Evidence before automation</span>
-          </a>
-          <a href="#healthcare-native" class="diff-anchor">
-            <span class="da-num">02</span>
-            <span class="da-label">Healthcare-native agents</span>
-          </a>
-          <a href="#humans-in-control" class="diff-anchor">
-            <span class="da-num">03</span>
-            <span class="da-label">Humans always in control</span>
-          </a>
-          <a href="#no-handoffs" class="diff-anchor">
-            <span class="da-num">04</span>
-            <span class="da-label">No handoffs, ever</span>
-          </a>
+          {hero.anchors.map((anchor) => (
+            <a href={anchor.href} class="diff-anchor">
+              <span class="da-num">{anchor.num}</span>
+              <span class="da-label">{anchor.label}</span>
+            </a>
+          ))}
         </nav>
       </div>
     </div>
@@ -61,23 +53,11 @@ import Button from '../components/ui/Button.astro';
       <div class="diff-layout">
 
         <div class="diff-text">
-          <p class="diff-num">01</p>
-          <p class="section-label">Differentiator</p>
-          <h2 class="section-h2">We audit before we automate.</h2>
+          <p class="diff-num">{d1.num}</p>
+          <p class="section-label">{d1.label}</p>
+          <h2 class="section-h2">{d1.heading}</h2>
           <div class="diff-prose">
-            <p>
-              Every HealthFoundry engagement begins with the Outcomes-Driven Optimization
-              Blueprint — a structured audit and discovery process that validates your current
-              KPIs, maps your actual workflows (not just the SOPs), attributes performance
-              gaps to People, Process, Tools, or Data root causes, and identifies the specific
-              bottlenecks where agents will have the greatest measurable impact.
-            </p>
-            <p>
-              Most platforms arrive with a pre-configured product and try to fit your
-              operations around it. We arrive with a methodology and configure agents against
-              the specific, validated reality of how your operations work. This is why our
-              outcomes are measurable — because they're designed against a baseline.
-            </p>
+            {d1.prose.map((para) => <p>{para}</p>)}
           </div>
           <div class="diff-callout">
             <!-- check icon -->
@@ -86,12 +66,12 @@ import Button from '../components/ui/Button.astro';
               stroke-linejoin="round" aria-hidden="true">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
-            No agent is configured until we have a validated baseline and a blueprint.
+            {d1.callout}
           </div>
         </div>
 
         <div class="diff-visual reveal-scale delay-200">
-          <p class="visual-label">The Outcomes-Driven Optimization Blueprint</p>
+          <p class="visual-label">{d1.visualLabel}</p>
           <BlueprintCycle />
         </div>
 
@@ -107,32 +87,16 @@ import Button from '../components/ui/Button.astro';
       <div class="diff-layout diff-layout--reverse">
 
         <div class="diff-text">
-          <p class="diff-num">02</p>
-          <p class="section-label">Differentiator</p>
-          <h2 class="section-h2">Purpose-built for clinical and revenue workflows — not adapted from generic AI.</h2>
+          <p class="diff-num">{d2.num}</p>
+          <p class="section-label">{d2.label}</p>
+          <h2 class="section-h2">{d2.heading}</h2>
           <div class="diff-prose">
-            <p>
-              HealthFoundry agents are configured against the actual data structures of
-              healthcare operations: HL7, FHIR, and C-CDA data streams; ICD-10 and procedure
-              code validation against payer package definitions; discharge summary extraction;
-              pre-authorisation portal workflows; care plan milestones.
-            </p>
-            <p>
-              They integrate with your EMR, HIS, and payer portals via standard connectors —
-              no rip-and-replace required. We sit on top of your systems of record and
-              orchestrate the intelligence layer between them.
-            </p>
-            <p>
-              Forget generic chatbots. Our agents can read a discharge summary and identify
-              care gap requirements. They can check a claim against a payer's package rules
-              before submission. They can monitor payer portal status and alert your team
-              before a query deadline is missed.
-            </p>
+            {d2.prose.map((para) => <p>{para}</p>)}
           </div>
         </div>
 
         <div class="diff-visual diff-visual--wide reveal-scale delay-200">
-          <p class="visual-label">How HealthFoundry connects to your systems</p>
+          <p class="visual-label">{d2.visualLabel}</p>
           <IntegrationMap />
         </div>
 
@@ -148,27 +112,11 @@ import Button from '../components/ui/Button.astro';
 
       <div class="diff-layout diff-layout--stacked">
         <div class="diff-text diff-text--centred">
-          <p class="diff-num">03</p>
-          <p class="section-label">Differentiator</p>
-          <h2 class="section-h2">Semi-autonomous by design.<br class="br-desktop"/> Not a constraint — a principle.</h2>
+          <p class="diff-num">{d3.num}</p>
+          <p class="section-label">{d3.label}</p>
+          <h2 class="section-h2">{d3.headingBefore}<br class="br-desktop"/> {d3.headingAfter}</h2>
           <div class="diff-prose diff-prose--centred">
-            <p>
-              We are deliberate about what agents do and what humans decide. Agents monitor,
-              read, extract, classify, draft, and recommend. For every consequential action —
-              patient communications with clinical content, claim submissions, appeal
-              approvals, compliance findings, write-offs above threshold — a human holds the
-              decision.
-            </p>
-            <p>
-              The reason is straightforward: healthcare decisions carry real consequences for
-              real patients and real revenue, and the right trust between human and AI is built
-              incrementally through structured pilots, demonstrated accuracy, and earned
-              confidence — established over time, not granted on day one.
-            </p>
-            <p>
-              We structure every deployment around a pilot-to-rollout process, explicitly
-              designed to build that confidence before expanding agent scope.
-            </p>
+            {d3.prose.map((para) => <p>{para}</p>)}
           </div>
         </div>
       </div>
@@ -188,22 +136,11 @@ import Button from '../components/ui/Button.astro';
       <div class="diff-layout">
 
         <div class="diff-text">
-          <p class="diff-num">04</p>
-          <p class="section-label">Differentiator</p>
-          <h2 class="section-h2">We close the loop from technology to outcomes. No handoffs.</h2>
+          <p class="diff-num">{d4.num}</p>
+          <p class="section-label">{d4.label}</p>
+          <h2 class="section-h2">{d4.heading}</h2>
           <div class="diff-prose">
-            <p>
-              HealthFoundry is built by clinicians, healthcare product engineers, revenue
-              cycle specialists, and data scientists. We understand the difference between a
-              technically functional agent and one that handles the real workflow — including
-              the informal decision rules, the edge cases, the payer-specific nuances, and
-              the variance between what the SOP says and what actually happens on a Monday
-              morning.
-            </p>
-            <p>
-              We own the outcome end-to-end — from the initial audit through deployment,
-              learning, and optimisation — as a continuous engagement.
-            </p>
+            {d4.prose.map((para) => <p>{para}</p>)}
           </div>
         </div>
 
@@ -211,37 +148,18 @@ import Button from '../components/ui/Button.astro';
         <div class="contrast-box reveal-scale delay-200">
           <div class="contrast-col contrast-col--left">
             <div class="contrast-header contrast-header--left">
-              <span class="contrast-label">Typical Vendor</span>
+              <span class="contrast-label">{d4.contrast.leftLabel}</span>
             </div>
             <ul class="contrast-list contrast-list--muted">
-              <li>
-                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-                Vendor sells a licence
-              </li>
-              <li>
-                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-                SI Partner implements
-              </li>
-              <li>
-                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-                Another vendor supports
-              </li>
-              <li>
-                <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-                You hope for outcomes
-              </li>
+              {d4.contrast.leftItems.map((item) => (
+                <li>
+                  <svg class="ci-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -251,37 +169,18 @@ import Button from '../components/ui/Button.astro';
 
           <div class="contrast-col contrast-col--right">
             <div class="contrast-header contrast-header--right">
-              <span class="contrast-label contrast-label--bright">HealthFoundry</span>
+              <span class="contrast-label contrast-label--bright">{d4.contrast.rightLabel}</span>
             </div>
             <ul class="contrast-list contrast-list--bright">
-              <li>
-                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                HealthFoundry ↔ Your team
-              </li>
-              <li>
-                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                Audit → Deploy → Optimise
-              </li>
-              <li>
-                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                Owned end-to-end
-              </li>
-              <li>
-                <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                Outcomes measured against baseline
-              </li>
+              {d4.contrast.rightItems.map((item) => (
+                <li>
+                  <svg class="ci-icon ci-icon--bright" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

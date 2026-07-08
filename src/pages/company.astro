@@ -4,11 +4,14 @@ import Mission from '../components/sections/Mission';
 import Team from '../components/sections/Team.astro';
 import FooterCTA from '../components/sections/FooterCTA.astro';
 import Button from '../components/ui/Button.astro';
+import { frontmatter } from '../data/company.md';
+
+const { meta, story, facts, mission, values, team } = frontmatter;
 ---
 
 <Layout
-  title="About HealthFoundry | Healthcare AI Built by Domain Experts"
-  description="HealthFoundry was founded by clinicians, healthcare technology engineers, and revenue cycle specialists to solve the hardest operational problems in healthcare."
+  title={meta.title}
+  description={meta.description}
 >
 
   <!-- ═══════════════════════════════════════════════════
@@ -17,37 +20,19 @@ import Button from '../components/ui/Button.astro';
   <section class="sec-story">
     <div class="container">
       <div class="story-content">
-        <p class="story-label">Our Story</p>
+        <p class="story-label">{story.label}</p>
         <h1 class="story-h1">
-          Built by people who have lived inside healthcare operations.
+          {story.title}
         </h1>
 
         <div class="story-prose">
-          <p>
-            HealthFoundry was founded by a team that has spent years at the intersection of
-            clinical care, healthcare technology, and revenue cycle operations. We have seen
-            what happens when AI is applied to healthcare without understanding how healthcare
-            actually works — generic tools that look impressive in demos and fail under the
-            operational reality of real hospitals.
-          </p>
-          <p>
-            We built HealthFoundry to do something different: start with the evidence, map the
-            actual operations, and deploy agents that handle real workflows — not idealised ones.
-            Every engagement begins with a structured audit. Every agent is configured against
-            a validated bottleneck. Every deployment is governed by human oversight from day one.
-          </p>
-          <p>
-            HealthFoundry is registered as HealthFoundry Private Limited, Bengaluru. Our team
-            spans clinical informatics, revenue cycle management, agentic AI engineering, and
-            data science.
-          </p>
+          {story.prose.map((p) => <p>{p}</p>)}
         </div>
 
         <!-- Pull quote -->
         <blockquote class="pull-quote reveal delay-200">
           <p class="pull-quote-text">
-            "We built HealthFoundry because we've seen what happens when AI is applied to
-            healthcare without understanding how healthcare actually works."
+            "{story.pullQuote}"
           </p>
         </blockquote>
       </div>
@@ -60,26 +45,13 @@ import Button from '../components/ui/Button.astro';
   <section class="sec-facts reveal">
     <div class="container">
       <div class="facts-bar">
-        <div class="fact-tile">
-          <span class="fact-icon" aria-hidden="true">📍</span>
-          <span class="fact-label">Bengaluru, India</span>
-          <span class="fact-sublabel">Headquarters</span>
-        </div>
-        <div class="fact-tile">
-          <span class="fact-icon" aria-hidden="true">🏥</span>
-          <span class="fact-label">Healthcare Only</span>
-          <span class="fact-sublabel">Domain focus</span>
-        </div>
-        <div class="fact-tile">
-          <span class="fact-icon" aria-hidden="true">🤝</span>
-          <span class="fact-label">3 Founders</span>
-          <span class="fact-sublabel">Founding team</span>
-        </div>
-        <div class="fact-tile">
-          <span class="fact-icon" aria-hidden="true">🚀</span>
-          <span class="fact-label">Founded 2026</span>
-          <span class="fact-sublabel">Year established</span>
-        </div>
+        {facts.map((fact) => (
+          <div class="fact-tile">
+            <span class="fact-icon" aria-hidden="true">{fact.icon}</span>
+            <span class="fact-label">{fact.label}</span>
+            <span class="fact-sublabel">{fact.sublabel}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -88,61 +60,27 @@ import Button from '../components/ui/Button.astro';
        SECTION 3 — MISSION & VALUES
   ══════════════════════════════════════════════════════ -->
   <div id="mission" class="scroll-anchor"></div>
-  <Mission client:visible />
+  <Mission client:visible label={mission.label} headline={mission.headline} pillars={mission.pillars} />
 
   <!-- Values subsection -->
   <section id="values" class="sec-values reveal">
     <div class="container">
-      <p class="section-label">Our Values</p>
-      <h2 class="section-h2">The principles that govern how we work.</h2>
+      <p class="section-label">{values.label}</p>
+      <h2 class="section-h2">{values.title}</h2>
       <p class="values-intro">
-        These are not aspirational statements. They are the constraints we operate within —
-        the things we will not compromise on as we build, deploy, and operate HealthFoundry.
+        {values.intro}
       </p>
 
       <ol class="values-list">
-        <li class="value-item reveal delay-100">
-          <div class="value-number" aria-hidden="true">01</div>
-          <div class="value-body">
-            <h3 class="value-title">Shared Goals</h3>
-            <p class="value-desc">
-              We are domain experts who understand our customers' constraints, goals, and realities
-              and align our success with theirs. We focus on lowering the total cost of ownership
-              and create enduring long-term value for our customers.
-            </p>
-          </div>
-        </li>
-        <li class="value-item reveal delay-200">
-          <div class="value-number" aria-hidden="true">02</div>
-          <div class="value-body">
-            <h3 class="value-title">Extreme Ownership</h3>
-            <p class="value-desc">
-              We are problem solvers who close the loop from technology implementation to business
-              outcomes. No handoffs to third parties for implementation and customer support.
-            </p>
-          </div>
-        </li>
-        <li class="value-item reveal delay-300">
-          <div class="value-number" aria-hidden="true">03</div>
-          <div class="value-body">
-            <h3 class="value-title">Craftsmanship</h3>
-            <p class="value-desc">
-              We craft our products and services with care. We care about reliability,
-              user delight, and quality.
-            </p>
-          </div>
-        </li>
-        <li class="value-item reveal delay-100">
-          <div class="value-number" aria-hidden="true">04</div>
-          <div class="value-body">
-            <h3 class="value-title">Rapid Time to Value</h3>
-            <p class="value-desc">
-              New software should not take months and years to implement and get results.
-              We iterate with our customers with rapid feedback to continuously improve
-              our products.
-            </p>
-          </div>
-        </li>
+        {values.items.map((value) => (
+          <li class="value-item reveal delay-100">
+            <div class="value-number" aria-hidden="true">{value.num}</div>
+            <div class="value-body">
+              <h3 class="value-title">{value.title}</h3>
+              <p class="value-desc">{value.desc}</p>
+            </div>
+          </li>
+        ))}
       </ol>
     </div>
   </section>
@@ -151,7 +89,7 @@ import Button from '../components/ui/Button.astro';
        SECTION 4 — TEAM
   ══════════════════════════════════════════════════════ -->
   <div id="team">
-    <Team />
+    <Team label={team.label} title={team.title} intro={team.intro} members={team.members} />
   </div>
 
   <!-- ═══════════════════════════════════════════════════

@@ -53,11 +53,26 @@ const iconServer = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
   <line x1="6" x2="6.01" y1="6" y2="6"/>
   <line x1="6" x2="6.01" y1="18" y2="18"/>
 </svg>`;
+
+import { frontmatter } from '../data/security.md';
+
+// Map data icon keys → SVG string constants above
+const iconMap = {
+  Lock: iconLock,
+  LayoutTemplate: iconLayers,
+  Gavel: iconScale,
+  ShieldCheck: iconShield,
+  Database: iconServer,
+};
+const securityItems = frontmatter.items.map((item) => ({
+  ...item,
+  iconSvg: iconMap[item.icon] ?? iconShield,
+}));
 ---
 
 <Layout
-  title="Security & Compliance | HealthFoundry"
-  description="HIPAA, HITRUST CSF, and DPDP compliant. Deployed in your infrastructure. Patient data never leaves your environment without your explicit authorisation."
+  title={frontmatter.meta.title}
+  description={frontmatter.meta.description}
 >
 
   <!-- ═══════════════════════════════════════════════════
@@ -66,17 +81,14 @@ const iconServer = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
   <section class="sec-hero">
     <div class="container">
       <div class="hero-content">
-        <p class="hero-eyebrow">Security & Compliance</p>
-        <h1 class="hero-h1">Security by design.<br class="br-desktop"/> Not by configuration.</h1>
+        <p class="hero-eyebrow">{frontmatter.hero.eyebrow}</p>
+        <h1 class="hero-h1">{frontmatter.hero.title}</h1>
         <p class="hero-sub">
-          Enterprise-grade security infrastructure built specifically for healthcare.
-          Patient data stays in your environment. We are HIPAA compliant, HITRUST CSF certified,
-          and DPDP compliant — with SOC&nbsp;2 and ISO&nbsp;27001 readiness built into the
-          platform architecture.
+          {frontmatter.hero.subtitle}
         </p>
         <div class="hero-ctas">
-          <Button href="/contact" variant="primary" size="lg">Talk to us about your security requirements →</Button>
-          <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+          <Button href={frontmatter.hero.primaryCta.href} variant="primary" size="lg">{frontmatter.hero.primaryCta.label}</Button>
+          <Button href={frontmatter.hero.secondaryCta.href} variant="secondary" size="lg">{frontmatter.hero.secondaryCta.label}</Button>
         </div>
       </div>
     </div>
@@ -88,64 +100,24 @@ const iconServer = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
   <section class="sec-cards reveal">
     <div class="container">
       <div class="cards-header">
-        <p class="section-label">Compliance & Certifications</p>
-        <h2 class="section-h2">Built to meet the highest standards in healthcare data security.</h2>
+        <p class="section-label">{frontmatter.cards.label}</p>
+        <h2 class="section-h2">{frontmatter.cards.title}</h2>
         <p class="section-intro">
-          Every certification reflects a structural design decision, embedded from the ground up.
-          The Intelligence Fabric is architected from the ground up around data sovereignty,
-          access control, and auditability.
+          {frontmatter.cards.intro}
         </p>
       </div>
 
       <div class="cards-grid">
-        <div class="reveal delay-100">
-          <DomainCard
-            icon={iconShield}
-            title="HIPAA Compliant"
-            description="Full compliance with the Health Insurance Portability and Accountability Act. Administrative, physical, and technical safeguards are embedded in the platform architecture — not added post-deployment."
-            domainColor="--domain-grc"
-          />
-        </div>
-        <div class="reveal delay-200">
-          <DomainCard
-            icon={iconCheckCircle}
-            title="HITRUST CSF Certified"
-            description="HITRUST Common Security Framework certification — the gold standard for healthcare information security. Rigorous control requirements across privacy, security, and regulatory compliance."
-            domainColor="--domain-grc"
-          />
-        </div>
-        <div class="reveal delay-300">
-          <DomainCard
-            icon={iconScale}
-            title="DPDP Compliant"
-            description="Compliant with India's Digital Personal Data Protection Act, 2023. Data minimisation, purpose limitation, and consent mechanisms are built into the platform's data handling architecture."
-            domainColor="--domain-grc"
-          />
-        </div>
-        <div class="reveal delay-100">
-          <DomainCard
-            icon={iconLayers}
-            title="SOC 2 Readiness"
-            description="Platform architecture aligned to SOC 2 Type II trust service criteria: Security, Availability, Processing Integrity, Confidentiality, and Privacy. Audit-ready controls and logging infrastructure in place."
-            domainColor="--domain-grc"
-          />
-        </div>
-        <div class="reveal delay-200">
-          <DomainCard
-            icon={iconLock}
-            title="ISO 27001 Readiness"
-            description="Information security management system aligned to ISO/IEC 27001:2022. Systematic approach to managing sensitive information with defined policies, procedures, and technical controls."
-            domainColor="--domain-grc"
-          />
-        </div>
-        <div class="reveal delay-300">
-          <DomainCard
-            icon={iconServer}
-            title="Deployment in Your Infrastructure"
-            description="The Intelligence Fabric is deployed in your infrastructure — on-premise Kubernetes, Google Cloud, AWS, Azure, or hybrid/air-gapped. No patient data is processed in HealthFoundry's own cloud. Customer-controlled deployment is a structural feature of the platform, not an option."
-            domainColor="--domain-grc"
-          />
-        </div>
+        {securityItems.map((item, i) => (
+          <div class={`reveal delay-${((i % 3) + 1) * 100}`}>
+            <DomainCard
+              icon={item.iconSvg}
+              title={item.title}
+              description={item.desc}
+              domainColor="--domain-grc"
+            />
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -158,68 +130,32 @@ const iconServer = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
       <div class="topology-layout">
 
         <div class="topology-text">
-          <p class="section-label">Infrastructure</p>
-          <h2 class="section-h2">Deployed in your environment. Not ours.</h2>
+          <p class="section-label">{frontmatter.topology.label}</p>
+          <h2 class="section-h2">{frontmatter.topology.title}</h2>
           <div class="topology-prose">
-            <p>
-              The Intelligence Fabric is Kubernetes-native — designed for portability across
-              any compliant infrastructure. Whether you operate on-premise, in the cloud,
-              or in a hybrid configuration, the platform deploys entirely within your environment.
-            </p>
-            <p>
-              HealthFoundry's team interacts with your deployment for configuration and
-              maintenance only. No patient data transits HealthFoundry systems.
-              No data residency questions. No third-party cloud exposure.
-            </p>
+            {frontmatter.topology.prose.map((para) => (
+              <p>{para}</p>
+            ))}
           </div>
 
           <div class="topology-facts">
-            <div class="topo-fact">
-              <div class="topo-fact-icon" aria-hidden="true">
-                <!-- check icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+            {frontmatter.topology.facts.map((fact) => (
+              <div class="topo-fact">
+                <div class="topo-fact-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span>{fact}</span>
               </div>
-              <span>Patient data processed and stored in your environment only</span>
-            </div>
-            <div class="topo-fact">
-              <div class="topo-fact-icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <span>Air-gap capable for maximum data sovereignty</span>
-            </div>
-            <div class="topo-fact">
-              <div class="topo-fact-icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <span>Compatible with on-premise, GCP, AWS, Azure, and hybrid configurations</span>
-            </div>
-            <div class="topo-fact">
-              <div class="topo-fact-icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <span>HealthFoundry access scoped to configuration and maintenance — never to patient records</span>
-            </div>
+            ))}
           </div>
         </div>
 
         <div class="topology-diagram reveal-scale delay-200">
-          <p class="visual-label">Deployment topology</p>
+          <p class="visual-label">{frontmatter.topology.visualLabel}</p>
           <DeploymentTopology />
         </div>
 
@@ -240,14 +176,12 @@ const iconServer = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="2
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
-        <h2 class="cta-headline">Have specific security or compliance requirements?</h2>
+        <h2 class="cta-headline">{frontmatter.cta.headline}</h2>
         <p class="cta-sub">
-          We work with security and compliance teams directly — covering data residency,
-          access control architecture, audit requirements, and third-party assessment support.
-          Most questions can be answered in a single technical briefing.
+          {frontmatter.cta.subtitle}
         </p>
-        <Button href="/contact" variant="primary" size="lg">
-          Talk to us about your security requirements →
+        <Button href={frontmatter.cta.buttonHref} variant="primary" size="lg">
+          {frontmatter.cta.buttonLabel}
         </Button>
       </div>
     </div>

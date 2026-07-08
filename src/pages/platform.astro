@@ -5,6 +5,9 @@ import ArchitectureLayers from '../components/diagrams/ArchitectureLayers.astro'
 import AgentCard from '../components/ui/AgentCard.astro';
 import HITLSpectrum from '../components/diagrams/HITLSpectrum.astro';
 import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astro';
+import { frontmatter } from '../data/platform.md';
+
+const { hero, architecture, agents, hitl, deployment, aiModels, cta } = frontmatter;
 ---
 
 <Layout
@@ -22,19 +25,17 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
       <div class="hero-grid">
 
         <div class="hero-left">
-          <p class="section-label">The Platform</p>
+          <p class="section-label">{hero.label}</p>
           <h1 class="hero-title">
-            The Intelligence Fabric
-            <span class="hero-title-sub">A domain-aware agentic AI platform for hospital operations</span>
+            {hero.title}
+            <span class="hero-title-sub">{hero.titleSub}</span>
           </h1>
           <p class="hero-sub">
-            A network of purpose-built, semi-autonomous AI agents that read your clinical and
-            operational data, identify what needs to happen, and support your teams to act —
-            with human oversight built into every consequential step.
+            {hero.subtitle}
           </p>
           <div class="hero-ctas">
-            <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
-            <Button href="#architecture" variant="secondary" size="lg">See the Architecture</Button>
+            <Button href="/contact" variant="primary" size="lg">{hero.ctaPrimary}</Button>
+            <Button href="#architecture" variant="secondary" size="lg">{hero.ctaSecondary}</Button>
           </div>
         </div>
 
@@ -51,12 +52,10 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
        ===================================================== -->
   <section class="arch-section section-padding reveal" id="architecture">
     <div class="container">
-      <p class="section-label">Platform Architecture</p>
-      <h2 class="section-title">Built in layers. Deployed in weeks.</h2>
+      <p class="section-label">{architecture.label}</p>
+      <h2 class="section-title">{architecture.title}</h2>
       <p class="section-intro">
-        The Intelligence Fabric is structured as four distinct layers — from data ingestion at the
-        bottom through to domain agent applications at the top. Each layer is independently
-        deployable and connects cleanly to the next. Click any layer to see the full detail.
+        {architecture.intro}
       </p>
       <ArchitectureLayers />
     </div>
@@ -67,52 +66,21 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
        ===================================================== -->
   <section class="agents-section section-padding reveal">
     <div class="container">
-      <p class="section-label">Agents</p>
-      <h2 class="section-title">Six agents across three domains</h2>
+      <p class="section-label">{agents.label}</p>
+      <h2 class="section-title">{agents.title}</h2>
       <p class="section-intro">
-        Each agent is purpose-built for a specific operational domain and configured against the
-        validated bottlenecks identified during your Audit &amp; Discover phase. No generic
-        assistants — every agent has a defined role, defined confidence thresholds, and defined
-        escalation rules.
+        {agents.intro}
       </p>
 
       <div class="agents-grid">
-        <AgentCard
-          agentName="Patient Engagement Agent"
-          domain="cx"
-          description="Manages outreach queues for acquisition leads and retention follow-ups. Triggers communications at the right point in the patient journey. Tracks responses and escalates non-responders to phone-based follow-up."
-          capabilityTag="Care gap extraction"
-        />
-        <AgentCard
-          agentName="Care Continuity Agent"
-          domain="cx"
-          description="Reads discharge summaries, prescriptions, radiology reports, and lab results to identify follow-up requirements. Generates structured care gap records for the retention team's review."
-          capabilityTag="Discharge summary analysis"
-        />
-        <AgentCard
-          agentName="RCM Optimisation Agent"
-          domain="finops"
-          description="Supports claim review, denial prediction, and coding assistance. Reviews assembled claim packages against payer rules before submission. Identifies patterns in deduction and rejection data."
-          capabilityTag="Coding validation"
-        />
-        <AgentCard
-          agentName="Supply Intelligence Agent"
-          domain="finops"
-          description="Analyses demand signals across clinical departments. Supports procurement orchestration and inventory optimisation. Surfaces forecasts for human procurement team review and approval."
-          capabilityTag="Demand forecasting"
-        />
-        <AgentCard
-          agentName="GRC Compliance Agent"
-          domain="grc"
-          description="Monitors policy adherence, flags risk, and supports audit trail preparation. Operates continuously — not on a monthly or quarterly cycle. Human compliance team reviews flagged cases."
-          capabilityTag="Continuous monitoring"
-        />
-        <AgentCard
-          agentName="Analytics & Insights Agent"
-          domain="cross"
-          description="Natural language query across operational data cubes for any domain. Enables conversational drill-down into clinical, financial, and operational data — beyond fixed dashboards."
-          capabilityTag="Natural language query"
-        />
+        {agents.items.map((agent) => (
+          <AgentCard
+            agentName={agent.name}
+            domain={agent.domain}
+            description={agent.description}
+            capabilityTag={agent.capabilityTag}
+          />
+        ))}
       </div>
     </div>
   </section>
@@ -122,43 +90,23 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
        ===================================================== -->
   <section class="hitl-section section-padding reveal">
     <div class="container">
-      <p class="section-label">Governance Model</p>
-      <h2 class="section-title">Every agent has a human in the loop. Here's what that means in practice.</h2>
+      <p class="section-label">{hitl.label}</p>
+      <h2 class="section-title">{hitl.title}</h2>
 
       <p class="section-intro">
-        Semi-autonomous means agents do the work that doesn't require human judgment, and surface
-        the decisions that do — with the context needed to make them well.
+        {hitl.intro}
       </p>
 
       <div class="hitl-categories">
-        <div class="hitl-cat">
-          <div class="hitl-cat-num">01</div>
-          <h3 class="hitl-cat-title">Agent handles autonomously</h3>
-          <p class="hitl-cat-body">
-            Continuous monitoring, KPI computation, pattern detection, routine alerting, scheduling
-            reminders, feedback routing, data quality monitoring. No human needed in the loop for
-            each individual event — only for the exceptions.
-          </p>
-        </div>
-        <div class="hitl-cat">
-          <div class="hitl-cat-num">02</div>
-          <h3 class="hitl-cat-title">Agent handles, human validates</h3>
-          <p class="hitl-cat-body">
-            Ambiguous guideline interpretations, high-impact configuration changes, novel failure
-            modes, clinical content for patient communications, write-off approvals above defined
-            thresholds. Agent does the work and presents a bounded decision for human confirmation.
-            Typically 15–40 minutes of human time per occurrence.
-          </p>
-        </div>
-        <div class="hitl-cat">
-          <div class="hitl-cat-num">03</div>
-          <h3 class="hitl-cat-title">Human-led, agent supports</h3>
-          <p class="hitl-cat-body">
-            Payer relationship negotiation, automation roadmap strategy, process redesign, staff
-            adoption and change management, accountability for consequential errors. Agent prepares
-            the evidence and analysis; human leads the decision and the action.
-          </p>
-        </div>
+        {hitl.categories.map((cat) => (
+          <div class="hitl-cat">
+            <div class="hitl-cat-num">{cat.num}</div>
+            <h3 class="hitl-cat-title">{cat.title}</h3>
+            <p class="hitl-cat-body">
+              {cat.body}
+            </p>
+          </div>
+        ))}
       </div>
 
       <div class="hitl-spectrum-wrap">
@@ -166,8 +114,7 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
       </div>
 
       <p class="hitl-result">
-        The practical result: your team's time shifts from manual data-chasing and routine tracking
-        toward high-judgment oversight of a system that handles the operational load.
+        {hitl.result}
       </p>
     </div>
   </section>
@@ -177,8 +124,8 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
        ===================================================== -->
   <section class="deploy-section section-padding reveal">
     <div class="container">
-      <p class="section-label">Infrastructure</p>
-      <h2 class="section-title">Deployed in your environment. Not ours.</h2>
+      <p class="section-label">{deployment.label}</p>
+      <h2 class="section-title">{deployment.title}</h2>
 
       <div class="deploy-grid">
 
@@ -194,10 +141,9 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <line x1="6" x2="6.01" y1="18" y2="18"/>
             </svg>
           </div>
-          <h3 class="deploy-title">On-Premise Kubernetes</h3>
+          <h3 class="deploy-title">{deployment.cards[0].title}</h3>
           <p class="deploy-desc">
-            Full deployment within your own data centre. Air-gap capable for maximum data
-            sovereignty. Patient data never leaves your infrastructure.
+            {deployment.cards[0].description}
           </p>
         </div>
 
@@ -210,10 +156,9 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
             </svg>
           </div>
-          <h3 class="deploy-title">Google Cloud</h3>
+          <h3 class="deploy-title">{deployment.cards[1].title}</h3>
           <p class="deploy-desc">
-            Managed cloud deployment with customer-controlled access and data residency.
-            Deployed in your GCP project — not HealthFoundry's.
+            {deployment.cards[1].description}
           </p>
         </div>
 
@@ -228,10 +173,9 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <polyline points="2 12 12 17 22 12"/>
             </svg>
           </div>
-          <h3 class="deploy-title">AWS / Azure</h3>
+          <h3 class="deploy-title">{deployment.cards[2].title}</h3>
           <p class="deploy-desc">
-            Standard cloud deployment options with your existing cloud agreements and IAM
-            policies. Kubernetes-native — portable across providers.
+            {deployment.cards[2].description}
           </p>
         </div>
 
@@ -245,19 +189,16 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <path d="m9 12 2 2 4-4"/>
             </svg>
           </div>
-          <h3 class="deploy-title">Hybrid / Air-Gapped</h3>
+          <h3 class="deploy-title">{deployment.cards[3].title}</h3>
           <p class="deploy-desc">
-            For environments requiring split deployment across on-premise and cloud components.
-            Designed for the most stringent data residency requirements.
+            {deployment.cards[3].description}
           </p>
         </div>
 
       </div>
 
       <p class="deploy-note">
-        The Intelligence Fabric is Kubernetes-native — designed for portability across any compliant
-        infrastructure. Your patient data never leaves your environment without your explicit
-        authorisation.
+        {deployment.note}
       </p>
     </div>
   </section>
@@ -267,12 +208,10 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
        ===================================================== -->
   <section class="models-section section-padding reveal">
     <div class="container">
-      <p class="section-label">AI Engine</p>
-      <h2 class="section-title">Models built for healthcare, not adapted from general purpose.</h2>
+      <p class="section-label">{aiModels.label}</p>
+      <h2 class="section-title">{aiModels.title}</h2>
       <p class="section-intro">
-        The Intelligence Fabric uses a combination of model types, selected by task and optimised
-        for cost and accuracy. Model selection is cost-aware — the platform routes each task to the
-        right model at the right cost, avoiding LLM overhead for deterministic tasks.
+        {aiModels.intro}
       </p>
 
       <div class="models-grid">
@@ -288,15 +227,12 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <path d="M15 2v2M15 20v2M2 15h2M20 15h2M2 9h2M20 9h2M9 2v2M9 20v2"/>
             </svg>
           </div>
-          <h3 class="model-title">Large Language Models</h3>
+          <h3 class="model-title">{aiModels.cards[0].title}</h3>
           <p class="model-desc">
-            For document understanding, clinical content extraction, and natural language query.
-            Fine-tuned on healthcare terminology and workflow context.
+            {aiModels.cards[0].description}
           </p>
           <div class="model-tags">
-            <span class="model-tag">Document understanding</span>
-            <span class="model-tag">Clinical extraction</span>
-            <span class="model-tag">NL query</span>
+            {aiModels.cards[0].tags.map((tag) => <span class="model-tag">{tag}</span>)}
           </div>
         </div>
 
@@ -309,15 +245,12 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
           </div>
-          <h3 class="model-title">Deep Learning Models</h3>
+          <h3 class="model-title">{aiModels.cards[1].title}</h3>
           <p class="model-desc">
-            For pattern recognition across operational and financial data — denial prediction,
-            care gap identification, supply demand forecasting.
+            {aiModels.cards[1].description}
           </p>
           <div class="model-tags">
-            <span class="model-tag">Pattern recognition</span>
-            <span class="model-tag">Denial prediction</span>
-            <span class="model-tag">Forecasting</span>
+            {aiModels.cards[1].tags.map((tag) => <span class="model-tag">{tag}</span>)}
           </div>
         </div>
 
@@ -338,15 +271,12 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <line x1="17" x2="23" y1="16" y2="16"/>
             </svg>
           </div>
-          <h3 class="model-title">Task-Specific Fine-Tuned Models</h3>
+          <h3 class="model-title">{aiModels.cards[2].title}</h3>
           <p class="model-desc">
-            Fine-tuned on customer data for domain-specific accuracy — coding validation against
-            ICD-10 and payer package definitions, care gap extraction, deduction analysis.
+            {aiModels.cards[2].description}
           </p>
           <div class="model-tags">
-            <span class="model-tag">Coding validation</span>
-            <span class="model-tag">ICD-10</span>
-            <span class="model-tag">Customer-tuned</span>
+            {aiModels.cards[2].tags.map((tag) => <span class="model-tag">{tag}</span>)}
           </div>
         </div>
 
@@ -362,16 +292,12 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
               <path d="M8 16H3v5"/>
             </svg>
           </div>
-          <h3 class="model-title">RLHF / GEPA</h3>
+          <h3 class="model-title">{aiModels.cards[3].title}</h3>
           <p class="model-desc">
-            Reinforcement learning from human feedback, driving continuous improvement from
-            operational use. Agents improve from staff feedback, exceptions, and outcome data
-            — automatically, without manual retraining cycles.
+            {aiModels.cards[3].description}
           </p>
           <div class="model-tags">
-            <span class="model-tag">Continuous improvement</span>
-            <span class="model-tag">Feedback loop</span>
-            <span class="model-tag">GEPA</span>
+            {aiModels.cards[3].tags.map((tag) => <span class="model-tag">{tag}</span>)}
           </div>
         </div>
 
@@ -384,13 +310,11 @@ import MarketectureDiagram from '../components/diagrams/MarketectureDiagram.astr
        ===================================================== -->
   <section class="platform-cta reveal">
     <div class="container">
-      <h2 class="cta-headline">See the Intelligence Fabric mapped to your operations.</h2>
+      <h2 class="cta-headline">{cta.headline}</h2>
       <p class="cta-sub">
-        We begin every engagement with a structured discovery session — mapping your current
-        workflows, validating your KPIs, and identifying where agents can be deployed first
-        for the fastest measurable impact.
+        {cta.subtitle}
       </p>
-      <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+      <Button href="/contact" variant="primary" size="lg">{cta.button}</Button>
     </div>
   </section>
 

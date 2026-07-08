@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '../ui/ThemeToggle.astro';
+import { frontmatter as nav } from '../../data/shared.md';
 
 const navLinks = [
   { label: 'Platform', href: '/platform' },
@@ -16,6 +17,10 @@ const companyLinks = [
   { label: 'Values', href: '/company#values' },
   { label: 'Team', href: '/company#team' },
   { label: 'Why Us', href: '/why-us' },
+];
+
+const resourcesLinks = nav.resources ?? [
+  { label: 'Blog', href: '/resources/blog' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -76,9 +81,22 @@ const currentPath = Astro.url.pathname;
       <a href="/security" class:list={['nav-link', { active: currentPath === '/security' }]}>
         Security
       </a>
-      <a href="/blog" class:list={['nav-link', { active: currentPath === '/blog' }]}>
-        Blog
-      </a>
+
+      <!-- Resources dropdown -->
+      <div class="nav-dropdown-group">
+        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          Resources
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="dropdown-chevron">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          {resourcesLinks.map(link => (
+            <a href={link.href} class="nav-dropdown-item" role="menuitem">{link.label}</a>
+          ))}
+        </div>
+      </div>
+
       <a href="/careers" class:list={['nav-link', { active: currentPath === '/careers' }]}>
         Careers
       </a>
@@ -131,7 +149,14 @@ const currentPath = Astro.url.pathname;
         </div>
 
         <a href="/security" class="mobile-nav-link">Security</a>
-        <a href="/blog" class="mobile-nav-link">Blog</a>
+
+        <div class="mobile-nav-section">
+          <span class="mobile-nav-section-label">Resources</span>
+          {resourcesLinks.map(link => (
+            <a href={link.href} class="mobile-nav-link mobile-nav-sub">{link.label}</a>
+          ))}
+        </div>
+
         <a href="/careers" class="mobile-nav-link">Careers</a>
       </nav>
 

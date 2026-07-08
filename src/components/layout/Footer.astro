@@ -1,5 +1,9 @@
 ---
+import { frontmatter as shared } from '../../data/shared.md';
+
 const year = new Date().getFullYear();
+const blogHref = shared.resources?.[0]?.href ?? '/resources/blog';
+const { footer } = shared;
 ---
 
 <footer class="footer">
@@ -24,8 +28,8 @@ const year = new Date().getFullYear();
             height="30"
           />
         </a>
-        <p class="footer-tagline">The Intelligence Fabric for Healthcare Operations.</p>
-        <p class="footer-address">HealthFoundry Private Limited, Bengaluru</p>
+        <p class="footer-tagline">{footer.tagline}</p>
+        <p class="footer-address">{footer.address}</p>
       </div>
 
       <!-- Column 2: Platform -->
@@ -47,7 +51,7 @@ const year = new Date().getFullYear();
           <a href="/why-us" class="footer-link">Why HealthFoundry</a>
           <a href="/security" class="footer-link">Security</a>
           <a href="/careers" class="footer-link">Careers</a>
-          <a href="/blog" class="footer-link">Blog</a>
+          <a href={blogHref} class="footer-link">Blog</a>
         </nav>
       </div>
 
@@ -56,9 +60,9 @@ const year = new Date().getFullYear();
         <h4 class="footer-col-heading">Connect</h4>
         <nav aria-label="Connect links">
           <a href="/contact" class="footer-link">Book a Call</a>
-          <a href="mailto:hello@healthfoundry.ai" class="footer-link">hello@healthfoundry.ai</a>
+          <a href={`mailto:${footer.email}`} class="footer-link">{footer.email}</a>
           <a
-            href="https://linkedin.com/company/healthfoundry"
+            href={footer.linkedin}
             class="footer-link"
             target="_blank"
             rel="noopener noreferrer"

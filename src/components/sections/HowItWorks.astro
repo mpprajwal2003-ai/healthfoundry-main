@@ -1,102 +1,47 @@
 ---
+import { frontmatter } from '../../data/home.md';
+
+const { label, title, steps } = frontmatter.howItWorks;
+
+const stepIcons = {
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
+  bot: '<rect width="18" height="10" x="3" y="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" x2="8" y1="16" y2="16"/><line x1="16" x2="16" y1="16" y2="16"/>',
+  'trending-up': '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+};
+const arrowIcon = '<path d="M5 12h14M12 5l7 7-7 7"/>';
 ---
 
 <section class="how-it-works section-padding">
   <div class="container">
-    <p class="section-label reveal">How We Work</p>
+    <p class="section-label reveal">{label}</p>
     <h2 class="section-title reveal delay-100">
-      From your existing data to measurable outcomes in 8 weeks
+      {title}
     </h2>
 
     <div class="steps-flow reveal delay-200">
-
-      <!-- Step 1 -->
-      <div class="step">
-        <div class="step-icon-wrap">
-          <div class="step-number">1</div>
-          <div class="step-icon">
-            <!-- search icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
-            </svg>
+      {steps.map((step, i) => (
+        <>
+          {i > 0 && (
+            <div class="step-arrow" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" set:html={arrowIcon} />
+            </div>
+          )}
+          <div class="step">
+            <div class="step-icon-wrap">
+              <div class="step-number">{step.number}</div>
+              <div class="step-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true" set:html={stepIcons[step.icon]} />
+              </div>
+            </div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.desc}</p>
           </div>
-        </div>
-        <h3 class="step-title">Audit &amp; Discover</h3>
-        <p class="step-desc">
-          We map your current operations against a structured framework — revenue cycle, patient
-          engagement, or GRC. We validate your KPIs, identify the root causes of performance gaps,
-          and build an evidence-based improvement blueprint.
-        </p>
-      </div>
-
-      <!-- Arrow -->
-      <div class="step-arrow" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="step">
-        <div class="step-icon-wrap">
-          <div class="step-number">2</div>
-          <div class="step-icon">
-            <!-- bot icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <rect width="18" height="10" x="3" y="11" rx="2"/>
-              <circle cx="12" cy="5" r="2"/>
-              <path d="M12 7v4"/>
-              <line x1="8" x2="8" y1="16" y2="16"/>
-              <line x1="16" x2="16" y1="16" y2="16"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="step-title">Deploy Agents</h3>
-        <p class="step-desc">
-          We configure and deploy AI agents against the specific bottlenecks identified in the
-          audit. Each agent connects to your existing systems via HL7, FHIR, or API — no
-          rip-and-replace. Your team reviews agent outputs throughout.
-        </p>
-      </div>
-
-      <!-- Arrow -->
-      <div class="step-arrow" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="step">
-        <div class="step-icon-wrap">
-          <div class="step-number">3</div>
-          <div class="step-icon">
-            <!-- trending-up icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-              <polyline points="16 7 22 7 22 13"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="step-title">Learn &amp; Optimise</h3>
-        <p class="step-desc">
-          Agents improve continuously from operational feedback. We track outcomes against target
-          KPIs, tune agent configuration, and expand scope as confidence builds. Human oversight
-          governs every stage.
-        </p>
-      </div>
-
+        </>
+      ))}
     </div>
   </div>
 </section>

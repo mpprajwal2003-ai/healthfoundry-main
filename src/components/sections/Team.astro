@@ -1,21 +1,19 @@
 ---
-import { team } from '../../data/team';
+const { label, title, intro, members } = Astro.props;
 ---
 
 <section class="team section-padding reveal">
   <div class="container">
-    <p class="section-label">The Team</p>
+    <p class="section-label">{label}</p>
     <h2 class="section-title">
-      Built by people who know healthcare from the inside
+      {title}
     </h2>
     <p class="section-intro">
-      Built by clinicians, healthcare technology engineers, revenue cycle specialists, and data
-      scientists — people who have lived inside healthcare operations and understand the difference
-      between a promising demo and a workflow that survives Monday morning.
+      {intro}
     </p>
 
     <div class="team-grid">
-      {team.map((member) => (
+      {members.map((member) => (
         <a
           href={member.linkedin}
           target="_blank"

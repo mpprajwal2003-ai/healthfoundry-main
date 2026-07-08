@@ -1,93 +1,44 @@
 ---
+import { frontmatter } from '../../data/home.md';
+
+const { label, titleLine1, titleLine2, painCards, prose } = frontmatter.problem;
+
+const painIcons = {
+  database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+};
 ---
 
 <section class="problem section-padding">
   <div class="container">
-    <p class="section-label reveal">The Challenge</p>
+    <p class="section-label reveal">{label}</p>
     <h2 class="section-title reveal delay-100">
-      Healthcare operations generate the data.<br/>
-      Most organisations can't act on it.
+      {titleLine1}<br/>
+      {titleLine2}
     </h2>
 
     <div class="problem-grid reveal delay-200">
       <!-- Left: 3 pain point cards -->
       <div class="pain-cards">
-        <div class="pain-card">
-          <div class="pain-icon">
-            <!-- database icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <ellipse cx="12" cy="5" rx="9" ry="3"/>
-              <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
-              <path d="M3 12A9 3 0 0 0 21 12"/>
-            </svg>
+        {painCards.map((card) => (
+          <div class="pain-card">
+            <div class="pain-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true" set:html={painIcons[card.icon]} />
+            </div>
+            <div class="pain-content">
+              <h3 class="pain-title">{card.title}</h3>
+              <p class="pain-desc">{card.desc}</p>
+            </div>
           </div>
-          <div class="pain-content">
-            <h3 class="pain-title">Care gaps buried in unstructured documents</h3>
-            <p class="pain-desc">
-              Follow-up requirements live in discharge summaries, lab reports, and radiology notes —
-              scattered across systems that don't communicate.
-            </p>
-          </div>
-        </div>
-
-        <div class="pain-card">
-          <div class="pain-icon">
-            <!-- clock icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-          </div>
-          <div class="pain-content">
-            <h3 class="pain-title">Claims that take weeks because data is scattered</h3>
-            <p class="pain-desc">
-              Manual assembly from HIS, EMR, RIS, pharmacy, and lab systems means claim submission
-              TAT stays high and first-pass rates stay low.
-            </p>
-          </div>
-        </div>
-
-        <div class="pain-card">
-          <div class="pain-icon">
-            <!-- bell icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-            </svg>
-          </div>
-          <div class="pain-content">
-            <h3 class="pain-title">Feedback collected, never resolved</h3>
-            <p class="pain-desc">
-              Patient experience signals arrive through multiple channels — and are rarely routed,
-              tracked, or resolved within any meaningful timeframe.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
 
       <!-- Right: prose -->
       <div class="problem-prose">
-        <p>
-          Every hospital produces the information it needs to recover more revenue, retain more
-          patients, and stay compliant — in discharge summaries, EMR records, lab reports, payer
-          portals, and clinical documentation. The problem is that this data is fragmented,
-          unstructured, and scattered across systems that don't talk to each other.
-        </p>
-        <p>
-          The result: care gaps go unfollowed, claims take weeks to submit, deductions go
-          unchallenged, and feedback goes unresolved.
-        </p>
-        <p>
-          HealthFoundry's Intelligence Fabric sits on top of your existing systems — your EMR,
-          HIS, lab systems, and payer portals — and deploys AI agents that read, analyse, and
-          act on that data, with your team in control of every consequential decision.
-        </p>
+        {prose.map((p) => <p>{p}</p>)}
       </div>
     </div>
   </div>
