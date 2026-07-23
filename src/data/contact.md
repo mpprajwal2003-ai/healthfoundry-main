@@ -42,7 +42,7 @@ side:
   linkedin:
     label: "LinkedIn"
     text: "HealthFoundry"
-    href: "https://linkedin.com/company/healthfoundry"
+    href: "https://www.linkedin.com/company/health-foundry-ai"
   address:
     label: ""
     text: ""

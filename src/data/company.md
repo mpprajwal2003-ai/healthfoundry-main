@@ -1,28 +1,15 @@
 ---
 meta:
   title: "About HealthFoundry | Healthcare AI Built by Domain Experts"
-  description: "HealthFoundry was founded by clinicians, healthcare technology engineers, and revenue cycle specialists to solve the hardest operational problems in healthcare."
+  description: "HealthFoundry was founded by healthcare operators, product engineers and data scientists to solve the hardest operational problems in healthcare."
 story:
   label: "Our Story"
-  title: "Built by people who have lived inside healthcare operations."
+  title: "Built by people who have experience in healthcare operations, product engineering and data science."
   prose:
-    - "HealthFoundry was founded by a team that has spent years at the intersection of clinical care, healthcare technology, and revenue cycle operations. We have seen what happens when AI is applied to healthcare without understanding how healthcare actually works — generic tools that look impressive in demos and fail under the operational reality of real hospitals."
-    - "We built HealthFoundry to do something different: start with the evidence, map the actual operations, and deploy agents that handle real workflows — not idealised ones. Every engagement begins with a structured audit. Every agent is configured against a validated bottleneck. Every deployment is governed by human oversight from day one."
-    - "HealthFoundry is registered as HealthFoundry Private Limited, Bengaluru. Our team spans clinical informatics, revenue cycle management, agentic AI engineering, and data science."
-  pullQuote: "We built HealthFoundry because we've seen what happens when AI is applied to healthcare without understanding how healthcare actually works."
-facts:
-  - icon: "📍"
-    label: "Bengaluru, India"
-    sublabel: "Headquarters"
-  - icon: "🏥"
-    label: "Healthcare Only"
-    sublabel: "Domain focus"
-  - icon: "🤝"
-    label: "3 Founders"
-    sublabel: "Founding team"
-  - icon: "🚀"
-    label: "Founded 2026"
-    sublabel: "Year established"
+    - "HealthFoundry was founded by a team that has spent years at the intersection of healthcare operations &  technology. We have seen what happens when digital and AI are applied to healthcare without understanding the healthcare system - people, process, tools, generic tools that look impressive in demos and fail under the operational reality of busy hospitals."
+    - "We built HealthFoundry to help providers make the leap from technology to outcomes : start with the data & evidence, map the operations and bottlenecks, define evals and KPIS, and deploy agents that handle real workflows. Every engagement begins with a structured audit. Every agent is configured against a validated bottleneck. Every deployment is governed by human oversight from day one."
+
+  pullQuote: "We built HealthFoundry to help providers translate their technology investments to improved outcomes in patient experience, growth and operations"
 mission:
   label: "Mission"
   headline: "Build the system of intelligence to drive reliable, frictionless, and scalable healthcare outcomes."
@@ -45,7 +32,7 @@ mission:
 values:
   label: "Our Values"
   title: "The principles that govern how we work."
-  intro: "These are not aspirational statements. They are the constraints we operate within — the things we will not compromise on as we build, deploy, and operate HealthFoundry."
+  intro: "These are the boundaries we operate within, the things we will not compromise on as we build and operate HealthFoundry."
   items:
     - num: "01"
       title: "Shared Goals"
@@ -62,18 +49,18 @@ values:
 team:
   label: "Our Team"
   title: "The team you build is the company you build - Vinod Khosla"
-  intro: "Built by clinicians, healthcare technology engineers, revenue cycle specialists, and data scientists — people who have lived inside healthcare operations and understand the difference between a promising demo and a workflow that survives Monday morning."
+  intro: "Built by healthcare operators, product engineers & data scientists, people who have lived inside healthcare operations and product organizations and understand the difference between a promising demo and a workflow that survives Monday morning."
   members:
     - name: "Rajesh Arasu"
       role: "Founder, CEO"
       photo: "/images/rajesh.jpg"
       linkedin: "https://www.linkedin.com/in/rajesharasu/"
     - name: "Kiran Kirugavalu"
-      role: "Founder, Head of Programs and Services"
+      role: "Co-founder, Operations & Programs"
       photo: "/images/kiran.jpg"
       linkedin: "https://www.linkedin.com/in/kiran-kirugavalu-a872b714/"
     - name: "Karthik Srinivasan"
-      role: "Founder, Head of Technology and Engineering"
+      role: "Co-founder, Technology & Engineering"
       photo: "/images/karthik.jpg"
       linkedin: "https://www.linkedin.com/in/karthik-srinivasan001/"
     - name: "Manoj Kumar Mohan"
@@ -84,6 +71,10 @@ team:
       role: "Principal Data Scientist"
       photo: "/images/Rithesh.jpg"
       linkedin: "https://www.linkedin.com/in/ritheshsreenivasan/"
+    - name: "Dr Unnikrishnan"
+      role: "Growth & Partnerships"
+      photo: "/images/unnikrishnan.jpg"
+      linkedin: "https://linkedin.com/in/drunnikrishnan"
 ---
 
 Company / about page content

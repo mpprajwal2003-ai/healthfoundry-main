@@ -34,10 +34,8 @@ const { meta, hero, form, side } = frontmatter;
 
         <!-- Contact Form -->
         <div class="form-panel">
-          <!-- TODO: wire up form action to backend handler -->
           <form
-            action="/contact-success"
-            method="POST"
+            id="contact-form"
             class="contact-form"
             novalidate
           >
@@ -72,6 +70,8 @@ const { meta, hero, form, side } = frontmatter;
             <Button type="submit" variant="primary" size="lg" class="form-submit">
               {form.submitLabel}
             </Button>
+
+            <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
 
             <p class="form-note">
               {form.note}
@@ -149,6 +149,96 @@ const { meta, hero, form, side } = frontmatter;
   <!-- <FooterCTA /> -->
 
 </Layout>
+
+<script>
+  const SCRIPT_URL = import.meta.env.PUBLIC_CONTACT_SCRIPT_URL;
+
+  // Personal / free email providers that are NOT allowed — work email only.
+  const BLOCKED_DOMAINS = new Set([
+    'gmail.com', 'googlemail.com', 'yahoo.com', 'yahoo.co.in', 'ymail.com',
+    'hotmail.com', 'outlook.com', 'live.com', 'msn.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'protonmail.com', 'proton.me',
+    'mail.com', 'gmx.com', 'zoho.com', 'yandex.com', 'rediffmail.com',
+    'rocketmail.com', 'tutanota.com', 'pm.me',
+  ]);
+
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status') as HTMLParagraphElement | null;
+  const emailInput = document.getElementById('email') as HTMLInputElement | null;
+
+  const EMAIL_RE = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/;
+
+  function validationError(email: string): string | null {
+    const match = email.trim().toLowerCase().match(EMAIL_RE);
+    if (!match) return 'Please enter a valid email address.';
+    const domain = match[1];
+    if (BLOCKED_DOMAINS.has(domain)) {
+      return 'Please use your work email — personal email addresses are not accepted.';
+    }
+    return null;
+  }
+
+  function setStatus(message: string, type: 'error' | 'success' | 'pending') {
+    if (!status) return;
+    status.textContent = message;
+    status.hidden = false;
+    status.dataset.type = type;
+  }
+
+  // Live feedback on the email field.
+  emailInput?.addEventListener('input', () => {
+    const err = emailInput.value ? validationError(emailInput.value) : null;
+    emailInput.setCustomValidity(err ?? '');
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!SCRIPT_URL) {
+      setStatus('Form is not configured. Please email hello@healthfoundry.ai directly.', 'error');
+      return;
+    }
+
+    const data = new FormData(form);
+    const email = String(data.get('email') ?? '');
+
+    const emailErr = validationError(email);
+    if (emailErr) {
+      setStatus(emailErr, 'error');
+      emailInput?.focus();
+      return;
+    }
+
+    const submitBtn = form.querySelector<HTMLButtonElement>('[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+    setStatus('Sending…', 'pending');
+
+    // Shape the payload to match the Apps Script (JSON; `company` field).
+    const payload = {
+      name: String(data.get('name') ?? ''),
+      email,
+      company: String(data.get('organisation') ?? ''),
+      message: String(data.get('message') ?? ''),
+    };
+
+    try {
+      // Apps Script web apps don't return CORS headers, so use no-cors.
+      // text/plain keeps the request "simple" (no preflight) while the body
+      // is still JSON that doPost parses via JSON.parse(e.postData.contents).
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      });
+      form.reset();
+      setStatus("Thanks — your message has been sent. We'll respond within one business day.", 'success');
+    } catch (err) {
+      setStatus('Something went wrong. Please email hello@healthfoundry.ai directly.', 'error');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+</script>
 
 <style>
   /* ── Shared ── */
@@ -284,6 +374,24 @@ const { meta, hero, form, side } = frontmatter;
     color: var(--text-muted);
     margin: 0;
     line-height: 1.5;
+  }
+
+  .form-status {
+    font-size: var(--text-sm);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .form-status[data-type="error"] {
+    color: #ef4444;
+  }
+
+  .form-status[data-type="success"] {
+    color: var(--accent-primary);
+  }
+
+  .form-status[data-type="pending"] {
+    color: var(--text-secondary);
   }
 
   /* ── Side Panel ── */

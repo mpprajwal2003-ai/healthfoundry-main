@@ -3,3 +3,6 @@ dist
 .astro
 .firebase
 *:Zone.Identifier
+
+# Local env
+.env

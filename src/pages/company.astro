@@ -6,7 +6,7 @@ import FooterCTA from '../components/sections/FooterCTA.astro';
 import Button from '../components/ui/Button.astro';
 import { frontmatter } from '../data/company.md';
 
-const { meta, story, facts, mission, values, team } = frontmatter;
+const { meta, story, mission, values, team } = frontmatter;
 ---
 
 <Layout
@@ -35,23 +35,6 @@ const { meta, story, facts, mission, values, team } = frontmatter;
             "{story.pullQuote}"
           </p>
         </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════
-       SECTION 2 — COMPANY FACTS BAR
-  ══════════════════════════════════════════════════════ -->
-  <section class="sec-facts reveal">
-    <div class="container">
-      <div class="facts-bar">
-        {facts.map((fact) => (
-          <div class="fact-tile">
-            <span class="fact-icon" aria-hidden="true">{fact.icon}</span>
-            <span class="fact-label">{fact.label}</span>
-            <span class="fact-sublabel">{fact.sublabel}</span>
-          </div>
-        ))}
       </div>
     </div>
   </section>
