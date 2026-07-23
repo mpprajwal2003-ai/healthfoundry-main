@@ -6,7 +6,7 @@ const pillars = [
     number: '01',
     title: 'Unify',
     description:
-      'Clean and integrate data from fragmented legacy systems into a unified foundation for AI agents to act on.',
+      'Clean and integrate data from fragmented legacy systems into a unified foundation for AI and analytics',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
@@ -22,7 +22,7 @@ const pillars = [
     number: '02',
     title: 'Intelligence',
     description:
-      'Build a system of intelligence on your existing systems of record — leaping from raw data to operational action.',
+      'Build a system of intelligence on your existing systems of record to leap from data to operational outcomes',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
@@ -38,7 +38,7 @@ const pillars = [
     number: '03',
     title: 'Reliable',
     description:
-      'Automate repeatable patient, operational, and financial workflows that deliver consistent outcomes at scale.',
+      'Automate repeatable patient, operations & financial workflows that deliver consistent outcomes',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
@@ -53,7 +53,7 @@ const pillars = [
     number: '04',
     title: 'Frictionless',
     description:
-      'Orchestrate seamless data transfer across departments and systems — from patient acquisition through billing, claims, and chronic care.',
+      'Orchestrate seamless transfer of data across multiple departments & systems from patient acquisition to billing, claims and chronic care',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
@@ -67,7 +67,7 @@ const pillars = [
     number: '05',
     title: 'Scale',
     description:
-      'Replicate operational excellence across multiple facilities and care settings, regardless of staff experience.',
+      'Scale processes and excellence across multiple facilities and care settings consistently regardless of staff experience',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
@@ -171,7 +171,13 @@ function PillarCard({ pillar, index }: { pillar: typeof pillars[0]; index: numbe
   );
 }
 
-export default function Mission() {
+export default function Mission({ label, headline, pillars: pillarData }: { label: string; headline: string; pillars: { number: string; title: string; description: string }[] }) {
+  const mergedPillars = pillarData.map((p, i) => ({
+    ...p,
+    key: pillars[i]?.key ?? String(i),
+    icon: pillars[i]?.icon,
+  }));
+
   return (
     <section style={{
       background: 'var(--bg-tertiary)',
@@ -191,7 +197,7 @@ export default function Mission() {
           color: 'var(--section-label-color)',
           marginBottom: '0.75rem',
         }}>
-          Mission
+          {label}
         </p>
         <h2 style={{
           fontFamily: 'Inter, system-ui, sans-serif',
@@ -203,7 +209,7 @@ export default function Mission() {
           margin: '0 0 3rem',
           maxWidth: '640px',
         }}>
-          Build the system of intelligence to drive reliable, frictionless, and scalable healthcare outcomes.
+          {headline}
         </h2>
 
         <div className="mission-pillar-grid" style={{
@@ -211,7 +217,7 @@ export default function Mission() {
           gridTemplateColumns: 'repeat(5, 1fr)',
           gap: '1rem',
         }}>
-          {pillars.map((pillar, index) => (
+          {mergedPillars.map((pillar, index) => (
             <PillarCard key={pillar.key} pillar={pillar} index={index} />
           ))}
         </div>

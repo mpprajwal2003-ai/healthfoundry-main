@@ -5,23 +5,14 @@ import WorkflowVariantTable from '../../components/diagrams/WorkflowVariantTable
 import StatCard from '../../components/ui/StatCard.astro';
 import FooterCTA from '../../components/sections/FooterCTA.astro';
 import Button from '../../components/ui/Button.astro';
+import { frontmatter } from '../../data/solutions-finops.md';
 
-const outcomes = [
-  { value: '40–60%', label: 'Claim submission TAT reduction' },
-  { value: '10–15 pp', label: 'First-pass acceptance rate improvement' },
-  { value: '30–50%', label: 'Query rate reduction' },
-  { value: '40–60%', label: 'Query closure TAT reduction' },
-  { value: '20–40%', label: 'Deduction rate reduction' },
-  { value: '15–30%', label: 'Revenue recovered through appeals' },
-  { value: '8–15%', label: 'Improvement in package-level margin through optimisation' },
-  { value: '30–50%', label: 'Reduction in structurally loss-making package episodes' },
-  { value: '30–50%', label: 'Staff time per claim reduction' },
-];
+const { meta, hero, lifecycle, payer, pkg, agents, outcomes, variants } = frontmatter;
 ---
 
 <Layout
-  title="Healthcare FinOps | Revenue Cycle & Supply Chain | HealthFoundry"
-  description="HealthFoundry's FinOps agents reduce revenue leakage across claims management, package profitability, payer intelligence, and supply chain optimisation."
+  title={meta.title}
+  description={meta.description}
 >
 
   <!-- ═══════════════════════════════════════════════════
@@ -39,36 +30,32 @@ const outcomes = [
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
               <polyline points="17 6 23 6 23 12"/>
             </svg>
-            FinOps
+            {hero.pill}
           </div>
 
           <h1 class="hero-h1">
-            Revenue Cycle Operations,<br />
-            <span class="hero-h1-accent">Rethought</span>
+            {hero.titleLine1}<br />
+            <span class="hero-h1-accent">{hero.titleAccent}</span>
           </h1>
 
           <p class="hero-sub">
-            Reduce revenue leakage across the full revenue cycle — not just claims
+            {hero.subtitle}
           </p>
 
           <p class="hero-body">
-            Revenue is lost at every stage: claims delayed by manual data assembly, deductions
-            that go unchallenged, packages priced below their true cost, payer guidelines absorbed
-            too late. HealthFoundry's FinOps agents work across the full revenue cycle — surfacing
-            leakage, quantifying its financial impact, and supporting your team to act on it —
-            while keeping humans in control of every consequential decision.
+            {hero.body}
           </p>
 
           <div class="hero-ctas">
-            <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
-            <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+            <Button href="/contact" variant="primary" size="lg">{hero.ctaPrimary}</Button>
+            <Button href="/platform" variant="secondary" size="lg">{hero.ctaSecondary}</Button>
           </div>
         </div>
 
         <div class="hero-image reveal-left delay-200">
           <img
             src="/images/claims-snapshot.png"
-            alt="Claims management interface"
+            alt={hero.imageAlt}
             class="hero-screenshot"
             width="600"
             height="400"
@@ -84,61 +71,38 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="fo-lifecycle reveal">
     <div class="container">
-      <p class="section-label">What We Address</p>
+      <p class="section-label">{lifecycle.label}</p>
       <h2 class="section-h2">
-        Revenue leakage occurs across three domains.<br class="br-desktop" />
-        We address all three.
+        {lifecycle.titleLine1}<br class="br-desktop" />
+        {lifecycle.titleLine2}
       </h2>
       <p class="section-intro">
-        Most RCM programmes focus on claims submission speed. The bigger opportunity is
-        systematically closing every channel through which revenue leaks — claim denials and
-        deductions, packages that cost more to deliver than they reimburse, and payer guideline
-        changes that erode margins before anyone notices.
+        {lifecycle.intro}
       </p>
 
       <div class="rcm-domains">
-        <div class="rcm-domain-card reveal delay-100">
-          <div class="rcm-domain-num">01</div>
-          <h3 class="rcm-domain-title">Claims Management</h3>
-          <p class="rcm-domain-desc">
-            The eight-stage claims lifecycle — from eligibility verification through settlement
-            reconciliation — with agents reducing manual assembly time, query backlogs, and
-            rejection rates.
-          </p>
-        </div>
-        <div class="rcm-domain-card reveal delay-200">
-          <div class="rcm-domain-num">02</div>
-          <h3 class="rcm-domain-title">Package Profitability</h3>
-          <p class="rcm-domain-desc">
-            Analysing actual billing against reimbursable amounts to identify where packages are
-            delivered at a loss — and recommending package master optimisations that improve
-            margins without compromising care quality.
-          </p>
-        </div>
-        <div class="rcm-domain-card reveal delay-300">
-          <div class="rcm-domain-num">03</div>
-          <h3 class="rcm-domain-title">Payer Intelligence</h3>
-          <p class="rcm-domain-desc">
-            Continuous monitoring of payer portals, scheme bulletins, and insurer notices for
-            guideline changes — so deductions from non-absorbed updates are caught before they
-            hit your settlement.
-          </p>
-        </div>
+        {lifecycle.domains.map((d, i) => (
+          <div class={`rcm-domain-card reveal delay-${(i + 1) * 100}`}>
+            <div class="rcm-domain-num">{d.num}</div>
+            <h3 class="rcm-domain-title">{d.title}</h3>
+            <p class="rcm-domain-desc">
+              {d.desc}
+            </p>
+          </div>
+        ))}
       </div>
 
       <div class="rcm-divider"></div>
 
-      <h3 class="rcm-sub-heading">The Claims Lifecycle: eight stages, bottlenecks at each one</h3>
+      <h3 class="rcm-sub-heading">{lifecycle.subHeading}</h3>
       <p class="section-intro" style="margin-top: 0.75rem;">
-        Every stage from patient registration through settlement carries a distinct failure mode.
-        HealthFoundry agents support your team at each stage, reducing manual data assembly and
-        surfacing exceptions for human review.
+        {lifecycle.subIntro}
       </p>
 
       <div class="lifecycle-diagram reveal">
         <img
           src="/images/claims_lifecycle_diagram.png"
-          alt="Eight-stage claims lifecycle: Patient Registration, Pre-Authorisation, Clinical Documentation & Coding, Claim Assembly & Submission, Query Management, Adjudication Monitoring & Settlement Reconciliation, Deduction & Rejection Management, Reauthorisation"
+          alt={lifecycle.diagramAlt}
           class="lifecycle-img"
           width="1200"
           height="auto"
@@ -155,30 +119,17 @@ const outcomes = [
     <div class="container">
       <div class="payer-inner">
         <div class="payer-text">
-          <p class="section-label">Payer Rule Intelligence</p>
+          <p class="section-label">{payer.label}</p>
           <h2 class="section-h2">
-            Payer guidelines change.<br class="br-desktop" />
-            Agents that stay current.
+            {payer.titleLine1}<br class="br-desktop" />
+            {payer.titleLine2}
           </h2>
           <div class="payer-prose">
-            <p>
-              For government scheme payers and large insurers, package and guideline changes
-              are frequent — and non-absorption is directly penalised through deductions.
-              HealthFoundry's Payer Rule Intelligence capability continuously monitors payer
-              publication channels for changes to package definitions, documentation
-              requirements, and coding guidelines.
-            </p>
-            <p>
-              When a change is detected, the agent parses it, identifies the operational delta,
-              and surfaces a structured update for the claims team to review. Unambiguous,
-              low-impact updates can be applied to agent configuration after human confirmation.
-              Ambiguous changes — where the interpretation is unclear — are presented with both
-              interpretations and their expected financial impact, for the claims manager to
-              confirm.
-            </p>
+            {payer.prose.map((p) => (
+              <p>{p}</p>
+            ))}
             <p class="payer-note">
-              Payer guideline currency is a continuous operational responsibility — one that
-              demands ongoing attention.
+              {payer.note}
             </p>
           </div>
         </div>
@@ -195,15 +146,13 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="fo-pkg reveal">
     <div class="container">
-      <p class="section-label">Package Profitability</p>
+      <p class="section-label">{pkg.label}</p>
       <h2 class="section-h2">
-        Not every package generates a margin.<br class="br-desktop" />
-        Most hospitals don't know which ones don't.
+        {pkg.titleLine1}<br class="br-desktop" />
+        {pkg.titleLine2}
       </h2>
       <p class="section-intro">
-        The gap between what a procedure costs to deliver and what the payer reimburses is often
-        invisible — until it accumulates into a structural profitability problem. Our Package
-        Profitability capability makes that gap visible, attributable, and actionable.
+        {pkg.intro}
       </p>
 
       <div class="pkg-flow">
@@ -221,11 +170,9 @@ const outcomes = [
             </svg>
           </div>
           <div class="pkg-step-body">
-            <h4 class="pkg-step-title">Actual billing analysis</h4>
+            <h4 class="pkg-step-title">{pkg.steps[0].title}</h4>
             <p class="pkg-step-desc">
-              Agent reads actual billing data across procedures, service lines, and payer
-              categories — building a granular picture of what was charged for each episode of
-              care and how it was reimbursed.
+              {pkg.steps[0].desc}
             </p>
           </div>
         </div>
@@ -252,11 +199,9 @@ const outcomes = [
             </svg>
           </div>
           <div class="pkg-step-body">
-            <h4 class="pkg-step-title">Compare with reimbursable amount</h4>
+            <h4 class="pkg-step-title">{pkg.steps[1].title}</h4>
             <p class="pkg-step-desc">
-              Actual cost-to-deliver is compared against the reimbursable package rate for each
-              payer. Packages where the delta is consistently negative — delivered at a structural
-              loss — are identified and ranked by financial impact.
+              {pkg.steps[1].desc}
             </p>
           </div>
         </div>
@@ -281,11 +226,9 @@ const outcomes = [
             </svg>
           </div>
           <div class="pkg-step-body">
-            <h4 class="pkg-step-title">Review the package master</h4>
+            <h4 class="pkg-step-title">{pkg.steps[2].title}</h4>
             <p class="pkg-step-desc">
-              The agent maps loss-generating packages against the package master — reviewing the
-              included components, consumable assumptions, and procedure bundling — to identify
-              where the cost-reimbursement gap originates.
+              {pkg.steps[2].desc}
             </p>
           </div>
         </div>
@@ -310,12 +253,9 @@ const outcomes = [
             </svg>
           </div>
           <div class="pkg-step-body">
-            <h4 class="pkg-step-title">Package optimisation recommendations</h4>
+            <h4 class="pkg-step-title">{pkg.outputStep.title}</h4>
             <p class="pkg-step-desc">
-              Agent surfaces structured recommendations — adjustments to package composition,
-              consumable substitutions, or bundling changes — that can improve profitability for
-              specific packages without compromising care quality. Finance and clinical leadership
-              review before any changes are made to the package master.
+              {pkg.outputStep.desc}
             </p>
             <div class="pkg-hitl">
               <!-- user-check -->
@@ -326,7 +266,7 @@ const outcomes = [
                 <circle cx="12" cy="7" r="4"/>
                 <polyline points="16 11 18 13 22 9"/>
               </svg>
-              Finance and clinical leadership review all recommendations. No package master changes without human approval.
+              {pkg.outputStep.hitl}
             </div>
           </div>
         </div>
@@ -340,11 +280,10 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="fo-agents reveal">
     <div class="container">
-      <p class="section-label">Agents</p>
-      <h2 class="section-h2">Two agents covering the revenue cycle</h2>
+      <p class="section-label">{agents.label}</p>
+      <h2 class="section-h2">{agents.title}</h2>
       <p class="section-intro">
-        Every agent in the platform is semi-autonomous — it reads, analyses, surfaces, and
-        recommends. Your team retains decision authority at every consequential step.
+        {agents.intro}
       </p>
 
       <div class="agent-cards-grid">
@@ -362,13 +301,10 @@ const outcomes = [
                 <path d="M9 15l2 2 4-4"/>
               </svg>
             </div>
-            <span class="afc-badge">RCM Optimisation Agent</span>
+            <span class="afc-badge">{agents.cards[0].badge}</span>
           </div>
           <p class="afc-desc">
-            Works across claims management and package profitability — reviewing claims against
-            payer rules before submission, identifying patterns in deductions and rejections, and
-            analysing actual billing data against reimbursable amounts to surface packages that
-            are structurally unprofitable.
+            {agents.cards[0].desc}
           </p>
           <div class="afc-hitl">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
@@ -378,15 +314,12 @@ const outcomes = [
               <circle cx="12" cy="7" r="4"/>
               <polyline points="16 11 18 13 22 9"/>
             </svg>
-            Claims team approves submissions and appeals. Finance and clinical leadership review all package optimisation recommendations.
+            {agents.cards[0].hitl}
           </div>
           <ul class="afc-capabilities">
-            <li>Pre-submission coding validation (ICD-10, CPT, scheme package codes)</li>
-            <li>Denial prediction and appeal viability scoring</li>
-            <li>Query response drafting for human review</li>
-            <li>Actual billing vs. reimbursable amount analysis</li>
-            <li>Package master review and profitability gap identification</li>
-            <li>Package optimisation recommendations for human approval</li>
+            {agents.cards[0].capabilities.map((c) => (
+              <li>{c}</li>
+            ))}
           </ul>
         </div>
 
@@ -402,13 +335,10 @@ const outcomes = [
                 <polyline points="17 6 23 6 23 12"/>
               </svg>
             </div>
-            <span class="afc-badge">Package Profitability Agent</span>
+            <span class="afc-badge">{agents.cards[1].badge}</span>
           </div>
           <p class="afc-desc">
-            Continuously monitors package-level profitability across service lines and payer
-            categories. Reads actual billing data, compares it to reimbursable package rates,
-            and identifies packages where the cost-to-deliver consistently exceeds reimbursement.
-            Recommends package master changes for clinical and finance review.
+            {agents.cards[1].desc}
           </p>
           <div class="afc-hitl">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
@@ -418,14 +348,12 @@ const outcomes = [
               <circle cx="12" cy="7" r="4"/>
               <polyline points="16 11 18 13 22 9"/>
             </svg>
-            Agent surfaces analysis and recommendations only. No package master changes without joint finance and clinical review.
+            {agents.cards[1].hitl}
           </div>
           <ul class="afc-capabilities">
-            <li>Package-level margin analysis by payer and service line</li>
-            <li>Structural loss identification ranked by financial impact</li>
-            <li>Package master component and bundling review</li>
-            <li>Profitability optimisation recommendations</li>
-            <li>Runtime package selection support to maximise margin per episode</li>
+            {agents.cards[1].capabilities.map((c) => (
+              <li>{c}</li>
+            ))}
           </ul>
         </div>
 
@@ -434,13 +362,10 @@ const outcomes = [
       <!-- ── Supply chain: adjacent domain, lighter treatment ── -->
       <div class="supply-teaser reveal">
         <div class="supply-teaser-header">
-          <span class="supply-teaser-label">Also in the FinOps domain</span>
-          <h3 class="supply-teaser-heading">Supply Chain Optimisation</h3>
+          <span class="supply-teaser-label">{agents.supply.label}</span>
+          <h3 class="supply-teaser-heading">{agents.supply.heading}</h3>
           <p class="supply-teaser-intro">
-            Healthcare supply chain sits within the FinOps domain — procurement costs, inventory
-            levels, and demand forecasting directly affect operational margins. The Supply
-            Intelligence Agent extends FinOps coverage beyond revenue cycle into the supply side
-            of the financial picture.
+            {agents.supply.intro}
           </p>
         </div>
         <div class="supply-agent-card">
@@ -456,18 +381,15 @@ const outcomes = [
                 <line x1="12" y1="22.08" x2="12" y2="12"/>
               </svg>
             </div>
-            <span class="afc-badge">Supply Intelligence Agent</span>
+            <span class="afc-badge">{agents.supply.badge}</span>
           </div>
           <p class="afc-desc">
-            Analyses demand signals across clinical departments. Supports procurement
-            orchestration and inventory optimisation. Surfaces forecasts for human procurement
-            team review and approval.
+            {agents.supply.desc}
           </p>
           <ul class="afc-capabilities">
-            <li>Demand signal analysis across clinical departments</li>
-            <li>Inventory optimisation recommendations</li>
-            <li>Procurement orchestration support</li>
-            <li>Supply forecast surfacing for human review</li>
+            {agents.supply.capabilities.map((c) => (
+              <li>{c}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -480,14 +402,14 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="fo-outcomes reveal">
     <div class="container">
-      <p class="section-label">What to Expect</p>
+      <p class="section-label">{outcomes.label}</p>
       <h2 class="section-h2">
-        Indicative outcomes across claims,<br class="br-desktop" />
-        package profitability, and payer intelligence
+        {outcomes.titleLine1}<br class="br-desktop" />
+        {outcomes.titleLine2}
       </h2>
 
       <div class="outcomes-grid">
-        {outcomes.map((o, i) => (
+        {outcomes.stats.map((o, i) => (
           <StatCard
             value={o.value}
             label={o.label}
@@ -508,22 +430,14 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="fo-variants reveal">
     <div class="container">
-      <p class="section-label">Workflow Variant Reality</p>
+      <p class="section-label">{variants.label}</p>
       <h2 class="section-h2">
-        No two payer relationships work the same way.
+        {variants.title}
       </h2>
       <div class="variants-prose">
-        <p>
-          A government scheme oncology claim has fundamentally different documentation
-          requirements, authorisation logic, and portal workflows than a commercial insurer
-          elective surgery claim. Our methodology maps each significant payer type and claim
-          category as a distinct workflow variant, each with its own logic and requirements.
-        </p>
-        <p>
-          This matters because automation targeted at the wrong variant produces the wrong
-          result. Our Outcomes-Driven Optimization Blueprint for claims starts with your specific
-          payer mix, procedure mix, and current KPI baseline — before we configure a single agent.
-        </p>
+        {variants.prose.map((p) => (
+          <p>{p}</p>
+        ))}
       </div>
 
       <div class="variants-table-wrap reveal delay-200">

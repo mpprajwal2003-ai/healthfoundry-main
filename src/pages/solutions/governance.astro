@@ -5,26 +5,21 @@ import ContinuousVsPeriodic from '../../components/diagrams/ContinuousVsPeriodic
 import StatCard from '../../components/ui/StatCard.astro';
 import FooterCTA from '../../components/sections/FooterCTA.astro';
 import Button from '../../components/ui/Button.astro';
+import { frontmatter } from '../../data/solutions-governance.md';
+
+const { meta, hero, capabilities: capabilitiesData, continuousVsPeriodic, agent, outcomes: outcomesData } = frontmatter;
 
 // ── GRC domain capability cards ──
-const capabilities = [
-  {
-    title: 'Billing Compliance Monitoring',
-    description: 'Continuous monitoring of billing activity against applicable regulatory standards, payer rules, and package definitions. Risk-scoring of billing patterns. Human-reviewed alerts for anomalies that may indicate documentation gaps, upcoding risk, or guideline non-compliance.',
-    humanNote: 'Compliance team reviews all flagged anomalies before any action is taken.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+// Icons stay here; text content comes from the data file, merged by index.
+const capabilityIcons = [
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
       stroke-linejoin="round" aria-hidden="true">
       <line x1="18" y1="20" x2="18" y2="10"/>
       <line x1="12" y1="20" x2="12" y2="4"/>
       <line x1="6" y1="20" x2="6" y2="14"/>
     </svg>`,
-  },
-  {
-    title: 'Clinical Documentation Quality',
-    description: 'Monitoring of clinical documentation completeness and quality relative to billing requirements. Flags for missing or insufficient documentation that would generate claim queries or deductions — surfaced to clinical and coding teams for correction before submission.',
-    humanNote: 'Clinical and coding teams review all flagged documentation gaps.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
       stroke-linejoin="round" aria-hidden="true">
       <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
@@ -32,34 +27,19 @@ const capabilities = [
       <line x1="9" y1="12" x2="15" y2="12"/>
       <line x1="9" y1="16" x2="12" y2="16"/>
     </svg>`,
-  },
-  {
-    title: 'Audit Trail Management',
-    description: 'Automated maintenance of structured audit trails for clinical, billing, and operational actions. Audit-ready reporting generated on demand — not compiled under pressure when an inspection is announced.',
-    humanNote: 'Compliance officer reviews and approves all audit-ready reports before submission.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
       stroke-linejoin="round" aria-hidden="true">
       <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
       <line x1="12" y1="11" x2="12" y2="17"/>
       <line x1="9" y1="14" x2="15" y2="14"/>
     </svg>`,
-  },
-  {
-    title: 'Regulatory Adherence',
-    description: 'Monitoring for adherence to applicable regulatory frameworks and operational standards. Alert generation when patterns deviate from policy. Structured escalation to the appropriate human authority for review and action.',
-    humanNote: 'Designated compliance authority reviews all escalated regulatory deviations.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
       stroke-linejoin="round" aria-hidden="true">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
     </svg>`,
-  },
-  {
-    title: 'Risk Scoring',
-    description: 'Continuous risk scoring across operational domains — identifying which cases, departments, or billing patterns carry the highest compliance risk — so human reviewers can prioritise their attention effectively.',
-    humanNote: 'Risk scores surface to compliance reviewers; prioritisation decisions remain human-led.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
       stroke-linejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="10"/>
@@ -71,22 +51,21 @@ const capabilities = [
       <line x1="2" y1="12" x2="4" y2="12"/>
       <line x1="20" y1="12" x2="22" y2="12"/>
     </svg>`,
-  },
 ];
+
+const capabilities = capabilitiesData.cards.map((cap, i) => ({
+  ...cap,
+  icon: capabilityIcons[i],
+}));
 
 // ── Outcome stat cards ──
 // "Real-time vs periodic" gets special treatment (no number, split icon)
-const outcomes = [
-  { value: '20–40%', label: 'TAT breach rate reduction by service type' },
-  { value: null, label: 'Risk identification: real-time vs periodic' }, // special card
-  { value: 'On-demand', label: 'Audit preparation vs. manual compilation' },
-  { value: 'Measurable', label: 'Documentation completeness at billing (baseline-dependent)' },
-];
+const outcomes = outcomesData.stats;
 ---
 
 <Layout
-  title="Healthcare Governance, Risk & Compliance | HealthFoundry"
-  description="HealthFoundry's GRC agents monitor billing compliance, clinical documentation quality, and regulatory adherence — in real time, across every department."
+  title={meta.title}
+  description={meta.description}
 >
 
   <!-- ═══════════════════════════════════════════════════
@@ -104,32 +83,28 @@ const outcomes = [
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               <polyline points="9 12 11 14 15 10"/>
             </svg>
-            GRC
+            {hero.pill}
           </div>
 
           <h1 class="hero-h1">
-            Governance, Risk &amp; Control<br />
-            <span class="hero-h1-accent">Continuous monitoring, not periodic audits</span>
+            {hero.titleLine1}<br />
+            <span class="hero-h1-accent">{hero.titleAccent}</span>
           </h1>
 
           <p class="hero-body">
-            Compliance in healthcare demands continuous attention. Billing errors,
-            documentation gaps, and regulatory deviations accumulate continuously — and
-            are typically discovered after the damage is done. HealthFoundry's GRC agents
-            monitor your operations in real time, surfacing risks for human review before
-            they become findings.
+            {hero.body}
           </p>
 
           <div class="hero-ctas">
-            <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
-            <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+            <Button href="/contact" variant="primary" size="lg">{hero.primaryCta}</Button>
+            <Button href="/platform" variant="secondary" size="lg">{hero.secondaryCta}</Button>
           </div>
         </div>
 
         <div class="hero-image reveal-left delay-200">
           <img
             src="/images/grc.png"
-            alt="GRC monitoring dashboard"
+            alt={hero.imageAlt}
             class="hero-screenshot"
             width="600"
             height="400"
@@ -145,14 +120,12 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="grc-capabilities reveal">
     <div class="container">
-      <p class="section-label">What We Address</p>
+      <p class="section-label">{capabilitiesData.label}</p>
       <h2 class="section-h2">
-        Five domains of continuous GRC monitoring
+        {capabilitiesData.title}
       </h2>
       <p class="section-intro">
-        Our engagement begins with a structured audit of your current GRC posture — before we
-        configure a single agent. The five domains below cover the full surface area of
-        operational compliance risk in healthcare.
+        {capabilitiesData.intro}
       </p>
 
       <div class="capabilities-grid">
@@ -178,17 +151,13 @@ const outcomes = [
     <div class="container">
       <div class="cvp-wrapper">
         <div class="cvp-header">
-          <p class="section-label">The Key Difference</p>
+          <p class="section-label">{continuousVsPeriodic.label}</p>
           <h2 class="section-h2">
-            Compliance risk accumulates daily.<br class="br-desktop" />
-            Agents that monitor daily.
+            {continuousVsPeriodic.titleLine1}<br class="br-desktop" />
+            {continuousVsPeriodic.titleLine2}
           </h2>
           <p class="cvp-callout">
-            Traditional compliance depends on periodic audits — which means risks accumulate
-            for weeks or months before anyone sees them. By the time an audit surfaces a
-            problem, the financial and regulatory damage is already done. HealthFoundry's
-            GRC agent monitors continuously, surfacing risk flags to your compliance team
-            in real time — before they become audit findings.
+            {continuousVsPeriodic.callout}
           </p>
         </div>
         <div class="cvp-diagram-wrap reveal-scale delay-200">
@@ -203,11 +172,10 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="grc-agent reveal">
     <div class="container">
-      <p class="section-label">Agents</p>
-      <h2 class="section-h2">One agent. Continuous coverage.</h2>
+      <p class="section-label">{agent.label}</p>
+      <h2 class="section-h2">{agent.title}</h2>
       <p class="section-intro">
-        The GRC Compliance Agent is semi-autonomous — it monitors, flags, and prepares.
-        Your compliance team reviews flagged cases and approves all remediation actions.
+        {agent.intro}
       </p>
 
       <div class="agent-card">
@@ -221,14 +189,11 @@ const outcomes = [
               <polyline points="9 12 11 14 15 10"/>
             </svg>
           </div>
-          <span class="agent-name">GRC Compliance Agent</span>
+          <span class="agent-name">{agent.name}</span>
         </div>
 
         <p class="agent-desc">
-          Monitors policy adherence, flags risk, generates audit preparation reports, and
-          supports CAPA (Corrective and Preventive Action) documentation. Operates
-          continuously — not on a monthly or quarterly cycle. Human compliance team reviews
-          flagged cases and approves remediation actions.
+          {agent.description}
         </p>
 
         <div class="agent-hitl">
@@ -240,37 +205,20 @@ const outcomes = [
             <circle cx="12" cy="7" r="4"/>
             <polyline points="16 11 18 13 22 9"/>
           </svg>
-          Human compliance team reviews all flagged cases. Agent surfaces; humans decide and approve all remediation actions.
+          {agent.hitl}
         </div>
 
         <div class="agent-capabilities-grid">
-          <div class="agent-cap-group">
-            <h4 class="agent-cap-heading">Continuous monitoring</h4>
-            <ul class="agent-cap-list">
-              <li>Billing activity vs. regulatory standards and payer rules</li>
-              <li>Clinical documentation completeness at billing</li>
-              <li>Regulatory framework adherence across departments</li>
-              <li>Risk scoring by case, department, and billing pattern</li>
-            </ul>
-          </div>
-          <div class="agent-cap-group">
-            <h4 class="agent-cap-heading">Flagging and escalation</h4>
-            <ul class="agent-cap-list">
-              <li>Anomaly alerts for upcoding risk and guideline deviations</li>
-              <li>Structured escalation to designated compliance authority</li>
-              <li>Prioritised review queue based on risk score</li>
-              <li>Deviation pattern identification for upstream process changes</li>
-            </ul>
-          </div>
-          <div class="agent-cap-group">
-            <h4 class="agent-cap-heading">Audit readiness</h4>
-            <ul class="agent-cap-list">
-              <li>Automated structured audit trail maintenance</li>
-              <li>On-demand audit-ready reporting (not compiled under pressure)</li>
-              <li>CAPA documentation support for human review</li>
-              <li>Historical deviation pattern analysis for root-cause review</li>
-            </ul>
-          </div>
+          {agent.groups.map((group) => (
+            <div class="agent-cap-group">
+              <h4 class="agent-cap-heading">{group.heading}</h4>
+              <ul class="agent-cap-list">
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -281,8 +229,8 @@ const outcomes = [
   ══════════════════════════════════════════════════════ -->
   <section class="grc-outcomes reveal">
     <div class="container">
-      <p class="section-label">What to Expect</p>
-      <h2 class="section-h2">Indicative outcomes from the GRC agent</h2>
+      <p class="section-label">{outcomesData.label}</p>
+      <h2 class="section-h2">{outcomesData.title}</h2>
 
       <div class="outcomes-grid">
         {outcomes.map((o, i) => (
@@ -331,7 +279,7 @@ const outcomes = [
       </div>
 
       <p class="outcomes-caveat">
-        Ranges are indicative. Actual outcomes are defined during the Audit phase based on your current baseline.
+        {outcomesData.caveat}
       </p>
     </div>
   </section>

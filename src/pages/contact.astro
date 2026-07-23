@@ -2,11 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import FooterCTA from '../components/sections/FooterCTA.astro';
 import Button from '../components/ui/Button.astro';
+import { frontmatter } from '../data/contact.md';
+
+const { meta, hero, form, side } = frontmatter;
 ---
 
 <Layout
-  title="Book a Discovery Call | HealthFoundry"
-  description="Start with a structured discovery session — we map your operations, validate your KPIs, and show you where AI agents can move the needle first."
+  title={meta.title}
+  description={meta.description}
 >
 
   <!-- ═══════════════════════════════════════════════════
@@ -14,11 +17,10 @@ import Button from '../components/ui/Button.astro';
   ══════════════════════════════════════════════════════ -->
   <section class="sec-hero">
     <div class="container">
-      <p class="hero-label">Contact</p>
-      <h1 class="hero-h1">Book a Discovery Call</h1>
+      <p class="hero-label">{hero.label}</p>
+      <h1 class="hero-h1">{hero.title}</h1>
       <p class="hero-sub">
-        Start with a structured discovery session — we map your operations, validate your KPIs,
-        and show you where AI agents can move the needle first.
+        {hero.subtitle}
       </p>
     </div>
   </section>
@@ -32,71 +34,47 @@ import Button from '../components/ui/Button.astro';
 
         <!-- Contact Form -->
         <div class="form-panel">
-          <!-- TODO: wire up form action to backend handler -->
           <form
-            action="/contact-success"
-            method="POST"
+            id="contact-form"
             class="contact-form"
             novalidate
           >
-            <div class="form-group">
-              <label for="name" class="form-label">Full name <span class="required" aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="form-input"
-                placeholder="Dr. Priya Sharma"
-                required
-                autocomplete="name"
-              />
-            </div>
+            {form.fields.map((field) => (
+              <div class="form-group">
+                <label for={field.id} class="form-label">{field.label} <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type={field.type}
+                  id={field.id}
+                  name={field.id}
+                  class="form-input"
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  autocomplete={field.autocomplete}
+                />
+              </div>
+            ))}
 
             <div class="form-group">
-              <label for="email" class="form-label">Work email <span class="required" aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder="priya@hospital.org"
-                required
-                autocomplete="email"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="organisation" class="form-label">Organisation <span class="required" aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="organisation"
-                name="organisation"
-                class="form-input"
-                placeholder="City General Hospital"
-                required
-                autocomplete="organization"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="message" class="form-label">
-                Notes <span class="optional">(optional)</span>
+              <label for={form.message.id} class="form-label">
+                {form.message.label} <span class="optional">{form.message.optionalText}</span>
               </label>
               <textarea
-                id="message"
-                name="message"
+                id={form.message.id}
+                name={form.message.id}
                 class="form-input form-textarea"
                 rows="4"
-                placeholder="Tell us about your biggest operational challenge — revenue cycle, patient experience, compliance, or something else."
+                placeholder={form.message.placeholder}
               ></textarea>
             </div>
 
             <Button type="submit" variant="primary" size="lg" class="form-submit">
-              Send Message
+              {form.submitLabel}
             </Button>
 
+            <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+
             <p class="form-note">
-              We typically respond within one business day.
+              {form.note}
             </p>
           </form>
         </div>
@@ -104,7 +82,7 @@ import Button from '../components/ui/Button.astro';
         <!-- Side Panel -->
         <aside class="side-panel reveal delay-200">
           <div class="side-card">
-            <p class="side-label">Get in touch directly</p>
+            <p class="side-label">{side.contactLabel}</p>
 
             <div class="side-item">
               <div class="side-icon" aria-hidden="true">
@@ -116,9 +94,9 @@ import Button from '../components/ui/Button.astro';
                 </svg>
               </div>
               <div class="side-detail">
-                <p class="side-detail-label">Email</p>
-                <a href="mailto:hello@healthfoundry.ai" class="side-link">
-                  hello@healthfoundry.ai
+                <p class="side-detail-label">{side.email.label}</p>
+                <a href={side.email.link} class="side-link">
+                  {side.email.address}
                 </a>
               </div>
             </div>
@@ -134,40 +112,32 @@ import Button from '../components/ui/Button.astro';
                 </svg>
               </div>
               <div class="side-detail">
-                <p class="side-detail-label">LinkedIn</p>
+                <p class="side-detail-label">{side.linkedin.label}</p>
                 <a
-                  href="https://linkedin.com/company/healthfoundry"
+                  href={side.linkedin.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="side-link"
                 >
-                  HealthFoundry
+                  {side.linkedin.text}
                 </a>
               </div>
             </div>
+
+            
           </div>
 
           <div class="side-card side-card-what">
-            <p class="side-label">What to expect</p>
+            <p class="side-label">{side.expect.label}</p>
             <ol class="expect-list">
-              <li class="expect-item">
-                <span class="expect-num" aria-hidden="true">01</span>
-                <span class="expect-text">
-                  A 45–60 minute structured session to map your current operations
-                </span>
-              </li>
-              <li class="expect-item">
-                <span class="expect-num" aria-hidden="true">02</span>
-                <span class="expect-text">
-                  Validation of your current KPIs and identification of the highest-impact gaps
-                </span>
-              </li>
-              <li class="expect-item">
-                <span class="expect-num" aria-hidden="true">03</span>
-                <span class="expect-text">
-                  A clear picture of where agents can be deployed first for fastest measurable impact
-                </span>
-              </li>
+              {side.expect.items.map((item, i) => (
+                <li class="expect-item">
+                  <span class="expect-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="expect-text">
+                    {item}
+                  </span>
+                </li>
+              ))}
             </ol>
           </div>
         </aside>
@@ -176,9 +146,99 @@ import Button from '../components/ui/Button.astro';
     </div>
   </section>
 
-  <FooterCTA />
+  <!-- <FooterCTA /> -->
 
 </Layout>
+
+<script>
+  const SCRIPT_URL = import.meta.env.PUBLIC_CONTACT_SCRIPT_URL;
+
+  // Personal / free email providers that are NOT allowed — work email only.
+  const BLOCKED_DOMAINS = new Set([
+    'gmail.com', 'googlemail.com', 'yahoo.com', 'yahoo.co.in', 'ymail.com',
+    'hotmail.com', 'outlook.com', 'live.com', 'msn.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'protonmail.com', 'proton.me',
+    'mail.com', 'gmx.com', 'zoho.com', 'yandex.com', 'rediffmail.com',
+    'rocketmail.com', 'tutanota.com', 'pm.me',
+  ]);
+
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status') as HTMLParagraphElement | null;
+  const emailInput = document.getElementById('email') as HTMLInputElement | null;
+
+  const EMAIL_RE = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/;
+
+  function validationError(email: string): string | null {
+    const match = email.trim().toLowerCase().match(EMAIL_RE);
+    if (!match) return 'Please enter a valid email address.';
+    const domain = match[1];
+    if (BLOCKED_DOMAINS.has(domain)) {
+      return 'Please use your work email — personal email addresses are not accepted.';
+    }
+    return null;
+  }
+
+  function setStatus(message: string, type: 'error' | 'success' | 'pending') {
+    if (!status) return;
+    status.textContent = message;
+    status.hidden = false;
+    status.dataset.type = type;
+  }
+
+  // Live feedback on the email field.
+  emailInput?.addEventListener('input', () => {
+    const err = emailInput.value ? validationError(emailInput.value) : null;
+    emailInput.setCustomValidity(err ?? '');
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!SCRIPT_URL) {
+      setStatus('Form is not configured. Please email hello@healthfoundry.ai directly.', 'error');
+      return;
+    }
+
+    const data = new FormData(form);
+    const email = String(data.get('email') ?? '');
+
+    const emailErr = validationError(email);
+    if (emailErr) {
+      setStatus(emailErr, 'error');
+      emailInput?.focus();
+      return;
+    }
+
+    const submitBtn = form.querySelector<HTMLButtonElement>('[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+    setStatus('Sending…', 'pending');
+
+    // Shape the payload to match the Apps Script (JSON; `company` field).
+    const payload = {
+      name: String(data.get('name') ?? ''),
+      email,
+      company: String(data.get('organisation') ?? ''),
+      message: String(data.get('message') ?? ''),
+    };
+
+    try {
+      // Apps Script web apps don't return CORS headers, so use no-cors.
+      // text/plain keeps the request "simple" (no preflight) while the body
+      // is still JSON that doPost parses via JSON.parse(e.postData.contents).
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      });
+      form.reset();
+      setStatus("Thanks — your message has been sent. We'll respond within one business day.", 'success');
+    } catch (err) {
+      setStatus('Something went wrong. Please email hello@healthfoundry.ai directly.', 'error');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+</script>
 
 <style>
   /* ── Shared ── */
@@ -316,6 +376,24 @@ import Button from '../components/ui/Button.astro';
     line-height: 1.5;
   }
 
+  .form-status {
+    font-size: var(--text-sm);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .form-status[data-type="error"] {
+    color: #ef4444;
+  }
+
+  .form-status[data-type="success"] {
+    color: var(--accent-primary);
+  }
+
+  .form-status[data-type="pending"] {
+    color: var(--text-secondary);
+  }
+
   /* ── Side Panel ── */
   .side-panel {
     display: flex;
@@ -390,6 +468,12 @@ import Button from '../components/ui/Button.astro';
   .side-link:hover {
     text-decoration: underline;
     color: var(--accent-primary);
+  }
+
+  .side-address {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
   /* ── What to expect ── */

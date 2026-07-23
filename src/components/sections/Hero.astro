@@ -1,60 +1,38 @@
 ---
 import Button from '../ui/Button.astro';
+import { frontmatter } from '../../data/home.md';
+
+const { label, title, subtitle, ctaPrimary, ctaSecondary, stats } = frontmatter.hero;
 ---
 
 <section class="hero">
   <div class="hero-container">
     <!-- Left: text + CTAs + stats -->
     <div class="hero-left">
-      <p class="section-label">The Intelligence Fabric</p>
+      <p class="section-label">{label}</p>
       <h1 class="hero-title">
-        The Intelligence Fabric for Healthcare Operations
+        {title}
       </h1>
       <p class="hero-sub">
-        Semi-autonomous AI agents that work alongside your teams to improve revenue, retention,
-        and compliance — built on the same clinical and operational data your hospital already generates.
-      </p>
-      <p class="hero-body">
-        HealthFoundry deploys purpose-built AI agents across revenue cycle, patient engagement,
-        and governance — each operating with human oversight at every decision point. Measurable
-        outcomes in 8 weeks, starting where your data already lives.
+        {subtitle}
       </p>
 
       <div class="hero-ctas">
-        <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
-        <Button href="/platform" variant="secondary" size="lg">See the Platform</Button>
+        <Button href={ctaPrimary.href} variant="primary" size="lg">{ctaPrimary.label}</Button>
+        <Button href={ctaSecondary.href} variant="secondary" size="lg">{ctaSecondary.label}</Button>
       </div>
 
       <!-- Stats bar -->
       <div class="stats-bar">
-        <div class="stat-item">
-          <span class="stat-value" data-count-up="8" data-suffix=" Weeks">8 Weeks</span>
-          <span class="stat-label">Median time to first measurable outcome</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-value" data-count-up-range="40,60" data-suffix="%">40–60%</span>
-          <span class="stat-label">Reduction in claim submission TAT</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-value" data-count-up-range="30,50" data-suffix="%">30–50%</span>
-          <span class="stat-label">Improvement in care gap follow-up rate</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item hitl-stat">
-          <span class="hitl-icon" aria-label="Human-in-the-loop">
-            <!-- user-check icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <polyline points="16 11 18 13 22 9"/>
-            </svg>
-          </span>
-          <span class="stat-label hitl-label">Human-in-the-loop<br/>at every consequential decision</span>
-        </div>
+        {stats.map((stat, i) => (
+          <>
+            {i > 0 && <div class="stat-divider"></div>}
+            <div class="stat-item">
+              <span class="stat-value">{stat.value}</span>
+              {stat.label && <span class="stat-label">{stat.label}</span>}
+            </div>
+          </>
+        ))}
       </div>
     </div>
 

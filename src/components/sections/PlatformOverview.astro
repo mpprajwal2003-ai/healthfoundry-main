@@ -1,124 +1,65 @@
 ---
+import { frontmatter } from '../../data/home.md';
+
+const { label, intro, description, items, connectorLabel, security, securityLink } = frontmatter.platform;
+
+// Domain-specific styling zipped with the data items (order matches platform.md)
+const domainMeta = [
+  { key: 'cx', badge: 'Customer Experience', color: 'var(--domain-cx)', muted: 'var(--domain-cx-muted)', border: 'var(--domain-cx-border)' },
+  { key: 'finops', badge: 'FinOps', color: 'var(--domain-finops)', muted: 'var(--domain-finops-muted)', border: 'var(--domain-finops-border)' },
+  { key: 'grc', badge: 'Governance & Risk', color: 'var(--domain-grc)', muted: 'var(--domain-grc-muted)', border: 'var(--domain-grc-border)' },
+];
+const cards = items.map((item, i) => ({ ...item, ...domainMeta[i] }));
 ---
 
 <section class="platform section-padding reveal">
   <div class="container">
-    <p class="section-label">The Platform</p>
+    <p class="section-label">{label}</p>
     <h2 class="section-title">
-      One platform. Multiple domains. Every agent answerable to a human.
+      {intro}
     </h2>
     <p class="section-intro">
-      The HealthFoundry Intelligence Fabric is a domain-aware agentic AI platform built specifically
-      for hospital operations. A network of purpose-built agents that orchestrate real operational
-      work — surfacing the right information to the right person at the right moment.
+      {description}
     </p>
 
     <!-- Connector label -->
     <div class="connector-wrap">
       <div class="connector-line"></div>
-      <span class="connector-label">Powered by the Intelligence Fabric</span>
+      <span class="connector-label">{connectorLabel}</span>
       <div class="connector-line"></div>
     </div>
 
     <!-- Domain cards -->
     <div class="domain-cards">
-
-      <!-- CX Card -->
-      <a href="/solutions/customer-experience" class="domain-card cx-card">
-        <div class="domain-badge" style="color: var(--domain-cx); background: var(--domain-cx-muted); border-color: var(--domain-cx-border);">
-          Customer Experience
-        </div>
-        <div class="card-screenshot-wrap">
-          <img
-            src="/images/opd-snapshot.png"
-            alt="Patient Experience dashboard"
-            class="card-screenshot"
-            loading="lazy"
-            width="400"
-            height="240"
-          />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title" style="color: var(--domain-cx);">Patient & Customer Experience</h3>
-          <p class="card-desc">
-            Agents that support patient acquisition, care continuity, and follow-up — so no care
-            gap goes unacted on and no patient falls through the cracks.
-          </p>
-          <span class="card-link" style="color: var(--domain-cx);">
-            Learn more
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- FinOps Card -->
-      <a href="/solutions/finops" class="domain-card finops-card">
-        <div class="domain-badge" style="color: var(--domain-finops); background: var(--domain-finops-muted); border-color: var(--domain-finops-border);">
-          FinOps
-        </div>
-        <div class="card-screenshot-wrap">
-          <img
-            src="/images/claims-snapshot.png"
-            alt="Claims management dashboard"
-            class="card-screenshot"
-            loading="lazy"
-            width="400"
-            height="240"
-          />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title" style="color: var(--domain-finops);">Revenue Cycle & FinOps</h3>
-          <p class="card-desc">
-            Agents that support revenue cycle operations — from eligibility verification and
-            pre-authorisation through claim assembly, query management, and deduction analysis.
-          </p>
-          <span class="card-link" style="color: var(--domain-finops);">
-            Learn more
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- GRC Card -->
-      <a href="/solutions/governance" class="domain-card grc-card">
-        <div class="domain-badge" style="color: var(--domain-grc); background: var(--domain-grc-muted); border-color: var(--domain-grc-border);">
-          Governance & Risk
-        </div>
-        <div class="card-screenshot-wrap">
-          <img
-            src="/images/grc.png"
-            alt="GRC compliance dashboard"
-            class="card-screenshot"
-            loading="lazy"
-            width="400"
-            height="240"
-          />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title" style="color: var(--domain-grc);">Governance, Risk & Control</h3>
-          <p class="card-desc">
-            Agents that monitor billing compliance, clinical documentation quality, regulatory
-            adherence, and audit readiness — continuously and in real time.
-          </p>
-          <span class="card-link" style="color: var(--domain-grc);">
-            Learn more
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
+      {cards.map((card) => (
+        <a href={card.href} class={`domain-card ${card.key}-card`}>
+          <div class="domain-badge" style={`color: ${card.color}; background: ${card.muted}; border-color: ${card.border};`}>
+            {card.badge}
+          </div>
+          <div class="card-screenshot-wrap">
+            <img
+              src={card.image}
+              alt={card.alt}
+              class="card-screenshot"
+              loading="lazy"
+              width="400"
+              height="240"
+            />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title" style={`color: ${card.color};`}>{card.title}</h3>
+            <p class="card-desc">{card.description}</p>
+            <span class="card-link" style={`color: ${card.color};`}>
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
     </div>
 
     <!-- Security characteristic -->
@@ -131,9 +72,9 @@
           <path d="m9 12 2 2 4-4"/>
         </svg>
       </div>
-      <span class="sec-text">The Intelligence Fabric is HIPAA and HITRUST CSF compliant, and deploys entirely within your own infrastructure — patient data never leaves your environment.</span>
-      <a href="/security" class="sec-link">
-        Security posture
+      <span class="sec-text">{security}</span>
+      <a href={securityLink.href} class="sec-link">
+        {securityLink.label}
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
           stroke-linejoin="round" aria-hidden="true">

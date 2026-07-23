@@ -1,10 +1,13 @@
 ---
+import { frontmatter } from '../../data/home.md';
+
+const { label, pillars, values, mission, byline } = frontmatter.missionValues;
 ---
 
 <section class="sec-mv reveal">
   <div class="container">
 
-    <p class="section-label">Mission &amp; Values</p>
+    <p class="section-label">{label}</p>
 
     <!-- SVG diagram — full-width up to 680px, centred -->
     <div class="diagram-wrap">
@@ -39,7 +42,7 @@
             stroke-width="0.75"
             d="M 286.4,230.4 A 96,96 0 0,1 396.5,232.3 L 418.8,203.5 A 132,132 0 0,0 265.2,201.0 Z"
           />
-          <text class="pillar-label" x="340" y="207" text-anchor="middle" dominant-baseline="central">Unify</text>
+          <text class="pillar-label" x="340" y="207" text-anchor="middle" dominant-baseline="central">{pillars[0]}</text>
         </g>
 
         <!-- Seg 2: Intelligence -->
@@ -48,7 +51,7 @@
             stroke-width="0.75"
             d="M 399.1,234.3 A 96,96 0 0,1 431.3,339.7 L 465.9,351.3 A 132,132 0 0,0 421.2,206.3 Z"
           />
-          <text class="pillar-label" x="448" y="271" text-anchor="middle" dominant-baseline="central">Intelligence</text>
+          <text class="pillar-label" x="448" y="271" text-anchor="middle" dominant-baseline="central">{pillars[1]}</text>
         </g>
 
         <!-- Seg 3: Reliable -->
@@ -57,7 +60,7 @@
             stroke-width="0.75"
             d="M 430.2,342.8 A 96,96 0 0,1 340,406 L 340,442 A 132,132 0 0,0 463.9,355.7 Z"
           />
-          <text class="pillar-label" x="420" y="402" text-anchor="middle" dominant-baseline="central">Reliable</text>
+          <text class="pillar-label" x="420" y="402" text-anchor="middle" dominant-baseline="central">{pillars[2]}</text>
         </g>
 
         <!-- Seg 4: Frictionless -->
@@ -66,7 +69,7 @@
             stroke-width="0.75"
             d="M 336.6,405.9 A 96,96 0 0,1 248.7,339.7 L 214.1,351.3 A 132,132 0 0,0 335.5,442.0 Z"
           />
-          <text class="pillar-label" x="260" y="402" text-anchor="middle" dominant-baseline="central">Frictionless</text>
+          <text class="pillar-label" x="260" y="402" text-anchor="middle" dominant-baseline="central">{pillars[3]}</text>
         </g>
 
         <!-- Seg 5: Scale -->
@@ -75,7 +78,7 @@
             stroke-width="0.75"
             d="M 247.7,336.5 A 96,96 0 0,1 283.5,232.3 L 265.2,201.0 A 132,132 0 0,0 214.1,351.3 Z"
           />
-          <text class="pillar-label" x="232" y="271" text-anchor="middle" dominant-baseline="central">Scale</text>
+          <text class="pillar-label" x="232" y="271" text-anchor="middle" dominant-baseline="central">{pillars[4]}</text>
         </g>
 
         <!-- ══ SPOKES ══ -->
@@ -89,47 +92,47 @@
         <!-- Top: Shared goals -->
         <g class="value-circle">
           <circle cx="340" cy="86" r="62" stroke-width="0.75"/>
-          <text class="value-head" x="340" y="68" text-anchor="middle" dominant-baseline="central">Shared goals</text>
-          <text class="value-sub"  x="340" y="86" text-anchor="middle" dominant-baseline="central">Your success</text>
-          <text class="value-sub"  x="340" y="102" text-anchor="middle" dominant-baseline="central">is our success</text>
+          <text class="value-head" x="340" y="68" text-anchor="middle" dominant-baseline="central">{values[0].head[0]}</text>
+          <text class="value-sub"  x="340" y="86" text-anchor="middle" dominant-baseline="central">{values[0].subs[0]}</text>
+          <text class="value-sub"  x="340" y="102" text-anchor="middle" dominant-baseline="central">{values[0].subs[1]}</text>
         </g>
 
         <!-- Right: Extreme ownership -->
         <g class="value-circle">
           <circle cx="536" cy="310" r="62" stroke-width="0.75"/>
-          <text class="value-head" x="536" y="292" text-anchor="middle" dominant-baseline="central">Extreme</text>
-          <text class="value-head" x="536" y="308" text-anchor="middle" dominant-baseline="central">ownership</text>
-          <text class="value-sub"  x="536" y="326" text-anchor="middle" dominant-baseline="central">We close the loop</text>
+          <text class="value-head" x="536" y="292" text-anchor="middle" dominant-baseline="central">{values[1].head[0]}</text>
+          <text class="value-head" x="536" y="308" text-anchor="middle" dominant-baseline="central">{values[1].head[1]}</text>
+          <text class="value-sub"  x="536" y="326" text-anchor="middle" dominant-baseline="central">{values[1].subs[0]}</text>
         </g>
 
         <!-- Bottom: Rapid time to value -->
         <g class="value-circle">
           <circle cx="340" cy="532" r="62" stroke-width="0.75"/>
-          <text class="value-head" x="340" y="514" text-anchor="middle" dominant-baseline="central">Rapid time</text>
-          <text class="value-head" x="340" y="530" text-anchor="middle" dominant-baseline="central">to value</text>
-          <text class="value-sub"  x="340" y="548" text-anchor="middle" dominant-baseline="central">8 weeks, not months</text>
+          <text class="value-head" x="340" y="514" text-anchor="middle" dominant-baseline="central">{values[2].head[0]}</text>
+          <text class="value-head" x="340" y="530" text-anchor="middle" dominant-baseline="central">{values[2].head[1]}</text>
+          <text class="value-sub"  x="340" y="548" text-anchor="middle" dominant-baseline="central">{values[2].subs[0]}</text>
         </g>
 
         <!-- Left: Craftsmanship -->
         <g class="value-circle">
           <circle cx="144" cy="310" r="62" stroke-width="0.75"/>
-          <text class="value-head" x="144" y="298" text-anchor="middle" dominant-baseline="central" font-size="13">Craftsmanship</text>
-          <text class="value-sub"  x="144" y="316" text-anchor="middle" dominant-baseline="central">Reliability &amp; delight</text>
+          <text class="value-head" x="144" y="298" text-anchor="middle" dominant-baseline="central" font-size="13">{values[3].head[0]}</text>
+          <text class="value-sub"  x="144" y="316" text-anchor="middle" dominant-baseline="central">{values[3].subs[0]}</text>
         </g>
 
         <!-- ══ CENTRE: Mission ══ -->
         <g class="mission-centre">
           <circle cx="340" cy="310" r="92" stroke-width="1"/>
-          <text class="mission-head" x="340" y="284" text-anchor="middle" dominant-baseline="central">Our mission</text>
-          <text class="mission-sub"  x="340" y="308" text-anchor="middle" dominant-baseline="central">Building the system of</text>
-          <text class="mission-sub"  x="340" y="326" text-anchor="middle" dominant-baseline="central">intelligence for healthcare</text>
+          <text class="mission-head" x="340" y="284" text-anchor="middle" dominant-baseline="central">{mission.head}</text>
+          <text class="mission-sub"  x="340" y="308" text-anchor="middle" dominant-baseline="central">{mission.subs[0]}</text>
+          <text class="mission-sub"  x="340" y="326" text-anchor="middle" dominant-baseline="central">{mission.subs[1]}</text>
         </g>
 
       </svg>
     </div>
 
     <!-- Byline — styled HTML for proper emphasis -->
-    <p class="byline">Built by people who know healthcare from the inside.</p>
+    <p class="byline">{byline}</p>
 
   </div>
 </section>

@@ -1,17 +1,19 @@
 ---
 import Button from '../ui/Button.astro';
+import { frontmatter } from '../../data/shared.md';
+
+const { headline, subtitle, button } = frontmatter.footerCta;
 ---
 
 <section class="footer-cta reveal">
   <div class="container">
     <h2 class="cta-headline">
-      Ready to see the Intelligence Fabric in your environment?
+      {headline}
     </h2>
     <p class="cta-sub">
-      Most engagements begin with a structured discovery session — we map your current operations,
-      validate your KPIs, and show you where agents can move the needle first.
+      {subtitle}
     </p>
-    <Button href="/contact" variant="primary" size="lg">Book a Discovery Call</Button>
+    <Button href={button.href} variant="primary" size="lg">{button.label}</Button>
   </div>
 </section>
 
