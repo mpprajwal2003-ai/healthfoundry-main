@@ -1,7 +1,7 @@
 ---
 import { frontmatter } from '../../data/home.md';
 
-const { label, intro, items, connectorLabel, security, securityLink } = frontmatter.platform;
+const { label, intro, description, items, connectorLabel, security, securityLink } = frontmatter.platform;
 
 // Domain-specific styling zipped with the data items (order matches platform.md)
 const domainMeta = [
@@ -19,9 +19,7 @@ const cards = items.map((item, i) => ({ ...item, ...domainMeta[i] }));
       {intro}
     </h2>
     <p class="section-intro">
-      The HealthFoundry Intelligence Fabric is a domain-aware agentic AI platform built specifically
-      for hospital operations. A network of purpose-built agents that orchestrate real operational
-      work — surfacing the right information to the right person at the right moment.
+      {description}
     </p>
 
     <!-- Connector label -->

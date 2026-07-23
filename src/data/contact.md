@@ -44,8 +44,8 @@ side:
     text: "HealthFoundry"
     href: "https://linkedin.com/company/healthfoundry"
   address:
-    label: "Visit Us"
-    text: "355/3, 1st Floor, Aashirwad 6th A cross, Aashram colony, Geddalahalli, RMV 2nd stage, Bengaluru-560094"
+    label: ""
+    text: ""
   expect:
     label: "What to expect"
     items:
