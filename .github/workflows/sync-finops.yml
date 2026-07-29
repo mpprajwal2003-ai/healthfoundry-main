@@ -1,4 +1,4 @@
-name: Sync FinOps Markdown to healthfoundryai-finops
+name: Trigger FinOps Sync in healthfoundryai-finops
 
 on:
   push:
@@ -10,49 +10,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync-file:
+  dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for SYNC_PAT secret
-        id: check_token
+      - name: Send repository_dispatch to healthfoundryai-finops
         run: |
-          if [ -z "${{ secrets.SYNC_PAT }}" ]; then
-            echo "has_pat=false" >> $GITHUB_OUTPUT
-            echo "::warning::SYNC_PAT secret is not configured in repository settings. Automatic git push to healthfoundryai-finops requires a Personal Access Token named SYNC_PAT."
-          else
-            echo "has_pat=true" >> $GITHUB_OUTPUT
+          TOKEN="${{ secrets.CROSS_REPO_PAT }}"
+          if [ -z "$TOKEN" ]; then
+            TOKEN="${{ secrets.SYNC_PAT }}"
           fi
 
-      - name: Checkout healthfoundry-main
-        if: steps.check_token.outputs.has_pat == 'true'
-        uses: actions/checkout@v4
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Neither CROSS_REPO_PAT nor SYNC_PAT secret is set in repository settings."
+            exit 1
+          fi
 
-      - name: Checkout healthfoundryai-finops target repository
-        if: steps.check_token.outputs.has_pat == 'true'
-        uses: actions/checkout@v4
-        with:
-          repository: 'mpprajwal2003-ai/healthfoundryai-finops'
-          token: ${{ secrets.SYNC_PAT }}
-          path: 'target-repo'
+          echo "Triggering solutions-finops-updated event in mpprajwal2003-ai/healthfoundryai-finops..."
+          response=$(curl -s -w "%{http_code}" -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/mpprajwal2003-ai/healthfoundryai-finops/dispatches \
+            -d '{"event_type":"solutions-finops-updated"}')
 
-
-      - name: Copy updated solutions-finops.md
-        if: steps.check_token.outputs.has_pat == 'true'
-        run: |
-          mkdir -p target-repo/src/data
-          cp src/data/solutions-finops.md target-repo/src/data/solutions-finops.md
-
-      - name: Commit and push changes to healthfoundryai-finops
-        if: steps.check_token.outputs.has_pat == 'true'
-        run: |
-
-          cd target-repo
-          git config user.name "GitHub Action Sync Bot"
-          git config user.email "action@github.com"
-          git add src/data/solutions-finops.md
-          if git diff --staged --quiet; then
-            echo "No changes in solutions-finops.md to commit."
+          http_code="${response: -3}"
+          if [ "$http_code" -eq 204 ]; then
+            echo "Successfully dispatched solutions-finops-updated event to healthfoundryai-finops!"
           else
-            git commit -m "AUTOMATED SYNC: Update solutions-finops.md from healthfoundry-main"
-            git push
+            echo "::error::Failed to dispatch event. HTTP status code: $http_code"
+            exit 1
           fi
