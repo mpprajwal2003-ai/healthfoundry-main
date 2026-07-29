@@ -1,6 +1,7 @@
-name = "healthfoundry-main"
+name = "healthfoundry-finops"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "dist"
+
 
 
 
