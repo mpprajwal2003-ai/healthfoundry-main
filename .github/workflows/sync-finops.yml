@@ -1,0 +1,42 @@
+name: Sync FinOps Markdown to healthfoundryai-finops
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'src/data/solutions-finops.md'
+  workflow_dispatch:
+
+jobs:
+  sync-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout healthfoundry-main
+        uses: actions/checkout@v4
+
+      - name: Checkout healthfoundryai-finops target repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'mpprajwal2003-ai/healthfoundryai-finops'
+          token: ${{ secrets.SYNC_PAT }}
+          path: 'target-repo'
+
+      - name: Copy updated solutions-finops.md
+        run: |
+          mkdir -p target-repo/src/data
+          cp src/data/solutions-finops.md target-repo/src/data/solutions-finops.md
+
+      - name: Commit and push changes to healthfoundryai-finops
+        run: |
+          cd target-repo
+          git config user.name "GitHub Action Sync Bot"
+          git config user.email "action@github.com"
+          git add src/data/solutions-finops.md
+          if git diff --staged --quiet; then
+            echo "No changes in solutions-finops.md to commit."
+          else
+            git commit -m "AUTOMATED SYNC: Update solutions-finops.md from healthfoundry-main"
+            git push
+          fi
