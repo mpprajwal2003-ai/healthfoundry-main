@@ -13,8 +13,16 @@ jobs:
   sync-file:
     runs-on: ubuntu-latest
     steps:
+      - name: Verify SYNC_PAT secret
+        run: |
+          if [ -z "${{ secrets.SYNC_PAT }}" ]; then
+            echo "::error::Secret SYNC_PAT is missing. Please create a Personal Access Token and add it as a secret named SYNC_PAT."
+            exit 1
+          fi
+
       - name: Checkout healthfoundry-main
         uses: actions/checkout@v4
+
 
       - name: Checkout healthfoundryai-finops target repository
         uses: actions/checkout@v4
