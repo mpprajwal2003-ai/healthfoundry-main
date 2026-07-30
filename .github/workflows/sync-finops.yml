@@ -55,11 +55,3 @@ jobs:
             git commit -m "AUTOMATED SYNC: Update solutions-finops.md from healthfoundry-main"
             git push
           fi
-
-      - name: Trigger repository_dispatch in healthfoundryai-finops
-        run: |
-          curl -s -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ steps.get_token.outputs.token }}" \
-            https://api.github.com/repos/mpprajwal2003-ai/healthfoundryai-finops/dispatches \
-            -d '{"event_type":"solutions-finops-updated"}' || true
