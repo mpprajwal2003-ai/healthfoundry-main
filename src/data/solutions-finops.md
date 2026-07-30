@@ -6,7 +6,8 @@ meta:
 hero:
   pill: "FinOps"
   titleLine1: "Revenue Cycle Operations,"
-  titleAccent: "Rethought"
+  titleAccent: "Rethought & Automated"
+
   subtitle: "Reduce revenue leakage across the full revenue cycle — not just claims"
   body: "Revenue is lost at every stage: claims delayed by manual data assembly, deductions that go unchallenged, packages priced below their true cost, payer guidelines absorbed too late. HealthFoundry's FinOps agents work across the full revenue cycle — surfacing leakage, quantifying its financial impact, and supporting your team to act on it — while keeping humans in control of every consequential decision."
   ctaPrimary: "Book a Discovery Call"
