@@ -5,7 +5,7 @@ meta:
 
 hero:
   pill: "FinOps power"
-  titleLine1: "Revenue Cycle Operations,"
+  titleLine1: "Revenue Cycle Operations-2.0 , "
   titleAccent: "Rethought & Automated"
 
   subtitle: "Reduce revenue leakage across the full revenue cycle — not just claims"
