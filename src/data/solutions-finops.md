@@ -4,7 +4,7 @@ meta:
   description: "HealthFoundry's FinOps agents reduce revenue leakage across claims management, package profitability, payer intelligence, and supply chain optimisation."
 
 hero:
-  pill: "FinOps-Power"
+  pill: "FinOps"
   titleLine1: "Revenue Cycle Operations, "
   titleAccent: "Rethought & Automated"
 
